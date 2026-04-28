@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CloudAtlas — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div id="app">
+
+<!-- SIDEBAR -->
+<nav id="sb">
+  <div class="sb-logo">
+    <div class="sb-mark"><img src="assets/images/logo.svg" alt="UnifyCloud"></div>
+  </div>
+  <div class="sb-scroll">
+    <div class="sb-sec"><div class="sb-sec-lbl">Overview</div></div>
+    <button class="ni" data-nav="overview"><span class="ni-icon"><i class="fas fa-th-large"></i></span><span class="ni-lbl">Dashboard</span></button>
+    <button class="ni" data-nav="capabilities"><span class="ni-icon"><i class="fas fa-layer-group"></i></span><span class="ni-lbl">Capabilities</span></button>
+    <button class="ni" data-nav="architecture"><span class="ni-icon"><i class="fas fa-sitemap"></i></span><span class="ni-lbl">Architecture Flow</span></button>
+
+    <div class="sb-sec"><div class="sb-sec-lbl">Discovery</div></div>
+    <button class="ni" data-nav="discovery"><span class="ni-icon"><i class="fas fa-satellite-dish"></i></span><span class="ni-lbl">Data Discovery</span></button>
+
+    <div class="sb-sec"><div class="sb-sec-lbl">Infra Assessment</div></div>
+    <button class="ni" data-nav="liftshift"><span class="ni-icon"><i class="fas fa-arrow-up"></i></span><span class="ni-lbl">Lift &amp; Shift</span></button>
+    <button class="ni" data-nav="waveplan"><span class="ni-icon"><i class="fas fa-water"></i></span><span class="ni-lbl">Wave Plan</span></button>
+    <button class="ni" data-nav="depmap"><span class="ni-icon"><i class="fas fa-project-diagram"></i></span><span class="ni-lbl">Dependency Map</span></button>
+    <button class="ni" data-nav="tco"><span class="ni-icon"><i class="fas fa-dollar-sign"></i></span><span class="ni-lbl">TCO Analysis</span></button>
+
+    <div class="sb-sec"><div class="sb-sec-lbl">Modernization</div></div>
+    <button class="ni" data-nav="cloudpilot"><span class="ni-icon"><i class="fas fa-rocket"></i></span><span class="ni-lbl">CloudPilot Tool</span></button>
+    <button class="ni" data-nav="portfolio"><span class="ni-icon"><i class="fas fa-briefcase"></i></span><span class="ni-lbl">App &amp; DB Portfolio</span></button>
+    <button class="ni" data-nav="sixr"><span class="ni-icon"><i class="fas fa-chart-pie"></i></span><span class="ni-lbl">6R Analysis</span></button>
+
+    <div class="sb-sec"><div class="sb-sec-lbl">Migration</div></div>
+    <button class="ni" data-nav="wavemigration"><span class="ni-icon"><i class="fas fa-cloud-upload-alt"></i></span><span class="ni-lbl">Wave Migration</span></button>
+
+    <div class="sb-sec"><div class="sb-sec-lbl">Post-Migration</div></div>
+    <button class="ni" data-nav="security"><span class="ni-icon"><i class="fas fa-shield-alt"></i></span><span class="ni-lbl">Security &amp; Compliance</span></button>
+    <button class="ni" data-nav="optimization"><span class="ni-icon"><i class="fas fa-chart-line"></i></span><span class="ni-lbl">Optimization</span></button>
+  </div>
+  <div class="sb-foot">
+    <div class="user-row"><div class="user-av">JD</div><div style="overflow:hidden"><div class="user-name">Jane Doe</div><div class="user-role">Cloud Architect · Contoso</div></div></div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+  <header id="tb">
+    <button class="tb-tog" id="sbToggle"><i class="fas fa-bars"></i></button>
+    <div class="tb-bc"><span style="color:var(--t3)">CloudAtlas</span><span class="sep">/</span><span class="cur" id="bc-cur">Dashboard</span></div>
+    <div class="tb-srch"><i class="fas fa-search"></i><input type="text" placeholder="Search assets, reports, flows..."/></div>
+    <div class="tb-acts">
+      <button class="tb-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+      <button class="tb-btn"><i class="fas fa-bell"></i><span class="ndot"></span></button>
+      <button class="tb-btn"><i class="fas fa-cog"></i></button>
+      <div class="tb-div"></div>
+      <button class="ai-btn" id="agent-open"><i class="fas fa-robot"></i> AI Agent</button>
+    </div>
+  </header>
+  <div id="cnt">
+
+<!-- ══ DASHBOARD ══ -->
+<div class="panel active" id="p-overview">
+  <div class="ph"><div><div class="ph-title">Overview Dashboard</div><div class="ph-sub">Contoso Corp · April 9 2025 · 221 VMs · 35 Databases · 102 Applications</div></div><div class="ph-acts"><button class="btn btn-g" onclick="downloadCSV()"><i class="fas fa-download"></i> Export</button><button class="btn btn-p" onclick="Router.go('discovery')"><i class="fas fa-play"></i> New Discovery</button></div></div>
+  <div class="sg">
+    <div class="sc cb"><span class="sc-ico"><i class="fas fa-server"></i></span><div class="sc-lbl">Total VMs</div><div class="sc-val">221</div><div class="sc-delta up"><i class="fas fa-arrow-up"></i> 186 Win · 15 Linux</div></div>
+    <div class="sc ct"><span class="sc-ico"><i class="fas fa-database"></i></span><div class="sc-lbl">Total Databases</div><div class="sc-val">35</div><div class="sc-sub">Oracle 14 · SQL 7 · MongoDB 9</div></div>
+    <div class="sc cp"><span class="sc-ico"><i class="fas fa-code"></i></span><div class="sc-lbl">Applications</div><div class="sc-val">102</div><div class="sc-sub">.NET 81 · Java 17 · PHP 2</div></div>
+    <div class="sc cg"><span class="sc-ico"><i class="fas fa-check-circle"></i></span><div class="sc-lbl">Cloud Ready</div><div class="sc-val">187</div><div class="sc-delta up"><i class="fas fa-arrow-up"></i> 84.6% of inventory</div></div>
+    <div class="sc ca"><span class="sc-ico"><i class="fas fa-water"></i></span><div class="sc-lbl">Wave Plan</div><div class="sc-val">4 Waves</div><div class="sc-sub">12 Groups · 201 Servers</div></div>
+    <div class="sc ct"><span class="sc-ico"><i class="fas fa-piggy-bank"></i></span><div class="sc-lbl">3-Year Savings</div><div class="sc-val">$253K</div><div class="sc-delta up"><i class="fas fa-arrow-up"></i> 61.6% ROI on Azure</div></div>
+  </div>
+  <div class="g6040 mb1">
+    <div class="card"><div class="ch"><div><div class="ct">Monthly Cost — On-Prem vs Azure</div><div class="csub">Projected savings as workloads migrate through 2025</div></div><span class="bdg bb">Live</span></div><div class="cb-p" style="height:210px"><canvas id="ch-tco-line"></canvas></div></div>
+    <div class="card"><div class="ch"><div class="ct">6R Strategy Distribution</div></div><div class="cb-p" style="height:210px"><canvas id="ch-sixr-dnt"></canvas></div></div>
+  </div>
+  <div class="g4060">
+    <div class="card"><div class="ch"><div class="ct">Cloud Provider TCO (Annual)</div></div><div class="cb-p" style="height:190px"><canvas id="ch-cloud-bar"></canvas></div></div>
+    <div class="card"><div class="ch"><div class="ct">Cloud Journey Progress</div><span class="bdg ba">Active</span></div>
+      <div class="cb-p" style="display:flex;flex-direction:column;gap:10px">
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px"><span style="color:var(--t2)">1. Data Discovery</span><span style="color:var(--green);font-weight:700">Done</span></div><div class="pbw"><div class="pb"><div class="pbf g" style="width:100%"></div></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px"><span style="color:var(--t2)">2. Assessment (L&S, Wave, Dep, TCO)</span><span style="color:var(--blue);font-weight:700">Active</span></div><div class="pbw"><div class="pb"><div class="pbf b" style="width:65%"></div></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px"><span style="color:var(--t2)">3. Modernization (Portfolio, 6R)</span><span style="color:var(--t3)">Pending</span></div><div class="pbw"><div class="pb"><div class="pbf b" style="width:0%"></div></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px"><span style="color:var(--t2)">4. Migration Execution</span><span style="color:var(--t3)">Pending</span></div><div class="pbw"><div class="pb"><div class="pbf b" style="width:0%"></div></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:11px"><span style="color:var(--t2)">5. Post-Migration Govern</span><span style="color:var(--t3)">Pending</span></div><div class="pbw"><div class="pb"><div class="pbf b" style="width:0%"></div></div></div></div>
+        <div class="ph-acts" style="margin-top:8px">
+          <button class="btn btn-p btn-sm" onclick="Router.go('discovery')"><i class="fas fa-satellite-dish"></i> Start Discovery</button>
+          <button class="btn btn-g btn-sm" onclick="Agent.open()"><i class="fas fa-robot"></i> Ask AI</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CAPABILITIES ══ -->
+<div class="panel" id="p-capabilities">
+  <div class="ph"><div><div class="ph-title">CloudAtlas Capabilities</div><div class="ph-sub">Full lifecycle cloud transformation — powered by UnifyCloud</div></div></div>
+  <div class="cap-grid">
+    <div class="cap-c" onclick="Router.go('discovery')"><div class="cap-ico" style="background:rgba(45,126,255,.12)">🛰</div><div class="cap-name">Data Discovery</div><div class="cap-desc">Upload output from 15+ ISV tools. Azure Migrate, Lansweeper, Movere, Device42, ServiceNow, Flexera and more.</div><div class="cap-foot"><span class="bdg bb">15+ Tools</span><span class="cap-act">Open →</span></div></div>
+    <div class="cap-c" onclick="Router.go('liftshift')"><div class="cap-ico" style="background:rgba(34,216,107,.1)">🚀</div><div class="cap-name">Lift &amp; Shift</div><div class="cap-desc">AI-driven IaaS compatibility scoring. Identify workloads ready for direct migration without code changes.</div><div class="cap-foot"><span class="bdg bg">58% Ready</span><span class="cap-act">Demo →</span></div></div>
+    <div class="cap-c" onclick="Router.go('waveplan')"><div class="cap-ico" style="background:rgba(0,200,212,.12)">🌊</div><div class="cap-name">Wave Plan</div><div class="cap-desc">AI-assisted wave planning with dependency-aware batching, complexity scoring and group management.</div><div class="cap-foot"><span class="bdg bt">4 Waves</span><span class="cap-act">Demo →</span></div></div>
+    <div class="cap-c" onclick="Router.go('depmap')"><div class="cap-ico" style="background:rgba(139,92,246,.12)">🕸</div><div class="cap-name">Dependency Mapping</div><div class="cap-desc">Visualize app and database topology. Detect circular dependencies and migration conflicts automatically.</div><div class="cap-foot"><span class="bdg bp">156 deps</span><span class="cap-act">Demo →</span></div></div>
+    <div class="cap-c" onclick="Router.go('tco')"><div class="cap-ico" style="background:rgba(245,166,35,.12)">💰</div><div class="cap-name">TCO Analysis</div><div class="cap-desc">3-year cost comparison across Azure, AWS, GCP with full compute, storage and licensing breakdown.</div><div class="cap-foot"><span class="bdg ba">$253K savings</span><span class="cap-act">Demo →</span></div></div>
+    <div class="cap-c" onclick="Router.go('cloudpilot')"><div class="cap-ico" style="background:rgba(240,68,68,.1)">⚙️</div><div class="cap-name">CloudPilot</div><div class="cap-desc">Download CloudPilot for deep app &amp; DB static analysis, 6R strategy, LOE estimates and auto-refactoring.</div><div class="cap-foot"><span class="bdg br">Download Tool</span><span class="cap-act">Get →</span></div></div>
+    <div class="cap-c" onclick="Router.go('portfolio')"><div class="cap-ico" style="background:rgba(8,145,178,.12)">📊</div><div class="cap-name">App &amp; DB Portfolio</div><div class="cap-desc">Full assessment portfolio — target readiness, cost estimates, migration blockers for apps and databases.</div><div class="cap-foot"><span class="bdg bt">95 assessments</span><span class="cap-act">Demo →</span></div></div>
+    <div class="cap-c" onclick="Router.go('sixr')"><div class="cap-ico" style="background:rgba(34,216,107,.08)">🔄</div><div class="cap-name">6R Analysis</div><div class="cap-desc">Full 6R classification — Refactor, Rebuild, Retain, Rehost, Rearchitect, Replace for apps and databases.</div><div class="cap-foot"><span class="bdg bg">102 Apps · 35 DBs</span><span class="cap-act">Demo →</span></div></div>
+    <div class="cap-c" onclick="Router.go('wavemigration')"><div class="cap-ico" style="background:rgba(249,115,22,.12)">🔄</div><div class="cap-name">Wave Migration</div><div class="cap-desc">Download migration tools and execute wave-based cloud migration with live progress tracking.</div><div class="cap-foot"><span class="bdg bo">4 Waves</span><span class="cap-act">Start →</span></div></div>
+    <div class="cap-c" onclick="Router.go('security')"><div class="cap-ico" style="background:rgba(236,72,153,.1)">🔒</div><div class="cap-name">Security &amp; Compliance</div><div class="cap-desc">Post-migration security solutions — Cybersecurity, Secure Productivity, E5/E7, Sovereign assessment.</div><div class="cap-foot"><span class="bdg bpk">5 Solutions</span><span class="cap-act">Explore →</span></div></div>
+  </div>
+</div>
+
+<!-- ══ ARCHITECTURE ══ -->
+<div class="panel" id="p-architecture">
+  <div class="ph"><div><div class="ph-title">Architecture Flow</div><div class="ph-sub">End-to-end AI-powered cloud migration platform — powered by UnifyCloud</div></div><button class="btn btn-p" onclick="Agent.open()"><i class="fas fa-robot"></i> Launch AI Agent</button></div>
+  <div class="g4060 mb1">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card"><div class="ch"><div class="ct">Platform Capabilities</div></div>
+        <div class="cb-p" style="display:flex;flex-direction:column;gap:11px">
+          <div style="display:flex;gap:10px"><div style="width:32px;height:32px;background:rgba(45,126,255,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px">🛰</div><div><div style="font-weight:700;font-size:12px;margin-bottom:2px">15+ ISV Discovery Tools</div><div style="font-size:11px;color:var(--t3)">Azure Migrate, Lansweeper, Movere, Device42, ServiceNow, Flexera, SolarWinds, Block64, AWR Report, MAP and more.</div></div></div>
+          <div style="display:flex;gap:10px"><div style="width:32px;height:32px;background:rgba(0,200,212,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px">🧠</div><div><div style="font-weight:700;font-size:12px;margin-bottom:2px">AI Analysis Engine</div><div style="font-size:11px;color:var(--t3)">6R classification, dependency mapping, LOE estimation, TCO modeling — all AI-driven.</div></div></div>
+          <div style="display:flex;gap:10px"><div style="width:32px;height:32px;background:rgba(240,68,68,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px">⚙️</div><div><div style="font-weight:700;font-size:12px;margin-bottom:2px">CloudPilot Modernization</div><div style="font-size:11px;color:var(--t3)">Static-code analysis for .NET, Java, PHP, Python. Auto-refactoring and containerization paths.</div></div></div>
+          <div style="display:flex;gap:10px"><div style="width:32px;height:32px;background:rgba(34,216,107,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px">🌊</div><div><div style="font-weight:700;font-size:12px;margin-bottom:2px">AI-Assisted Wave Planning</div><div style="font-size:11px;color:var(--t3)">Dependency-aware wave batching, complexity scoring, automated landing zone configuration.</div></div></div>
+          <div style="display:flex;gap:10px"><div style="width:32px;height:32px;background:rgba(236,72,153,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px">🔒</div><div><div style="font-weight:700;font-size:12px;margin-bottom:2px">Post-Migration Govern</div><div style="font-size:11px;color:var(--t3)">Security, FinOps, compliance, E5/E7 migration, Sovereign assessment.</div></div></div>
+        </div>
+      </div>
+      <div class="card"><div class="ch"><div class="ct">Cloud Targets</div></div><div class="cb-p" style="display:flex;flex-wrap:wrap;gap:6px"><span class="bdg bb">Azure VM / AKS</span><span class="bdg bt">Azure SQL MI</span><span class="bdg bp">Serverless</span><span class="bdg bgr">Spring Cloud</span></div></div>
+    </div>
+    <div class="card"><div class="ch"><div class="ct">Architecture: Discover → Assess → Modernize → Migrate → Govern</div></div>
+      <div class="cb-p">
+        <div class="hub-row">
+          <div class="hub-lay"><div class="hub-lt">🛰 Discovery Layer — 15+ ISV Tools</div><div class="hub-chips"><span class="hub-chip">Azure Migrate</span><span class="hub-chip">Lansweeper</span><span class="hub-chip">Movere</span><span class="hub-chip">Device42</span><span class="hub-chip">ServiceNow</span><span class="hub-chip">Flexera</span><span class="hub-chip">SolarWinds</span><span class="hub-chip">Block64</span><span class="hub-chip">AWR Report</span><span class="hub-chip">MAP</span><span class="hub-chip">CloudPhysics</span><span class="hub-chip">StratoZone</span></div></div>
+          <div class="hub-arr"><i class="fas fa-chevron-down"></i></div>
+          <div class="hub-lay"><div class="hub-lt">🔌 Connector / Ingestion</div><div class="hub-chips"><span class="hub-chip">File Upload (xlsx/csv/json/xml/bak/zip)</span><span class="hub-chip">API Integrations</span><span class="hub-chip">Azure Migrate Sync</span><span class="hub-chip">Scheduled Sync</span></div></div>
+          <div class="hub-arr"><i class="fas fa-chevron-down"></i></div>
+          <div class="hub-lay" style="border-color:var(--blue)"><div class="hub-lt" style="background:var(--blue)">⚙️ CloudAtlas AI Orchestrator</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px"><div style="background:var(--bg3);border-radius:8px;padding:8px;font-size:11px"><div style="font-weight:700;color:var(--t1);margin-bottom:3px">Assessment Engine</div><div style="color:var(--t3)">L&S · Wave · Dep · TCO</div></div><div style="background:rgba(45,126,255,.1);border:1px solid rgba(45,126,255,.2);border-radius:8px;padding:8px;font-size:11px"><div style="font-weight:700;color:var(--blue);margin-bottom:3px">🧠 AI Analysis</div><div style="color:var(--t3)">6R · Dep Map · Code</div></div><div style="background:var(--bg3);border-radius:8px;padding:8px;font-size:11px"><div style="font-weight:700;color:var(--t1);margin-bottom:3px">CloudPilot Engine</div><div style="color:var(--t3)">App · DB · Modernization</div></div></div></div>
+          <div class="hub-arr"><i class="fas fa-chevron-down"></i></div>
+          <div class="hub-lay"><div class="hub-lt" style="background:linear-gradient(135deg,var(--teal),var(--blue))">📊 Dashboard Outputs</div><div class="hub-chips"><span class="hub-chip">Inventory Report</span><span class="hub-chip">L&S Assessment</span><span class="hub-chip">Wave Plan</span><span class="hub-chip">Dep Map</span><span class="hub-chip">TCO Report</span><span class="hub-chip">6R Analysis</span><span class="hub-chip">Portfolio</span><span class="hub-chip">Migration Plan</span><span class="hub-chip">Security Score</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DATA DISCOVERY ══ -->
+<div class="panel" id="p-discovery">
+  <div class="ph">
+    <div><div class="ph-title">Data Discovery</div><div class="ph-sub">INTEGRATED ISV AND 3RD PARTY DISCOVERY TOOLS · Upload your scanned Datacenter workload details</div></div>
+    <div class="ph-acts">
+      <button class="btn btn-g" onclick="Discovery.reset()"><i class="fas fa-redo"></i> Reset</button>
+      <button class="btn btn-p" id="disc-upload-btn" disabled onclick="Discovery.openUpload()"><i class="fas fa-upload"></i> Select a tool</button>
+    </div>
+  </div>
+  <!-- Tool Grid -->
+  <div id="disc-tools">
+    <div class="dt-grid mb2">
+      <div class="dt-card" onclick="Discovery.select('Custom Template',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo" style="background:rgba(45,126,255,.1)"><i class="fas fa-file-excel" style="color:var(--blue);font-size:22px"></i></div><div class="dt-name">Custom Template</div><div class="dt-desc">Download template, fill it and upload your inventory (.xlsx)</div></div>
+      <div class="dt-card" onclick="Discovery.select('Azure Migrate',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo" style="background:rgba(0,120,212,.1)"><i class="fab fa-microsoft" style="color:#0078D4;font-size:22px"></i></div><div class="dt-name">Azure Migrate</div><div class="dt-desc">Upload Azure Migrate File (.xlsx format)</div></div>
+      <div class="dt-card" onclick="Discovery.select('RV Tool',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-file-csv" style="color:var(--green);font-size:22px"></i></div><div class="dt-name">RV Tool</div><div class="dt-desc">Upload your inventory using a .csv file</div></div>
+      <div class="dt-card" onclick="Discovery.select('Azure Migrate Sync',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo" style="background:rgba(0,120,212,.1)"><i class="fas fa-sync" style="color:#0078D4;font-size:22px"></i></div><div class="dt-name">Azure Migrate Sync</div><div class="dt-desc">Configure Azure Migrate Sync integration</div></div>
+      <div class="dt-card" onclick="Discovery.select('Lansweeper',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-network-wired" style="color:var(--orange);font-size:22px"></i></div><div class="dt-name">Lansweeper</div><div class="dt-desc">Upload your on-premises .bak file</div></div>
+      <div class="dt-card" onclick="Discovery.select('Flexera',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><div style="font-weight:900;font-size:14px;color:var(--teal);font-family:var(--font)">flex<span style="color:var(--blue)">era</span></div></div><div class="dt-name">Flexera</div><div class="dt-desc">Upload your on-premises .bak file</div></div>
+      <div class="dt-card" onclick="Discovery.select('SolarWinds',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-sun" style="color:var(--orange);font-size:22px"></i></div><div class="dt-name">SolarWinds</div><div class="dt-desc">Upload your Generated Excel in Zip format</div></div>
+      <div class="dt-card" onclick="Discovery.select('Block64',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-cube" style="color:var(--purple);font-size:22px"></i></div><div class="dt-name">Block64</div><div class="dt-desc">Upload Block64 Template (.Excel file)</div></div>
+      <div class="dt-card" onclick="Discovery.select('AWR Report',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-database" style="color:var(--red);font-size:22px"></i></div><div class="dt-name">AWR Report</div><div class="dt-desc">Download and fill template with machine information</div></div>
+      <div class="dt-card" onclick="Discovery.select('MAP',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-map-marked-alt" style="color:var(--blue);font-size:22px"></i></div><div class="dt-name">MAP</div><div class="dt-desc">Upload Your on-premises MAP .bak file</div></div>
+      <div class="dt-card" onclick="Discovery.select('ServiceNow',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><div style="font-weight:900;font-size:12px;color:var(--green);font-family:var(--font)">service<span style="color:#81B5A1">now</span></div></div><div class="dt-name">ServiceNow</div><div class="dt-desc">Upload Your on-premises ServiceNow file</div></div>
+      <div class="dt-card" onclick="Discovery.select('CloudPhysics',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-cloud" style="color:var(--teal);font-size:22px"></i></div><div class="dt-name">CloudPhysics</div><div class="dt-desc">Upload Your on-premises CloudPhysics file</div></div>
+      <div class="dt-card" onclick="Discovery.select('Device42',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><div style="font-weight:900;font-size:11px;color:var(--purple);font-family:var(--font)">DEVICE42</div></div><div class="dt-name">Device42</div><div class="dt-desc">Upload Your on-premises Device42 file</div></div>
+      <div class="dt-card" onclick="Discovery.select('Movere',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-arrows-alt" style="color:var(--amber);font-size:22px"></i></div><div class="dt-name">Movere</div><div class="dt-desc">Upload Movere CSV File (File in .zip format)</div></div>
+      <div class="dt-card" onclick="Discovery.select('StratoZone',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-cloud-upload-alt" style="color:var(--blue);font-size:22px"></i></div><div class="dt-name">StratoZone</div><div class="dt-desc">Upload Your on-premises StratoZone file</div></div>
+    </div>
+  </div>
+  <!-- Scanning -->
+  <div id="disc-scanning" class="hidden">
+    <div class="sim-p"><span class="sim-spin">⚙️</span><div id="disc-lbl" class="sim-lbl">Connecting...</div><div class="sim-bar"><div class="sim-bf" id="disc-bar" style="width:0%"></div></div></div>
+  </div>
+  <!-- Results -->
+  <div id="disc-results" class="hidden">
+    <div class="sg mb1">
+      <div class="sc cb"><span class="sc-ico"><i class="fas fa-server"></i></span><div class="sc-lbl">Total Assets</div><div class="sc-val">221</div><div class="sc-sub">VMs discovered</div></div>
+      <div class="sc cg"><span class="sc-ico"><i class="fas fa-check"></i></span><div class="sc-lbl">Cloud Ready</div><div class="sc-val">187</div><div class="sc-sub">84.6% of assets</div></div>
+      <div class="sc cp"><span class="sc-ico"><i class="fas fa-database"></i></span><div class="sc-lbl">Databases</div><div class="sc-val">35</div><div class="sc-sub">Oracle 14 · SQL 7 · Mongo 9</div></div>
+      <div class="sc ct"><span class="sc-ico"><i class="fas fa-code"></i></span><div class="sc-lbl">Applications</div><div class="sc-val">102</div><div class="sc-sub">.NET 81 · Java 17</div></div>
+      <div class="sc ca"><span class="sc-ico"><i class="fab fa-windows"></i></span><div class="sc-lbl">Windows VMs</div><div class="sc-val">186</div><div class="sc-sub">$2,57,74,669.5</div></div>
+      <div class="sc co"><span class="sc-ico"><i class="fab fa-linux"></i></span><div class="sc-lbl">Linux VMs</div><div class="sc-val">15</div><div class="sc-sub">$13,29,008.35</div></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div><div class="ct">Asset Inventory — Contoso Corp</div><div class="csub">All discovered servers with classification</div></div><div style="display:flex;gap:8px"><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export</button><button class="btn btn-p btn-sm" onclick="Router.go('liftshift')"><i class="fas fa-arrow-right"></i> Proceed to Assessment</button></div></div>
+      <div class="cb-np" style="overflow-x:auto">
+        <table class="dt"><thead><tr><th>Server</th><th>Type</th><th>OS</th><th>Resources</th><th>Storage</th><th>Applications</th><th>Wave</th><th>Platform</th><th>Complexity</th><th>Cloud Ready</th></tr></thead><tbody id="disc-tbody"></tbody></table>
+      </div>
+      <div class="dt-foot"><span>Showing results from scan</span><div class="pgs"><button class="pgb on">1</button><button class="pgb">2</button><button class="pgb">3</button><button class="pgb"><i class="fas fa-chevron-right"></i></button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Upload Modal -->
+<div class="overlay" id="upload-modal">
+  <div class="modal" style="width:480px">
+    <div class="m-hd"><div class="m-title">Upload <span id="um-tool">Tool</span> File</div><button class="m-close" onclick="Discovery.closeUpload()">✕</button></div>
+    <div class="m-body">
+      <div class="uz mb1" onclick="this.querySelector('input').click()">
+        <div class="uz-ico"><i class="fas fa-cloud-upload-alt"></i></div>
+        <div class="uz-t">Drop file here or click to browse</div>
+        <div class="uz-sub">Supports .xlsx · .csv · .json · .xml · .bak · .zip</div>
+        <input type="file" style="display:none" accept=".xlsx,.csv,.json,.xml,.bak,.zip"/>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-p" style="flex:1" onclick="Discovery.startScan()"><i class="fas fa-play"></i> Start Data Discovery</button>
+        <button class="btn btn-g" onclick="Discovery.closeUpload()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ LIFT & SHIFT ══ -->
+<div class="panel" id="p-liftshift">
+  <div class="ph">
+    <div><div class="ph-title">IaaS Lift &amp; Shift Report — AI Driven Analysis <span style="background:rgba(45,126,255,.15);color:var(--blue);font-size:11px;font-weight:700;padding:3px 10px;border-radius:50px;vertical-align:middle;margin-left:8px">Part 1</span></div><div class="ph-sub">Evaluate workloads for direct migration without code changes</div></div>
+    <div class="ph-acts">
+      <div style="display:flex;gap:5px"><button class="flt-btn on" data-f="all" onclick="LiftShift.filter('all');document.querySelectorAll('.flt-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">All (12)</button><button class="flt-btn" data-f="ls" onclick="LiftShift.filter('ls');document.querySelectorAll('.flt-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">✅ L&amp;S Ready</button><button class="flt-btn" data-f="rp" onclick="LiftShift.filter('rp');document.querySelectorAll('.flt-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">⚠️ Replatform</button><button class="flt-btn" data-f="mod" onclick="LiftShift.filter('mod');document.querySelectorAll('.flt-btn').forEach(b=>b.classList.remove('on'));this.classList.add('on')">🔄 Modernize</button></div>
+      <button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Download Excel Report</button>
+    </div>
+  </div>
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-b on ls-tab-b" data-ls="insights" onclick="switchLSTab('insights')">Insights</button>
+    <button class="tab-b ls-tab-b" data-ls="servers" onclick="switchLSTab('servers')">Servers Assessment</button>
+    <!-- <button class="tab-b ls-tab-b" data-ls="storage" onclick="switchLSTab('storage')">Storage Assessment</button> -->
+  </div>
+  <!-- Insights -->
+  <div class="tab-c on ls-tab-c" data-ls="insights">
+    <div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
+      <div class="sc cb"><span class="sc-ico"><i class="fas fa-server"></i></span><div class="sc-lbl">Total Assessed</div><div class="sc-val">48</div><div class="sc-sub">Workloads scanned</div></div>
+      <div class="sc cg"><span class="sc-ico"><i class="fas fa-check-circle"></i></span><div class="sc-lbl">Lift &amp; Shift Ready</div><div class="sc-val">28</div><div class="sc-sub">58% of workloads</div></div>
+      <div class="sc ca"><span class="sc-ico"><i class="fas fa-exclamation-triangle"></i></span><div class="sc-lbl">Need Replatform</div><div class="sc-val">12</div><div class="sc-sub">Require minor changes</div></div>
+      <div class="sc cr"><span class="sc-ico"><i class="fas fa-sync-alt"></i></span><div class="sc-lbl">Require Modernization</div><div class="sc-val">8</div><div class="sc-sub">Major refactoring needed</div></div>
+    </div>
+    <div class="g7030 mb1">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <!-- Cost row -->
+        <div class="g3">
+          <div class="card"><div class="ch"><div class="ct">Total Compute Cost</div></div><div class="cb-p"><div style="font-size:22px;font-weight:800;color:var(--t1)">2,61,44,832<span style="font-size:13px;color:var(--t3)">.65</span></div><div style="font-size:11px;color:var(--t3);margin-top:4px">cost per month</div><span class="bdg bb" style="margin-top:8px;display:inline-flex">PAYG</span></div></div>
+          <div class="card"><div class="ch"><div class="ct">Total Storage Cost</div></div><div class="cb-p"><div style="font-size:22px;font-weight:800">15,00,065</div><div style="font-size:11px;color:var(--t3);margin-top:4px">cost per month</div></div></div>
+          <div class="card"><div class="ch"><div class="ct">Other Services</div></div><div class="cb-p"><div style="font-size:22px;font-weight:800">1,58,188<span style="font-size:13px;color:var(--t3)">.22</span></div><div style="font-size:11px;color:var(--t3);margin-top:4px">cost per month</div></div></div>
+        </div>
+        <!-- Savings Options -->
+        <div class="card"><div class="ch"><div class="ct">Compute Cost Savings Options on Azure</div><div style="display:flex;gap:5px"><span class="bdg bb">License included</span><span class="bdg bt">Azure Hybrid Benefit</span></div></div>
+          <div class="cb-p"><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">
+            <div style="text-align:center;padding:12px;background:var(--bg2);border-radius:8px"><div style="font-size:11px;color:var(--t3);margin-bottom:6px">Pay as you go</div><div style="font-size:13px;font-weight:700">2,61,44,832</div></div>
+            <div style="text-align:center;padding:12px;background:var(--bg2);border-radius:8px"><div style="font-size:11px;color:var(--t3);margin-bottom:6px">1 year reserved</div><div style="font-size:13px;font-weight:700">1,95,28,841</div></div>
+            <div class="sav-best"><div class="sav-best-tag">BEST</div><div style="font-size:11px;color:var(--blue);margin-bottom:6px">3 year reserved</div><div style="font-size:13px;font-weight:800;color:var(--blue)">1,55,87,751</div></div>
+            <div style="text-align:center;padding:12px;background:var(--bg2);border-radius:8px"><div style="font-size:11px;color:var(--t3);margin-bottom:6px">1 year savings</div><div style="font-size:13px;font-weight:700">2,09,16,080</div></div>
+            <div style="text-align:center;padding:12px;background:var(--bg2);border-radius:8px"><div style="font-size:11px;color:var(--t3);margin-bottom:6px">3 year savings</div><div style="font-size:13px;font-weight:700">1,76,04,628</div></div>
+          </div></div>
+        </div>
+        <!-- Costing detail cards -->
+        <div class="g3">
+          <div class="card"><div class="ch" style="background:rgba(240,68,68,.05)"><div class="ct" style="color:var(--red)">Azure Costing — MANDATORY</div></div><div class="cb-p" style="font-size:12px;display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Total Compute (3YR RI)</span><span style="font-weight:700;color:var(--teal)">1,55,87,751.74</span></div><div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Total Storage</span><span style="font-weight:700">15,00,065</span></div><div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Bandwidth &amp; VNet</span><span style="font-weight:700">6,771.65</span></div><div style="border-top:1px solid var(--bdr);padding-top:6px;display:flex;justify-content:space-between"><span style="font-weight:700">Total</span><span style="font-weight:800;color:var(--blue)">1,70,94,588.39</span></div></div></div>
+          <div class="card"><div class="ch"><div class="ct">Azure Costing — Optional</div></div><div class="cb-p" style="font-size:12px;display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Network &amp; Other</span><span style="font-weight:700">1,51,416.57</span></div><div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Backup (production)</span><span style="font-weight:700">7,09,076.25</span></div><div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">DR Cost</span><span style="font-weight:700">12,88,980.11</span></div><div style="border-top:1px solid var(--bdr);padding-top:6px;display:flex;justify-content:space-between"><span style="font-weight:700">Total</span><span style="font-weight:800;color:var(--blue)">21,49,472.93</span></div></div></div>
+          <div class="card"><div class="ch"><div class="ct">Storage Costing</div></div><div class="cb-p" style="font-size:12px;display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Managed Disk (219568 GB)</span><span style="font-weight:700">15,00,065</span></div><div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">Blob Storage</span><span style="font-weight:700">0</span></div><div style="display:flex;justify-content:space-between"><span style="color:var(--t3)">File Storage</span><span style="font-weight:700">0</span></div><div style="border-top:1px solid var(--bdr);padding-top:6px;display:flex;justify-content:space-between"><span style="font-weight:700">Total</span><span style="font-weight:800;color:var(--blue)">15,00,065</span></div></div></div>
+        </div>
+        <!-- Top servers -->
+        <div class="g2">
+          <div class="card"><div class="ch"><div class="ct">Top 5 High <span style="color:var(--red)">Compute</span> Costing</div><button class="btn btn-g btn-xs">Actions →</button></div><div class="cb-np"><table class="dt"><thead><tr><th>Computer Name</th><th>SKUs</th><th>Costing</th></tr></thead><tbody><tr><td><b>sqltre4</b></td><td style="font-family:var(--mono)">E32-8s v5</td><td style="font-family:var(--mono);color:var(--amber)">4736.24</td></tr><tr><td><b>sqltre1</b></td><td style="font-family:var(--mono)">E32-8s v5</td><td style="font-family:var(--mono);color:var(--amber)">3661.68</td></tr><tr><td><b>sqltre3</b></td><td style="font-family:var(--mono)">E32-8s v5</td><td style="font-family:var(--mono);color:var(--amber)">2546.24</td></tr><tr><td><b>spoolesp2</b></td><td style="font-family:var(--mono)">E32-8s v5</td><td style="font-family:var(--mono);color:var(--amber)">2546.24</td></tr><tr><td><b>spooltrel</b></td><td style="font-family:var(--mono)">E32-8s v5</td><td style="font-family:var(--mono);color:var(--amber)">2546.24</td></tr></tbody></table></div></div>
+          <div class="card"><div class="ch"><div class="ct">Top 5 High <span style="color:var(--blue)">Storage</span> Costing</div><button class="btn btn-g btn-xs">Actions →</button></div><div class="cb-np"><table class="dt"><thead><tr><th>Computer Name</th><th>Size (GB)</th><th>Costing</th></tr></thead><tbody><tr><td><b>NAS1</b></td><td style="font-family:var(--mono)">16384</td><td style="font-family:var(--mono);color:var(--amber)">1228.8</td></tr><tr><td><b>NAS1</b></td><td style="font-family:var(--mono)">8192</td><td style="font-family:var(--mono);color:var(--amber)">614.4</td></tr><tr><td><b>mfilestre1</b></td><td style="font-family:var(--mono)">8192</td><td style="font-family:var(--mono);color:var(--amber)">614.4</td></tr><tr><td><b>FILEAW2</b></td><td style="font-family:var(--mono)">8192</td><td style="font-family:var(--mono);color:var(--amber)">614.4</td></tr><tr><td><b>fileesp6</b></td><td style="font-family:var(--mono)">8192</td><td style="font-family:var(--mono);color:var(--amber)">614.4</td></tr></tbody></table></div></div>
+        </div>
+      </div>
+      <!-- Right: VM status chart + core/ram savings -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card"><div class="ch"><div class="ct">Azure Ready Machines</div></div>
+          <div class="cb-p" style="height:160px"><canvas id="ch-ls-compat"></canvas></div>
+          <div class="cb-p" style="padding-top:0">
+            <div style="font-size:22px;font-weight:800;margin-bottom:2px;color:var(--t1)">221 <span style="font-size:13px;color:var(--t3)">Total VMs</span></div>
+            <div style="display:flex;gap:20px;font-size:12px;margin-top:8px"><div><div style="font-weight:800;color:var(--blue)">108</div><div style="color:var(--t3)">Production</div></div><div><div style="font-weight:800;color:var(--teal)">113</div><div style="color:var(--t3)">Dev/Test</div></div></div>
+            <table style="width:100%;font-size:11px;margin-top:10px;border-collapse:collapse"><tr style="color:var(--t3)"><th style="text-align:left;padding:3px 0">Type</th><th>Prod</th><th>Dev/Test</th><th>Total</th></tr><tr><td style="padding:3px 0;color:var(--t2)">● Windows</td><td style="text-align:center;font-weight:700">98</td><td style="text-align:center;font-weight:700">102</td><td style="text-align:center;font-weight:700">200</td></tr><tr><td style="padding:3px 0;color:var(--t2)">● Linux</td><td style="text-align:center;font-weight:700">9</td><td style="text-align:center;font-weight:700">8</td><td style="text-align:center;font-weight:700">17</td></tr><tr><td style="padding:3px 0;color:var(--t2)">● SQL</td><td style="text-align:center;font-weight:700">1</td><td style="text-align:center;font-weight:700">3</td><td style="text-align:center;font-weight:700">4</td></tr></table>
+          </div>
+        </div>
+        <div class="card"><div class="ch"><div class="ct">Core &amp; RAM Saving in Azure L&S</div></div>
+          <div class="cb-p" style="font-size:12px;display:flex;flex-direction:column;gap:10px">
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="color:var(--t2);font-weight:600">529 Core On-Prem</span><span style="color:var(--green);font-weight:700">1466 Core Azure</span></div><div class="pbw"><div class="pb" style="height:8px"><div class="pbf b" style="width:36%"></div></div></div><div style="text-align:right;font-size:10px;color:var(--green);font-weight:700;margin-top:3px">0.36% Core Saving ✓</div></div>
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="color:var(--t2);font-weight:600">3919 GB RAM On-Prem</span><span style="color:var(--green);font-weight:700">30242 GB RAM Azure</span></div><div class="pbw"><div class="pb" style="height:8px"><div class="pbf t" style="width:13%"></div></div></div><div style="text-align:right;font-size:10px;color:var(--green);font-weight:700;margin-top:3px">0.13% RAM Saving ✓</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Servers Tab -->
+  <div class="tab-c ls-tab-c" data-ls="servers">
+    <div class="card"><div class="ch"><div><div class="ct">Workload Assessment Details</div><div class="csub">AI-driven compatibility scoring</div></div><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export</button></div><div class="cb-np" style="overflow-x:auto"><table class="dt"><thead><tr><th>WORKLOAD</th><th>TYPE</th><th>OS</th><th>CPU</th><th>RAM</th><th>STORAGE</th><th>COMPATIBILITY</th><th>RECOMMENDATION</th><th>EFFORT</th><th>STATUS</th></tr></thead><tbody id="ls-tbody"></tbody></table></div><div class="dt-foot"><span>Showing 12 workloads</span><div class="pgs"><button class="pgb on">1</button><button class="pgb">2</button></div></div></div>
+  </div>
+  <!-- Storage Tab -->
+  <div class="tab-c ls-tab-c" data-ls="storage">
+    <div style="text-align:center;padding:48px;color:var(--t3)"><div style="font-size:48px;margin-bottom:16px">💾</div><div style="font-size:18px;font-weight:700;margin-bottom:8px;color:var(--t2)">Storage Assessment</div><div style="font-size:13px;max-width:440px;margin:0 auto 20px;line-height:1.7">Detailed storage compatibility analysis including disk types, IOPS requirements and Azure storage tier recommendations.</div><button class="btn btn-p" onclick="toast('ℹ️','Storage Assessment','Run the full assessment via CloudPilot tool')"><i class="fas fa-play"></i> Run Storage Assessment</button></div>
+  </div>
+</div>
+
+
+<!-- ══ WAVE PLAN ══ -->
+<div class="panel" id="p-waveplan">
+  <div class="ph"><div><div class="ph-title">Infrastructure — AI Assisted Wave Plan</div><div class="ph-sub">Dependency-aware wave planning with complexity and criticality scoring</div></div><div class="ph-acts"><select class="isel"><option>Migration Approach: Rehost</option><option>Replatform</option><option>Refactor</option></select><select class="isel"><option>Version: Recommended</option><option>Custom v1</option></select><button class="btn btn-s"><i class="fas fa-save"></i> Save Version 1</button><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Download Excel</button></div></div>
+  <div class="tabs">
+    <button class="tab-b on wp-tab-b" data-wp="insights" onclick="switchWPTab('insights')">Insights</button>
+    <button class="tab-b wp-tab-b" data-wp="wavedetails" onclick="switchWPTab('wavedetails')">Wave Plan Details</button>
+    <button class="tab-b wp-tab-b" data-wp="wg" onclick="switchWPTab('wg')">Waves &amp; Groups</button>
+  </div>
+  <!-- Insights -->
+  <div class="tab-c on wp-tab-c" data-wp="insights">
+    <div class="g3 mb1" style="grid-template-columns:180px 180px 180px">
+      <div class="card" style="background:var(--bg2)"><div class="cb-p" style="display:flex;align-items:center;gap:14px"><div style="width:44px;height:44px;background:rgba(45,126,255,.1);border-radius:var(--r1);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0"><i class="fas fa-layer-group" style="color:var(--blue)"></i></div><div><div style="font-size:28px;font-weight:800">4</div><div style="font-size:12px;font-weight:700;color:var(--t2)">Total Waves</div><div style="font-size:10px;color:var(--t3);margin-top:3px;line-height:1.4">Sequential migration phases</div></div></div></div>
+      <div class="card" style="background:var(--bg2)"><div class="cb-p" style="display:flex;align-items:center;gap:14px"><div style="width:44px;height:44px;background:rgba(0,200,212,.1);border-radius:var(--r1);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0"><i class="fas fa-object-group" style="color:var(--teal)"></i></div><div><div style="font-size:28px;font-weight:800">12</div><div style="font-size:12px;font-weight:700;color:var(--t2)">Total Groups</div><div style="font-size:10px;color:var(--t3);margin-top:3px;line-height:1.4">Workload bundles per wave</div></div></div></div>
+      <div class="card" style="background:var(--bg2)"><div class="cb-p" style="display:flex;align-items:center;gap:14px"><div style="width:44px;height:44px;background:rgba(34,216,107,.1);border-radius:var(--r1);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0"><i class="fas fa-server" style="color:var(--green)"></i></div><div><div style="font-size:28px;font-weight:800">201</div><div style="font-size:12px;font-weight:700;color:var(--t2)">Total Servers</div><div style="font-size:10px;color:var(--t3);margin-top:3px;line-height:1.4">Rehost/Refactor/Replace…</div></div></div></div>
+    </div>
+    <div class="g3 mb1">
+      <!-- 6R Analysis -->
+      <div class="card"><div class="ch"><div class="ct">6Rs of Cloud Migration Analysis</div><div class="csub">Total On-premise VMs: 221</div></div>
+        <div class="cb-p" style="display:flex;flex-direction:column;gap:8px">
+          <div class="wp-sixr-row"><div class="wp-sixr-dot" style="background:var(--green)"></div><div class="wp-sixr-nm">Rehost</div><div class="wp-sixr-bar"><div class="wp-sixr-fill" style="width:100%;background:var(--green)"></div></div><div class="wp-sixr-cnt">201</div></div>
+          <div class="wp-sixr-row"><div class="wp-sixr-dot" style="background:var(--amber)"></div><div class="wp-sixr-nm">Refactor</div><div class="wp-sixr-bar"><div class="wp-sixr-fill" style="width:4.5%;background:var(--amber)"></div></div><div class="wp-sixr-cnt">9</div></div>
+          <div class="wp-sixr-row"><div class="wp-sixr-dot" style="background:var(--amber)"></div><div class="wp-sixr-nm">Re-Arch/Rebuild</div><div class="wp-sixr-bar"><div class="wp-sixr-fill" style="width:4.5%;background:var(--amber)"></div></div><div class="wp-sixr-cnt">9</div></div>
+          <div class="wp-sixr-row"><div class="wp-sixr-dot" style="background:var(--orange)"></div><div class="wp-sixr-nm">Replace</div><div class="wp-sixr-bar"><div class="wp-sixr-fill" style="width:1%;background:var(--orange)"></div></div><div class="wp-sixr-cnt">2</div></div>
+          <div class="wp-sixr-row"><div class="wp-sixr-dot" style="background:var(--t3)"></div><div class="wp-sixr-nm">Retain</div><div class="wp-sixr-bar"><div class="wp-sixr-fill" style="width:0%;background:var(--t3)"></div></div><div class="wp-sixr-cnt">0</div></div>
+          <div class="wp-sixr-row"><div class="wp-sixr-dot" style="background:var(--t3)"></div><div class="wp-sixr-nm">Retire</div><div class="wp-sixr-bar"><div class="wp-sixr-fill" style="width:0%;background:var(--t3)"></div></div><div class="wp-sixr-cnt">0</div></div>
+        </div>
+      </div>
+      <!-- 6R Comparison Chart -->
+      <div class="card"><div class="ch"><div class="ct">6Rs Cloud Migration Comparison</div><div class="csub">VM Migration Approaches</div></div><div class="cb-p" style="height:220px"><canvas id="ch-wp-comp"></canvas></div></div>
+      <!-- Criticality + Complexity -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card"><div class="ch"><div class="ct">Server Criticality</div></div>
+          <div class="cb-p"><div style="font-size:11px;color:var(--t3);margin-bottom:10px">Determined by resource utilization's impact on system performance.</div><div style="display:flex;gap:14px;margin-bottom:10px"><div style="text-align:center"><div style="font-size:20px;font-weight:800;color:var(--green)">0</div><span class="bdg bg" style="margin-top:4px;display:inline-flex">LOW</span></div><div style="text-align:center"><div style="font-size:20px;font-weight:800;color:var(--amber)">80</div><span class="bdg ba" style="margin-top:4px;display:inline-flex">MEDIUM</span></div><div style="text-align:center"><div style="font-size:20px;font-weight:800;color:var(--red)">121</div><span class="bdg br" style="margin-top:4px;display:inline-flex">HIGH</span></div></div><div class="pbw"><div class="pb" style="height:8px"><div class="pbf" style="width:59%;background:linear-gradient(90deg,var(--green),var(--amber),var(--red))"></div></div></div></div>
+        </div>
+        <div class="card"><div class="ch"><div class="ct">Server Complexity</div></div>
+          <div class="cb-p"><div style="font-size:11px;color:var(--t3);margin-bottom:10px">Determined by environment, dependencies, and cloud readiness.</div><div style="display:flex;gap:14px;margin-bottom:10px"><div style="text-align:center"><div style="font-size:20px;font-weight:800;color:var(--green)">101</div><span class="bdg bg" style="margin-top:4px;display:inline-flex">LOW</span></div><div style="text-align:center"><div style="font-size:20px;font-weight:800;color:var(--amber)">4</div><span class="bdg ba" style="margin-top:4px;display:inline-flex">MEDIUM</span></div><div style="text-align:center"><div style="font-size:20px;font-weight:800;color:var(--red)">96</div><span class="bdg br" style="margin-top:4px;display:inline-flex">HIGH</span></div></div><div class="pbw"><div class="pb" style="height:8px"><div class="pbf" style="width:48%;background:linear-gradient(90deg,var(--green),var(--amber),var(--red))"></div></div></div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Wave Summary Table -->
+    <div class="card"><div class="ch"><div class="ct">Wave Summary</div></div>
+      <div class="cb-np" style="overflow-x:auto"><table class="dt"><thead><tr><th>#Waves</th><th>#Groups</th><th>#Server</th><th>#Production</th><th>#Dev/Test</th><th>#Complexity (High)</th><th>#Critical (High)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Wave 1</b></td><td>Total Groups 3</td><td style="font-family:var(--mono)">51</td><td style="font-family:var(--mono)">0</td><td style="font-family:var(--mono)">51</td><td style="font-family:var(--mono)">0</td><td style="font-family:var(--mono);color:var(--amber)">13</td></tr>
+        <tr><td><b>Wave 2</b></td><td>Total Groups 3</td><td style="font-family:var(--mono)">51</td><td style="font-family:var(--mono)">0</td><td style="font-family:var(--mono)">51</td><td style="font-family:var(--mono)">0</td><td style="font-family:var(--mono);color:var(--red)">50</td></tr>
+        <tr><td><b>Wave 3</b></td><td>Total Groups 3</td><td style="font-family:var(--mono)">51</td><td style="font-family:var(--mono)">46</td><td style="font-family:var(--mono)">5</td><td style="font-family:var(--mono)">0</td><td style="font-family:var(--mono);color:var(--amber)">10</td></tr>
+        <tr><td><b>Wave 4</b></td><td>Total Groups 3</td><td style="font-family:var(--mono)">48</td><td style="font-family:var(--mono)">48</td><td style="font-family:var(--mono)">0</td><td style="font-family:var(--mono)">0</td><td style="font-family:var(--mono);color:var(--red)">48</td></tr>
+      </tbody></table></div>
+      <div class="dt-foot"><span>Showing 1 to 4 of 4 entries</span><div class="pgs"><button class="pgb" disabled>Previous</button><button class="pgb on">1</button><button class="pgb" disabled>Next</button></div></div>
+    </div>
+  </div>
+  <!-- Wave Details Tab -->
+  <div class="tab-c wp-tab-c" data-wp="wavedetails">
+    <div class="g4060 mb1">
+      <div class="card"><div class="ch"><div class="ct">Applications &amp; Databases</div></div>
+        <div class="cb-p">
+          <div style="display:flex;gap:12px;margin-bottom:14px">
+            <div style="background:linear-gradient(135deg,var(--blue),var(--blue2));border-radius:var(--r1);padding:12px 16px;color:#fff;flex:1"><div style="font-size:11px;opacity:.7">Applications</div><div style="font-size:28px;font-weight:800">1</div></div>
+            <div style="background:linear-gradient(135deg,#1a3a8a,#0d2b6b);border-radius:var(--r1);padding:12px 16px;color:#fff;flex:1"><div style="font-size:11px;opacity:.7">Databases</div><div style="font-size:28px;font-weight:800">0</div></div>
+          </div>
+          <div style="font-size:12px;display:grid;grid-template-columns:1fr 1fr;gap:4px">
+            <div style="color:var(--t3)">● .Net <span style="color:var(--t2);font-weight:700">0</span></div><div style="color:var(--t3)">● Java <span style="color:var(--t2);font-weight:700">0</span></div>
+            <div style="color:var(--t3)">● Php <span style="color:var(--t2);font-weight:700">0</span></div><div style="color:var(--red)">● Python <span style="font-weight:700">1</span></div>
+            <div style="color:var(--t3)">● MySql <span style="color:var(--t2);font-weight:700">0</span></div><div style="color:var(--t3)">● Postgres SQL <span style="color:var(--t2);font-weight:700">0</span></div>
+            <div style="color:var(--t3)">● MariaDB <span style="color:var(--t2);font-weight:700">0</span></div><div style="color:var(--t3)">● Mongo Db <span style="color:var(--t2);font-weight:700">0</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:16px;padding:12px;background:var(--bg2);border-radius:var(--r1)">
+            <div style="color:var(--green);font-size:22px">→</div>
+            <div><div style="font-size:11px;color:var(--t3)">Migration Waves</div><div style="font-size:24px;font-weight:800">1</div></div>
+            <div style="width:1px;height:40px;background:var(--bdr)"></div>
+            <div><div style="font-size:11px;color:var(--t3)">Total Groups</div><div style="font-size:24px;font-weight:800">1</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="g2"><div class="card"><div class="ch"><div class="ct">Total Complexity</div><span style="font-weight:800">1</span></div><div class="cb-p"><table style="width:100%;font-size:11px;text-align:center;border-collapse:collapse"><tr style="color:var(--t3)"><th>Low</th><th>Medium</th><th style="color:var(--red)">High</th></tr><tr><td style="font-weight:700;padding:5px">App: 1</td><td style="font-weight:700">0</td><td style="font-weight:700">0</td></tr><tr><td style="font-weight:700;padding:5px">DB: 0</td><td style="font-weight:700">0</td><td style="font-weight:700">0</td></tr></table></div></div><div class="card"><div class="ch"><div class="ct">Total Criticality</div><span style="font-weight:800">1</span></div><div class="cb-p"><table style="width:100%;font-size:11px;text-align:center;border-collapse:collapse"><tr style="color:var(--t3)"><th>Low</th><th>Medium</th><th style="color:var(--red)">High</th></tr><tr><td style="font-weight:700;padding:5px">App: 1</td><td style="font-weight:700">0</td><td style="font-weight:700">0</td></tr><tr><td style="font-weight:700;padding:5px">DB: 0</td><td style="font-weight:700">0</td><td style="font-weight:700">0</td></tr></table></div></div></div>
+    </div>
+    <div class="card"><div class="ch"><div class="ct">Wave Details</div></div><div class="cb-np" style="overflow-x:auto"><table class="dt"><thead><tr><th>Waves</th><th>Groups</th><th>Server</th><th>Application</th><th>Database</th><th>Complexity Score (Low)</th><th>Complexity Score (Medium)</th><th>Complexity Score (High)</th></tr></thead><tbody><tr><td><b>Wave 1</b></td><td>1</td><td>1</td><td>1</td><td>0</td><td style="color:var(--green);font-weight:700">3</td><td>0</td><td style="color:var(--red);font-weight:700">0</td></tr></tbody></table></div></div>
+  </div>
+  <!-- Waves & Groups -->
+  <div class="tab-c wp-tab-c" data-wp="wg">
+    <div class="g2"><div class="card"><div class="ch"><div class="ct">Waves &amp; Groups Chart</div></div><div class="cb-p" style="height:260px"><canvas id="ch-wp-wg"></canvas></div></div><div class="card"><div class="ch"><div class="ct">Assumptions</div></div><div class="cb-p"><ul style="font-size:12px;color:var(--t3);display:flex;flex-direction:column;gap:10px;padding-left:16px"><li>Complexity divided into two key dimensions — business impact and CPU utilization.</li><li>Criticality divided into different levels based on recommendations from cloud readiness assessment.</li><li>Wave batching is auto-generated based on dependency graph — applications with circular dependencies are grouped in the same wave.</li><li>All Dev/Test environments are prioritized in early waves to enable testing before production cutover.</li></ul></div></div></div>
+  </div>
+</div>
+
+
+<!-- ══ DEPENDENCY MAP ══ -->
+<div class="panel" id="p-depmap">
+  <div class="ph"><div><div class="ph-title">Infrastructure Dependency</div><div class="ph-sub">Application and database dependency analysis with conflict detection and wave grouping</div></div><div class="ph-acts"><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Download Excel Report</button></div></div>
+  <div class="tabs">
+    <button class="tab-b on dep-tab-b" data-dep="srvdep" onclick="switchDepTab('srvdep')">Server Dependency</button>
+    <button class="tab-b dep-tab-b" data-dep="waveplan" onclick="switchDepTab('waveplan')">Wave Plan</button>
+  </div>
+  <!-- Server Dependency Tab -->
+  <div class="tab-c on dep-tab-c" data-dep="srvdep">
+    <div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
+      <div class="sc cb"><span class="sc-ico"><i class="fas fa-project-diagram"></i></span><div class="sc-lbl">Total Dependencies</div><div class="sc-val">156</div><div class="sc-sub">Across all workloads</div></div>
+      <div class="sc cp"><span class="sc-ico"><i class="fas fa-external-link-alt"></i></span><div class="sc-lbl">External Deps</div><div class="sc-val">23</div><div class="sc-sub">Third-party integrations</div></div>
+      <div class="sc cr"><span class="sc-ico"><i class="fas fa-exclamation-triangle"></i></span><div class="sc-lbl">Conflicts</div><div class="sc-val">4</div><div class="sc-sub">Require resolution</div></div>
+      <div class="sc ca"><span class="sc-ico"><i class="fas fa-unlink"></i></span><div class="sc-lbl">Orphaned</div><div class="sc-val">7</div><div class="sc-sub">No active connections</div></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div class="vt"><button class="vt-b on" id="vt-g" onclick="document.getElementById('dep-graph').classList.remove('hidden');document.getElementById('dep-tbl').classList.add('hidden');this.classList.add('on');document.getElementById('vt-t').classList.remove('on')"><i class="fas fa-project-diagram"></i> Graph View</button><button class="vt-b" id="vt-t" onclick="document.getElementById('dep-tbl').classList.remove('hidden');document.getElementById('dep-graph').classList.add('hidden');this.classList.add('on');document.getElementById('vt-g').classList.remove('on')"><i class="fas fa-table"></i> Table View</button></div>
+    </div>
+    <div id="dep-graph">
+      <div class="card mb1"><div class="ch"><div class="ct">Dependency Topology</div><div class="csub">Applications → Databases → External · Red lines = Critical</div></div><div class="cb-np"><div class="dep-topo"><svg id="dep-svg" height="300"></svg></div></div></div>
+      <div class="card"><div class="ch"><div class="ct">⚠️ Dependency Conflicts</div><span class="bdg br">4 open</span></div><div class="cb-p"><div id="dep-conflicts"></div></div></div>
+    </div>
+    <div id="dep-tbl" class="hidden">
+      <div class="card mb1"><div class="ch"><div class="ct">Dependency Details</div></div><div class="cb-np" style="overflow-x:auto"><table class="dt"><thead><tr><th>SOURCE</th><th>TARGET</th><th>TYPE</th><th>PROTOCOL</th><th>CRITICALITY</th><th>LATENCY</th><th>WAVE</th><th>GROUP</th></tr></thead><tbody id="dep-tbody"></tbody></table></div></div>
+      <div class="card"><div class="ch"><div class="ct">⚠️ Dependency Conflicts</div><span class="bdg br">4 open</span></div><div class="cb-p"><div id="dep-conflicts2"></div></div></div>
+    </div>
+  </div>
+  <!-- Wave Plan Tab -->
+  <div class="tab-c dep-tab-c" data-dep="waveplan">
+    <div class="g3 mb1">
+      <div class="sc cb"><span class="sc-ico"><i class="fab fa-windows"></i></span><div class="sc-lbl">Windows VMs</div><div class="sc-val">186</div><div class="sc-sub">$2,57,74,669.5</div></div>
+      <div class="sc ct"><span class="sc-ico"><i class="fab fa-linux"></i></span><div class="sc-lbl">Linux VMs</div><div class="sc-val">15</div><div class="sc-sub">$13,29,008.35</div></div>
+      <div class="sc" style="border-top:2px solid var(--t3)"><span class="sc-ico"><i class="fas fa-database"></i></span><div class="sc-lbl">Database VMs</div><div class="sc-val">0</div><div class="sc-sub">$0</div></div>
+    </div>
+    <div class="cx-grid">
+      <div class="cx-c"><div class="cx-t">Infrastructure Complexity</div><table class="cx-tbl"><tr><td>No. of Connection</td><td>Complexity</td><td>Score</td></tr><tr><td>0-5</td><td>Low</td><td>60</td></tr><tr><td>6-10</td><td>Medium</td><td>40</td></tr><tr><td>>=11</td><td>High</td><td>20</td></tr><tr><td colspan="3" style="padding-top:7px;font-weight:700;color:var(--t2);font-size:11px">Environment</td></tr><tr><td>Dev/Test</td><td>Low</td><td>60</td></tr><tr><td>Production</td><td>High</td><td>20</td></tr></table></div>
+      <div class="cx-c"><div class="cx-t">Workload Criticality IaaS</div><table class="cx-tbl"><tr><td>CPU&RAM% Avg</td><td>Complexity</td><td>Score</td></tr><tr><td>0-25</td><td>Low</td><td>60</td></tr><tr><td>26-50</td><td>Medium</td><td>40</td></tr><tr><td>51 and above</td><td>High</td><td>20</td></tr><tr><td colspan="3" style="padding-top:7px;font-weight:700;color:var(--t2);font-size:11px">CPU Count Limit</td></tr><tr><td>0-2</td><td>Low</td><td>60</td></tr><tr><td>3-4</td><td>Medium</td><td>40</td></tr><tr><td>5 and above</td><td>High</td><td>20</td></tr></table></div>
+      <div class="cx-c"><div class="cx-t">Workload Criticality PaaS</div><table class="cx-tbl"><tr><td>CPU&RAM% Avg</td><td>Complexity</td><td>Score</td></tr><tr><td>0-25</td><td>Low</td><td>60</td></tr><tr><td>26-50</td><td>Medium</td><td>40</td></tr><tr><td>51 and above</td><td>High</td><td>20</td></tr><tr><td colspan="3" style="padding-top:7px;font-weight:700;color:var(--t2);font-size:11px">CPU Count Limit</td></tr><tr><td>0-2</td><td>Low</td><td>60</td></tr><tr><td>3-4</td><td>Medium</td><td>40</td></tr><tr><td>5 and above</td><td>High</td><td>20</td></tr></table></div>
+    </div>
+    <div class="card"><div class="ch"><div class="ct">Server Dependency Details</div><div style="display:flex;gap:8px;align-items:center"><span style="font-size:12px;color:var(--t3)">Show 10</span><input type="text" placeholder="Search..." style="padding:4px 10px;background:var(--bg2);border:1px solid var(--bdr);border-radius:6px;color:var(--t1);font-size:11px;outline:none;width:140px"/></div></div>
+      <div class="cb-np" style="overflow-x:auto"><table class="dt"><thead><tr><th>Source Server Name</th><th>No. of Connections</th><th>Workloads</th><th>Migration Approach</th><th>CloudReadiness</th><th>Platform</th><th>Infra Complexity</th><th>Workload Criticality</th><th>Wave</th><th>Group</th></tr></thead><tbody id="srv-dep-tbody"></tbody></table></div>
+      <div class="dt-foot"><span>Showing 1 to 10 of 221 entries</span><div class="pgs"><button class="pgb" disabled>Previous</button><button class="pgb on">1</button><button class="pgb">2</button><button class="pgb">3</button><button class="pgb">4</button><button class="pgb">5</button><span style="padding:0 4px;color:var(--t3)">...</span><button class="pgb">23</button><button class="pgb">Next</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TCO ══ -->
+<div class="panel" id="p-tco">
+  <div class="ph"><div><div class="ph-title">TCO Analysis Report</div><div class="ph-sub">Contoso Corp · 3-Year Total Cost of Ownership · Generated April 9, 2025</div></div><button class="btn btn-g" onclick="downloadCSV()"><i class="fas fa-download"></i> Export CSV</button></div>
+  <!-- TCO Hero Banner -->
+  <div class="tco-hero mb1">
+    <div class="tco-grid">
+      <div class="tco-item"><div class="tco-lbl">Current Annual (On-Prem)</div><div class="tco-val">$136,800</div><div class="tco-sub">Baseline</div></div>
+      <div class="tco-item"><div class="tco-lbl">Projected Azure Annual</div><div class="tco-val">$52,560</div><div class="tco-sub">61.6% savings</div></div>
+      <div class="tco-item"><div class="tco-lbl">Annual Savings</div><div class="tco-val">$84,240</div><div class="tco-sub">Year 1</div></div>
+      <div class="tco-item"><div class="tco-lbl">3-Year Savings</div><div class="tco-val">$253,440</div><div class="tco-sub">Cumulative</div></div>
+      <div class="tco-item"><div class="tco-lbl">ROI</div><div class="tco-val">61.6%</div><div class="tco-sub">3-Year Return</div></div>
+    </div>
+  </div>
+  <div class="sg" style="grid-template-columns:repeat(5,1fr);margin-bottom:14px">
+    <div class="sc cb"><span class="sc-ico">🖥</span><div class="sc-lbl">Azure (PAYG)</div><div class="sc-val">$52,560</div></div>
+    <div class="sc cg"><span class="sc-ico">☁️</span><div class="sc-lbl">Azure (3yr RI)</div><div class="sc-val">$36,800</div></div>
+    <div class="sc ca"><span class="sc-ico">☁️</span><div class="sc-lbl">AWS Annual</div><div class="sc-val">$55,200</div></div>
+    <div class="sc cp"><span class="sc-ico">☁️</span><div class="sc-lbl">GCP Annual</div><div class="sc-val">$50,880</div></div>
+    <div class="sc ct"><span class="sc-ico">🎯</span><div class="sc-lbl">Best Option</div><div class="sc-val">Azure 3yr</div></div>
+  </div>
+  <div class="g6040 mb1">
+    <div class="card"><div class="ch"><div class="ct">Cost Breakdown by Category — On-Prem vs Azure</div></div><div class="cb-p" style="height:260px"><canvas id="ch-tco-det"></canvas></div></div>
+    <div class="card"><div class="ch"><div class="ct">Cumulative 3-Year Savings</div></div><div class="cb-p" style="height:260px"><canvas id="ch-tco-sav"></canvas></div></div>
+  </div>
+  <div class="g6040">
+    <div class="card"><div class="ch"><div class="ct">Azure Cost Options Comparison (Annual)</div></div><div class="cb-p" style="height:200px"><canvas id="ch-tco-opts"></canvas></div></div>
+    <div class="card"><div class="ch"><div class="ct">Cloud Provider Comparison</div></div>
+      <div class="cb-p" style="display:flex;flex-direction:column;gap:13px">
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px"><span>On-Premises (Baseline)</span><span style="font-weight:700;font-family:var(--mono)">$136,800/yr</span></div><div class="pbw"><div class="pb" style="height:9px"><div class="pbf" style="background:var(--t3);width:100%"></div></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px"><span>Google Cloud Platform</span><span style="font-weight:700;font-family:var(--mono);color:var(--amber)">$50,880/yr <span style="color:var(--green);font-size:11px">(-62.8%)</span></span></div><div class="pbw"><div class="pb" style="height:9px"><div class="pbf a" style="width:37%"></div></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px"><span>Microsoft Azure <span class="bdg bg" style="font-size:9px;vertical-align:middle">Recommended</span></span><span style="font-weight:700;font-family:var(--mono);color:var(--blue)">$52,560/yr <span style="color:var(--green);font-size:11px">(-61.6%)</span></span></div><div class="pbw"><div class="pb" style="height:9px"><div class="pbf b" style="width:38%"></div></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px"><span>Amazon AWS</span><span style="font-weight:700;font-family:var(--mono);color:var(--purple)">$55,200/yr <span style="color:var(--green);font-size:11px">(-59.6%)</span></span></div><div class="pbw"><div class="pb" style="height:9px"><div class="pbf p" style="width:40%"></div></div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ CLOUDPILOT ══ -->
+<div class="panel" id="p-cloudpilot">
+  <div class="ph"><div><div class="ph-title">CloudPilot — Modernization Tool</div><div class="ph-sub">Download and deploy CloudPilot to run deep App &amp; DB static analysis, 6R classification and LOE estimation</div></div><button class="btn btn-g btn-sm" onclick="toast('ℹ️','Documentation','Opening CloudPilot deployment guide...')"><i class="fas fa-book"></i> View Docs</button></div>
+  <!-- Hero -->
+  <div class="cp-hero mb2">
+    <div class="cp-content">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
+        <div class="cp-logo">⚙️</div>
+        <div><div style="font-size:26px;font-weight:800;color:#fff">CloudPilot</div><div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:2px">Modernization Assessment Engine · Powered by UnifyCloud</div></div>
+      </div>
+      <div style="font-size:14px;color:rgba(255,255,255,.8);max-width:620px;line-height:1.7;margin-bottom:20px">CloudPilot performs deep static-code analysis on .NET, Java, PHP, and Python applications and schema analysis on SQL Server, Oracle, MySQL, PostgreSQL, MongoDB, MariaDB databases. It generates 6R classifications, effort (LOE) estimates, and auto-refactoring suggestions — all without requiring source code access.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px">
+        <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:4px 12px;border-radius:50px;font-size:11px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px"><i class="fas fa-tag"></i> v4.1.2</div>
+        <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:4px 12px;border-radius:50px;font-size:11px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px"><i class="fas fa-desktop"></i> Windows / Linux</div>
+        <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:4px 12px;border-radius:50px;font-size:11px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px"><i class="fas fa-hdd"></i> 145 MB</div>
+        <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:4px 12px;border-radius:50px;font-size:11px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px"><i class="fas fa-code"></i> .NET · Java · PHP · Python</div>
+        <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:4px 12px;border-radius:50px;font-size:11px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:5px"><i class="fas fa-database"></i> Oracle · SQL Server · MySQL · PostgreSQL</div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn btn-t" style="font-size:13px;padding:10px 24px" onclick="downloadTool('CloudPilot v4.1.2')"><i class="fas fa-download"></i> Download CloudPilot</button>
+      </div>
+    </div>
+  </div>
+  <!-- Steps -->
+  <div class="cp-steps mb2">
+    <div class="cp-step"><div class="cp-snum">1</div><div class="cp-stitle">Download &amp; Install</div><div class="cp-sdesc">Download CloudPilot installer and run on a server with access to your application and database environments.</div></div>
+    <div class="cp-step"><div class="cp-snum">2</div><div class="cp-stitle">Configure &amp; Connect</div><div class="cp-sdesc">Enter your CloudAtlas workspace URL and API key. CloudPilot connects securely to upload scan results.</div></div>
+    <div class="cp-step"><div class="cp-snum">3</div><div class="cp-stitle">Run Assessment</div><div class="cp-sdesc">Point CloudPilot at your apps and databases. It scans binaries, schemas, and stored procedures — no source code required.</div></div>
+    <div class="cp-step"><div class="cp-snum">4</div><div class="cp-stitle">View Results</div><div class="cp-sdesc">Results flow into CloudAtlas. Navigate to App &amp; DB Portfolio and 6R Analysis to explore the full report.</div></div>
+  </div>
+  <!-- Feature Cards -->
+  <div class="g3 mb2">
+    <div class="card"><div class="ch"><div class="ct">Application Analysis</div><span class="bdg bb">Static Code</span></div>
+      <div class="cb-p" style="display:flex;flex-direction:column;gap:8px;font-size:12px">
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Binary-level static analysis — no source code needed</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Supports .NET, Java, PHP, Python, NodeJS</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Identifies API integrations, 3rd-party deps, config issues</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Generates 6R recommendation with effort estimate (LOE)</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Auto-generates refactored code snippets for target platform</span></div>
+      </div>
+    </div>
+    <div class="card"><div class="ch"><div class="ct">Database Analysis</div><span class="bdg bp">Schema + Procs</span></div>
+      <div class="cb-p" style="display:flex;flex-direction:column;gap:8px;font-size:12px">
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Extracts schemas, stored procedures, views, triggers</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Oracle 11g–21c, SQL Server 2012+, MySQL, PostgreSQL, MariaDB, MongoDB</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Detects migration blockers and compatibility issues</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Maps to Azure SQL vCore, SQL MI, Cosmos DB, PostgreSQL PaaS</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Estimates cost per target DB platform</span></div>
+      </div>
+    </div>
+    <div class="card"><div class="ch"><div class="ct">Output Reports</div><span class="bdg bg">Auto-Generated</span></div>
+      <div class="cb-p" style="display:flex;flex-direction:column;gap:8px;font-size:12px">
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>App &amp; DB Portfolio dashboard with readiness scores</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>6R Analysis for all apps and databases</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Detailed migration blockers and recommendations</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Total cost estimation per deployment target</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><i class="fas fa-check-circle" style="color:var(--green);margin-top:2px;flex-shrink:0"></i><span>Downloadable Excel/PPT report for stakeholder presentations</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <button class="btn btn-p" onclick="Router.go('portfolio')"><i class="fas fa-briefcase"></i> View App &amp; DB Portfolio</button>
+    <button class="btn btn-p" onclick="Router.go('sixr')"><i class="fas fa-chart-pie"></i> View 6R Analysis</button>
+    <button class="btn btn-g" onclick="Agent.open();setTimeout(()=>{document.getElementById('agent-input').value='Run 6R analysis and app modernization';Agent.send();},400)"><i class="fas fa-robot"></i> Ask AI Agent</button>
+  </div>
+</div>
+
+
+<!-- ══ APP & DB PORTFOLIO ══ -->
+<div class="panel" id="p-portfolio">
+  <div class="ph"><div><div class="ph-title">Assessment Portfolio</div><div class="ph-sub">Application and Database assessment results — readiness, costs, and recommendations</div></div><div class="ph-acts"><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export PPT</button><button class="btn btn-p btn-sm" onclick="Router.go('sixr')"><i class="fas fa-chart-pie"></i> View 6R Analysis</button></div></div>
+  <!-- Portfolio Summary -->
+  <div class="port-ap mb1">
+    <div class="port-left">
+      <div class="port-l-t">Assessments</div>
+      <div class="port-l-v">95</div>
+      <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px;margin-top:4px">
+        <div style="display:flex; justify-content: space-between;align-items: flex-start;">
+          <div>
+            <div style="font-size:20px;font-weight:800;color:#fff">35</div><div style="font-size:11px;color:rgba(255,255,255,.65)">Total Databases</div>
+          </div>
+          <div>
+            <div style="font-size:20px;font-weight:800;color:#fff;">98</div><div style="font-size:11px;color:rgba(255,255,255,.65)">Total Applications</div>
+          </div>
+          
+        </div>
+        
+        <div style="margin-top:10px;height:100px;"><canvas id="ch-port-db" ></canvas></div>
+        <div style="margin-top:10px;height:100px;"><canvas id="ch-port-app" ></canvas></div>
+        <div style="margin-top:12px;padding:8px;background:rgba(245,166,35,.15);border-radius:8px;border:1px solid rgba(245,166,35,.3)">
+          <div style="font-size:10px;color:var(--amber);font-weight:700;margin-bottom:2px">⚠️ Databases with warnings</div>
+          <div style="font-size:20px;font-weight:800;color:var(--amber)">1</div>
+        </div>
+        <div style="margin-top:8px;padding:8px;background:rgba(245,166,35,.15);border-radius:8px;border:1px solid rgba(245,166,35,.3)">
+          <div style="font-size:10px;color:var(--amber);font-weight:700;margin-bottom:2px">⚠️ Apps need config changes</div>
+          <div style="font-size:20px;font-weight:800;color:var(--amber)">45</div>
+        </div>
+      </div>
+    </div>
+    <div class="port-right">
+      <!-- Application Assessment Section -->
+      <div class="port-sec-hd">Application Assessment</div>
+      <div class="ap-targets">
+        <div class="apt"><div class="apt-name">App Service</div><span class="apt-cnt" style="color:var(--orange)">92 <span style="font-size:9px;color:var(--t3)">/Only VM 1</span></span><div class="apt-row"><span>Total Cost</span><span style="color:var(--blue)">$148,618</span></div><div class="apt-row"><span>Recom.</span><span>1357</span></div><div class="apt-row"><span>Readiness</span><span></span></div><div class="apt-rb"><div class="apt-rbf" style="width:83.51%"></div></div><div style="font-size:10px;color:var(--blue);margin-top:3px">83.51%</div></div>
+        <div class="apt"><div class="apt-name">Azure Function</div><span class="apt-cnt" style="color:var(--orange)">2</span><div class="apt-row"><span>Total Cost</span><span style="color:var(--blue)">$1,713</span></div><div class="apt-row"><span>Recom.</span><span>115</span></div><div class="apt-row"><span>Readiness</span><span></span></div><div class="apt-rb"><div class="apt-rbf" style="width:56.5%"></div></div><div style="font-size:10px;color:var(--blue);margin-top:3px">56.5%</div></div>
+        <div class="apt"><div class="apt-name">Virtual Machine</div><span class="apt-cnt" style="color:var(--blue)">98</span><div class="apt-row"><span>Total Cost</span><span style="color:var(--blue)">$163,561</span></div><div class="apt-row"><span>Recom.</span><span>1258</span></div><div class="apt-row"><span>Readiness</span><span></span></div><div class="apt-rb"><div class="apt-rbf" style="width:85.36%"></div></div><div style="font-size:10px;color:var(--blue);margin-top:3px">85.36%</div></div>
+        <div class="apt"><div class="apt-name">Container (AKS)</div><span class="apt-cnt" style="color:var(--blue)">98</span><div class="apt-row"><span>Total Cost</span><span style="color:var(--blue)">$239,144</span></div><div class="apt-row"><span>Recom.</span><span>1377</span></div><div class="apt-row"><span>Readiness</span><span></span></div><div class="apt-rb"><div class="apt-rbf" style="width:82.31%"></div></div><div style="font-size:10px;color:var(--blue);margin-top:3px">82.31%</div></div>
+      </div>
+      <!-- Database Assessment Section -->
+      <div class="port-sec-hd">Database Assessment</div>
+      <!-- SQL Server row -->
+      <div style="display:flex;align-items:stretch;border-bottom:1px solid var(--bdr)">
+        <div style="padding:14px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:80px;border-right:1px solid var(--bdr);background:var(--bg2)">
+          <div style="font-size:20px;margin-bottom:4px">🗄️</div>
+          <div style="font-size:11px;font-weight:700;color:var(--t1)">SQL Server</div>
+          <div style="font-size:20px;font-weight:800;color:var(--blue)">7</div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;border-right:none">
+          <div class="apt" style="border-right:1px solid var(--bdr)"><div class="apt-name">Azure SQL vCore</div><div class="apt-row"><span>Total Cost</span><span style="color:var(--blue)">$3,976</span></div><div class="apt-row"><span>Recom.</span><span>38</span></div><div class="apt-rb"><div class="apt-rbf" style="width:93.57%"></div></div><div style="font-size:10px;color:var(--green);margin-top:3px">93.57%</div></div>
+          <div class="apt" style="border-right:1px solid var(--bdr)"><div class="apt-name">Azure SQL MI</div><div class="apt-row"><span>Total Cost</span><span style="color:var(--blue)">$1,625</span></div><div class="apt-row"><span>Recom.</span><span>25</span></div><div class="apt-rb"><div class="apt-rbf" style="width:97.57%"></div></div><div style="font-size:10px;color:var(--green);margin-top:3px">97.57%</div></div>
+          <div class="apt"><div class="apt-name">SQL Server on Azure VM</div><div class="apt-row"><span>Total Cost</span><span style="color:var(--blue)">$2,043</span></div><div class="apt-row"><span>Recom.</span><span>21</span></div><div class="apt-rb"><div class="apt-rbf" style="width:99.29%"></div></div><div style="font-size:10px;color:var(--green);margin-top:3px">99.29%</div></div>
+        </div>
+      </div>
+      <!-- Oracle row -->
+      <div style="display:flex;align-items:stretch;border-bottom:1px solid var(--bdr)">
+        <div style="padding:14px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:80px;border-right:1px solid var(--bdr);background:var(--bg2)">
+          <div style="font-size:20px;margin-bottom:4px">🔴</div>
+          <div style="font-size:11px;font-weight:700;color:var(--t1)">Oracle</div>
+          <div style="font-size:20px;font-weight:800;color:var(--red)">14</div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr">
+          <div class="apt" style="border-right:1px solid var(--bdr)"><div class="apt-name">Azure Database for PostgreSQL</div><div class="apt-row"><span>Total Cost</span><span style="color:var(--blue)">$512</span></div><div class="apt-row"><span>Recom.</span><span style="color:var(--blue)">128</span></div><div class="apt-rb"><div class="apt-rbf" style="width:82%"></div></div><div style="font-size:10px;color:var(--blue);margin-top:3px">82%</div></div>
+          <div class="apt"><div class="apt-name">Oracle to SQL MI</div><div class="apt-row"><span>Total Cost</span><span style="color:var(--blue)">$0</span></div><div class="apt-row"><span>Recom.</span><span style="color:var(--blue)">640</span></div><div class="apt-rb"><div class="apt-rbf" style="width:40%;background:var(--amber)"></div></div><div style="font-size:10px;color:var(--amber);margin-top:3px">40%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Recommendations -->
+  <div class="g2">
+    <div class="card"><div class="ch"><div class="ct">Database Assessment Recommendations</div><div style="display:flex;gap:6px"><button class="btn btn-g btn-xs">View more</button><button class="btn btn-p btn-xs">Summary</button></div></div>
+      <div class="cb-np"><table class="rec-tbl"><thead><tr><th>Description</th><th>Category</th><th>Database Count</th><th>Impact Count</th></tr></thead>
+      <tbody>
+        <tr><td>BAK file (import/export) not supported in Azure SQL Database</td><td style="color:var(--t2)">MigrationBlocker</td><td style="text-align:center"><span class="bdg bb">4</span></td><td style="text-align:center"><span class="rec-impact" style="background:var(--red)">36</span></td></tr>
+        <tr><td>Database snapshot not supported in Azure SQL Database</td><td style="color:var(--t2)">MigrationBlocker</td><td style="text-align:center"><span class="bdg bb">4</span></td><td style="text-align:center"><span class="rec-impact" style="background:var(--red)">42</span></td></tr>
+        <tr><td>Database snapshot not supported in Azure SQL Managed Instance</td><td style="color:var(--t2)">MigrationBlocker</td><td style="text-align:center"><span class="bdg bb">4</span></td><td style="text-align:center"><span class="rec-impact" style="background:var(--red)">39</span></td></tr>
+        <tr><td>Unqualified Join(s) detected</td><td style="color:var(--t2)">BehaviorChange</td><td style="text-align:center"><span class="bdg bb">3</span></td><td style="text-align:center"><span class="rec-impact" style="background:var(--blue)">24</span></td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="card"><div class="ch"><div class="ct">Application Assessment Recommendations</div><div style="display:flex;gap:6px"><button class="btn btn-g btn-xs">View more</button><button class="btn btn-p btn-xs">Summary</button></div></div>
+      <div class="cb-np"><table class="rec-tbl"><thead><tr><th>Data Point</th><th>Category</th><th>App Count</th><th>Count</th></tr></thead>
+      <tbody>
+        <tr><td>32BitComponent</td><td style="color:var(--t2)">Application &amp; Platform Design</td><td style="text-align:center"><span class="bdg bb">1</span></td><td style="text-align:center"><span class="rec-impact" style="background:var(--teal)">3</span></td></tr>
+        <tr><td>ACEProvider</td><td style="color:var(--t2)">Application &amp; Platform Design</td><td style="text-align:center"><span class="bdg bb">3</span></td><td style="text-align:center"><span class="rec-impact" style="background:var(--blue)">9</span></td></tr>
+        <tr><td>API Integration</td><td style="color:var(--t2)">Application &amp; Platform Design</td><td style="text-align:center"><span class="bdg bb">40</span></td><td style="text-align:center"><span class="rec-impact" style="background:var(--blue)">345</span></td></tr>
+        <tr><td>AppContainerization</td><td style="color:var(--t2)">Application &amp; Platform Design</td><td style="text-align:center"><span class="bdg bb">59</span></td><td style="text-align:center"><span class="rec-impact" style="background:var(--blue)">74</span></td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ 6R ANALYSIS ══ -->
+<div class="panel" id="p-sixr">
+  <div class="ph"><div><div class="ph-title">6R Analysis — Applications &amp; Databases</div><div class="ph-sub">Analysis details of 6 different phases in cloud migration strategy</div></div><div class="ph-acts"><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export</button></div></div>
+  <div class="tabs">
+    <button class="tab-b on" id="sixr-app-tab"  onclick="switchSixRTab('app', this)">6R Analysis — Applications</button>
+    <button class="tab-b" id="sixr-db-tab" onclick="switchSixRTab('db', this)">6R Analysis — Databases</button>
+  </div>
+
+  <script>
+function switchSixRTab(type, el) {
+  const wrapper = document.getElementById('p-sixr');
+
+  const appTab = wrapper.querySelector('#sixr-app-panel');
+  const dbTab = wrapper.querySelector('#sixr-db-panel');
+
+  // Remove active from all tabs (ONLY inside this component)
+  wrapper.querySelectorAll('.tab-b').forEach(btn => btn.classList.remove('on'));
+
+  // Add active to clicked tab
+  el.classList.add('on');
+
+  // Switch panels
+  if (type === 'app') {
+    appTab.style.display = 'block';
+    dbTab.style.display = 'none';
+  } else {
+    appTab.style.display = 'none';
+    dbTab.style.display = 'block';
+  }
+}
+</script>
+
+  <!-- APP 6R -->
+  <div id="sixr-app-panel" style="display:block;">
+    <!-- Banner -->
+    <div style="background:var(--bg1);border:1px solid var(--bdr);border-radius:var(--r2);padding:14px 18px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:48px;height:48px;background:rgba(45,126,255,.1);border-radius:var(--r1);display:flex;align-items:center;justify-content:center;font-size:22px">📦</div>
+        <div><div style="font-size:11px;color:var(--t3)">Total Applications</div><div style="font-size:28px;font-weight:800;color:var(--t1)">102</div></div>
+      </div>
+      <div style="width:1px;height:40px;background:var(--bdr)"></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700"><span style="color:var(--t3)">.Net</span><span style="color:var(--blue);font-size:18px;font-weight:800">81</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700"><span style="color:var(--t3)">Java</span><span style="color:var(--blue);font-size:18px;font-weight:800">17</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700"><span style="color:var(--t3)">Php</span><span style="color:var(--blue);font-size:18px;font-weight:800">2</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700"><span style="color:var(--t3)">Python</span><span style="color:var(--blue);font-size:18px;font-weight:800">2</span></div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700"><span style="color:var(--t3)">NodeJS</span><span style="color:var(--t3);font-size:18px;font-weight:800">0</span></div>
+      </div>
+    </div>
+    <!-- Left 6R Cards + Right strategy cards -->
+    <div class="g5050">
+      <!-- Left: 6R strategy blocks (Refactor, Rebuild, Retain) -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <!-- Refactor -->
+        <div style="display:flex;gap:10px;align-items:stretch">
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+            <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">76</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">16</td></tr><tr><td style="padding:2px 0">Php</td><td style="text-align:right;font-weight:700">2</td></tr><tr><td style="padding:2px 0">Python</td><td style="text-align:right;font-weight:700">2</td></tr><tr><td style="padding:2px 0">NodeJS</td><td style="text-align:right;font-weight:700">0</td></tr></table>
+            <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">7735</div><div style="font-size:9px;color:var(--t3)">(hours)</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">82.89</div><div style="font-size:9px;color:var(--t3)">(0-100)</div></div></div>
+          </div>
+          <div class="sixr-card c-refactor" style="flex:1"><div class="sixr-name">Refactor</div><div class="sixr-count">96</div><div class="sixr-lbl">Applications</div><div class="sixr-ico">⚙️</div></div>
+        </div>
+        <!-- Rebuild -->
+        <div style="display:flex;gap:10px;align-items:stretch">
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+            <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Php</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Python</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">NodeJS</td><td style="text-align:right;font-weight:700">0</td></tr></table>
+            <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div></div>
+          </div>
+          <div class="sixr-card c-rebuild" style="flex:1"><div class="sixr-name">Rebuild</div><div class="sixr-count">0</div><div class="sixr-lbl">Applications</div><div class="sixr-ico">🔨</div></div>
+        </div>
+        <!-- Retain -->
+        <div style="display:flex;gap:10px;align-items:stretch">
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+            <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">0</td></tr></table>
+            <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div></div>
+          </div>
+          <div class="sixr-card c-retain" style="flex:1"><div class="sixr-name">Retain</div><div class="sixr-count">0</div><div class="sixr-lbl">Applications</div><div class="sixr-ico">☁️</div></div>
+        </div>
+      </div>
+      <!-- Right: Rehost, Rearchitect, Replace -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <!-- Rehost -->
+        <div style="display:flex;gap:10px;align-items:stretch">
+          <div class="sixr-card c-rehost" style="flex:1"><div class="sixr-name">Rehost</div><div class="sixr-count">5</div><div class="sixr-lbl">Applications</div><div class="sixr-ico">🏠</div></div>
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+            <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">4</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">1</td></tr><tr><td style="padding:2px 0">Php</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Python</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">NodeJS</td><td style="text-align:right;font-weight:700">0</td></tr></table>
+            <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">189</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">78.6</div></div></div>
+          </div>
+        </div>
+        <!-- Rearchitect -->
+        <div style="display:flex;gap:10px;align-items:stretch">
+          <div class="sixr-card c-rearch" style="flex:1"><div class="sixr-name">Rearchitect</div><div class="sixr-count">1</div><div class="sixr-lbl">Applications</div><div class="sixr-ico">🏗️</div></div>
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+            <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">1</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">0</td></tr></table>
+            <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">18</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">91</div></div></div>
+          </div>
+        </div>
+        <!-- Replace -->
+        <div style="display:flex;gap:10px;align-items:stretch">
+          <div class="sixr-card c-replace" style="flex:1"><div class="sixr-name">Replace</div><div class="sixr-count">0</div><div class="sixr-lbl">Applications</div><div class="sixr-ico">🔄</div></div>
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+            <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">0</td></tr></table>
+            <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DB 6R -->
+  <div id="sixr-db-panel" style="display:none;">
+    <div class="g4060">
+      <!-- Left: Donut Chart (SVG) -->
+      <div class="card"><div class="ch"><div class="ct">6 R's Analysis — Database Migration Strategy</div></div>
+        <div class="cb-p" style="display:flex;flex-direction:column;align-items:center;gap:12px">
+          <div style="position:relative;width:200px;height:200px">
+            <svg viewBox="0 0 200 200" style="width:200px;height:200px">
+              <!-- Donut segments - Total DB: 35 -->
+              <!-- Rehost: 10/35=28.6% · Refactor: 8/35=22.9% · Rearch: 3/35=8.6% · Rebuild: 14/35=40% -->
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--bg3)" stroke-width="32"/>
+              <!-- Rehost (28.6%) stroke-dasharray=125.7, offset=0 -->
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#2D7EFF" stroke-width="32" stroke-dasharray="125.7 313.9" stroke-dashoffset="0" transform="rotate(-90,100,100)"/>
+              <!-- Refactor (22.9%) =100.6 offset=-125.7 -->
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#00C8D4" stroke-width="32" stroke-dasharray="100.6 313.9" stroke-dashoffset="-125.7" transform="rotate(-90,100,100)"/>
+              <!-- Rearchitect (8.6%) =37.7 offset=-226.3 -->
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#EC4899" stroke-width="32" stroke-dasharray="37.7 313.9" stroke-dashoffset="-226.3" transform="rotate(-90,100,100)"/>
+              <!-- Rebuild (40%) =175.9 offset=-264 -->
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#8B5CF6" stroke-width="32" stroke-dasharray="175.9 313.9" stroke-dashoffset="-264" transform="rotate(-90,100,100)"/>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+              <div style="font-size:11px;color:var(--t3)">Total DB</div>
+              <div style="font-size:32px;font-weight:800;color:var(--t1)">35</div>
+            </div>
+          </div>
+          <!-- Legend -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%">
+            <div style="display:flex;align-items:center;gap:8px;padding:8px;background:rgba(45,126,255,.1);border:1px solid rgba(45,126,255,.2);border-radius:8px"><div style="width:10px;height:10px;border-radius:50%;background:#2D7EFF;flex-shrink:0"></div><div><div style="font-size:11px;font-weight:700;color:var(--t1)">Rehost</div><div style="font-size:10px;color:var(--t3)">Database <span style="font-weight:800;color:var(--blue)">10</span></div></div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px;background:rgba(0,200,212,.1);border:1px solid rgba(0,200,212,.2);border-radius:8px"><div style="width:10px;height:10px;border-radius:50%;background:var(--teal);flex-shrink:0"></div><div><div style="font-size:11px;font-weight:700;color:var(--t1)">Refactor</div><div style="font-size:10px;color:var(--t3)">Database <span style="font-weight:800;color:var(--teal)">8</span></div></div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2);border-radius:8px"><div style="width:10px;height:10px;border-radius:50%;background:#EC4899;flex-shrink:0"></div><div><div style="font-size:11px;font-weight:700;color:var(--t1)">Rearchitect</div><div style="font-size:10px;color:var(--t3)">Database <span style="font-weight:800;color:var(--pink)">3</span></div></div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:8px"><div style="width:10px;height:10px;border-radius:50%;background:#8B5CF6;flex-shrink:0"></div><div><div style="font-size:11px;font-weight:700;color:var(--t1)">Rebuild</div><div style="font-size:10px;color:var(--t3)">Database <span style="font-weight:800;color:var(--purple)">14</span></div></div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);border-radius:8px"><div style="width:10px;height:10px;border-radius:50%;background:var(--orange);flex-shrink:0"></div><div><div style="font-size:11px;font-weight:700;color:var(--t1)">Replace</div><div style="font-size:10px;color:var(--t3)">Database <span style="font-weight:800;color:var(--orange)">0</span></div></div></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px;background:rgba(45,126,255,.06);border:1px solid rgba(45,126,255,.1);border-radius:8px"><div style="width:10px;height:10px;border-radius:50%;background:#60A5FA;flex-shrink:0"></div><div><div style="font-size:11px;font-weight:700;color:var(--t1)">Retain</div><div style="font-size:10px;color:var(--t3)">Database <span style="font-weight:800;color:var(--blue)">0</span></div></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Right: DB detail cards -->
+      <div class="sdc-grid">
+        <div class="sdc"><div class="sdc-hd" style="background:rgba(45,126,255,.12)"><div class="sdc-num" style="background:#2D7EFF">10</div><div class="sdc-title" style="color:var(--blue)">Rehost</div></div><table class="sdc-tbl"><thead><tr><th>Database</th><th>Action</th></tr></thead><tbody><tr><td>AbdulKader_New</td><td><button class="sdc-view">View</button></td></tr><tr><td>HRINT</td><td><button class="sdc-view">View</button></td></tr><tr><td>FinanceDB</td><td><button class="sdc-view">View</button></td></tr><tr><td>CoreDB</td><td><button class="sdc-view">View</button></td></tr></tbody></table></div>
+        <div class="sdc"><div class="sdc-hd" style="background:rgba(0,200,212,.12)"><div class="sdc-num" style="background:var(--teal)">8</div><div class="sdc-title" style="color:var(--teal)">Refactor</div></div><table class="sdc-tbl"><thead><tr><th>Database</th><th>Action</th></tr></thead><tbody><tr><td>MongoDB</td><td><button class="sdc-view">View</button></td></tr><tr><td>MongoDB</td><td><button class="sdc-view">View</button></td></tr><tr><td>ApiTokenBack</td><td><button class="sdc-view">View</button></td></tr><tr><td>ApiTokenExam</td><td><button class="sdc-view">View</button></td></tr></tbody></table></div>
+        <div class="sdc"><div class="sdc-hd" style="background:rgba(236,72,153,.12)"><div class="sdc-num" style="background:#EC4899">3</div><div class="sdc-title" style="color:var(--pink)">Rearchitect</div></div><table class="sdc-tbl"><thead><tr><th>Database</th><th>Action</th></tr></thead><tbody><tr><td>TestNew</td><td><button class="sdc-view">View</button></td></tr><tr><td>AbdulKader_New</td><td><button class="sdc-view">View</button></td></tr><tr><td>LegacyDB</td><td><button class="sdc-view">View</button></td></tr></tbody></table></div>
+        <div class="sdc"><div class="sdc-hd" style="background:rgba(139,92,246,.12)"><div class="sdc-num" style="background:#8B5CF6">14</div><div class="sdc-title" style="color:var(--purple)">Rebuild</div></div><table class="sdc-tbl"><thead><tr><th>Database</th><th>Action</th></tr></thead><tbody><tr><td>AB_BOUNDARIES</td><td><button class="sdc-view">View</button></td></tr><tr><td>demoreport</td><td><button class="sdc-view">View</button></td></tr><tr><td>UCTEST1</td><td><button class="sdc-view">View</button></td></tr><tr><td>DEMODB</td><td><button class="sdc-view">View</button></td></tr></tbody></table></div>
+        <div class="sdc"><div class="sdc-hd" style="background:rgba(249,115,22,.1)"><div class="sdc-num" style="background:var(--orange)">0</div><div class="sdc-title" style="color:var(--orange)">Replace</div></div><table class="sdc-tbl"><thead><tr><th>Database</th><th>Action</th></tr></thead><tbody><tr><td colspan="2" style="color:var(--t3);text-align:center;padding:12px">No databases</td></tr></tbody></table></div>
+        <div class="sdc"><div class="sdc-hd" style="background:rgba(45,126,255,.08)"><div class="sdc-num" style="background:#60A5FA">0</div><div class="sdc-title" style="color:var(--blue)">Retain</div></div><table class="sdc-tbl"><thead><tr><th>Database</th><th>Action</th></tr></thead><tbody><tr><td colspan="2" style="color:var(--t3);text-align:center;padding:12px">No databases</td></tr></tbody></table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ WAVE MIGRATION ══ -->
+<div class="panel" id="p-wavemigration">
+  <div class="ph"><div><div class="ph-title">Migration Execution — Wave-Based Migration</div><div class="ph-sub">AI-assisted migration orchestration · Download the migration tool to execute your wave plan</div></div><div class="ph-acts"><button class="btn btn-t" onclick="downloadTool('CloudAtlas Migration Tool v2.3')"><i class="fas fa-download"></i> Download Migration Tool</button><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export Wave Plan</button></div></div>
+  <!-- Info Banner -->
+  <div style="background:linear-gradient(135deg,#0A2060,#1a3a8a,#0d2b6b);border-radius:var(--r3);padding:28px;margin-bottom:18px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(0,200,212,.08)"></div>
+    <div style="position:relative;z-index:1;display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start">
+      <div><div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:6px">Migration Status</div><div style="font-size:22px;font-weight:800;color:#fff">Ready to Execute</div><div style="font-size:12px;color:rgba(255,255,255,.6);margin-top:4px">4 waves staged · 12 groups configured · 201 servers</div></div>
+      <div><div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:6px">Recommended Approach</div><div style="font-size:22px;font-weight:800;color:#fff">Rehost → Refactor → Re-Arch</div><div style="font-size:12px;color:rgba(255,255,255,.6);margin-top:4px">Wave 1 starts with lowest complexity Dev/Test servers</div></div>
+      <div style="margin-left:auto;display:flex;flex-direction:column;gap:10px">
+        <button class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);font-size:13px;padding:10px 20px" onclick="downloadTool('CloudAtlas Migration Tool v2.3')"><i class="fas fa-download"></i> Download Migration Tool v2.3</button>
+        <button class="btn" style="background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);font-size:12px" onclick="toast('📖','Migration Guide','Opening cloud migration execution guide...')"><i class="fas fa-book"></i> Migration Execution Guide</button>
+      </div>
+    </div>
+  </div>
+  <!-- Wave plan summary cards -->
+  <div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:18px">
+    <div class="sc cb"><span class="sc-ico"><i class="fas fa-layer-group"></i></span><div class="sc-lbl">Total Waves</div><div class="sc-val">4</div><div class="sc-sub">Sequential migration phases</div></div>
+    <div class="sc ct"><span class="sc-ico"><i class="fas fa-object-group"></i></span><div class="sc-lbl">Total Groups</div><div class="sc-val">12</div><div class="sc-sub">Workload bundles per wave</div></div>
+    <div class="sc cg"><span class="sc-ico"><i class="fas fa-server"></i></span><div class="sc-lbl">Total Servers</div><div class="sc-val">201</div><div class="sc-sub">Ready for migration</div></div>
+    <div class="sc ca"><span class="sc-ico"><i class="fas fa-clock"></i></span><div class="sc-lbl">Est. Duration</div><div class="sc-val">8 Weeks</div><div class="sc-sub">Wave 1 starts immediately</div></div>
+  </div>
+  <!-- Live Migration Simulation -->
+  <div class="g4060 mb1">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card"><div class="ch"><div class="ct">Migration Config</div></div>
+        <div class="cb-p" style="display:flex;flex-direction:column;gap:10px">
+          <div><label style="font-size:11px;font-weight:700;color:var(--t3);display:block;margin-bottom:5px">Region</label><select class="isel" style="width:100%"><option>East US</option><option>West Europe</option><option>Southeast Asia</option></select></div>
+          <div><label style="font-size:11px;font-weight:700;color:var(--t3);display:block;margin-bottom:5px">Migration Type</label><select class="isel" style="width:100%"><option>Online (Zero-downtime)</option><option>Offline (Scheduled window)</option></select></div>
+          <div style="font-size:11px;font-weight:600;padding:8px;background:var(--bg2);border-radius:8px;color:var(--t2)" id="mig-status">Ready to start migration</div>
+          <button class="btn btn-t" id="btn-mig-start" onclick="WaveMigration.start()"><i class="fas fa-rocket"></i> Start Migration Demo</button>
+        </div>
+      </div>
+      <div class="card"><div class="ch"><div class="ct">Wave Schedule</div></div>
+        <div class="cb-p">
+          <div class="tl">
+            <div class="tl-i"><div class="tl-dot"></div><div class="tl-ph">Wave 1 · Week 1–2</div><div class="tl-t">Domain &amp; File Servers</div><div class="tl-d">CONDC01, CONFILE01 — Low complexity Dev/Test</div></div>
+            <div class="tl-i"><div class="tl-dot"></div><div class="tl-ph">Wave 2 · Week 3–4</div><div class="tl-t">Application Servers</div><div class="tl-d">CONAPP01, CONAPP02 — Rehost + Refactor</div></div>
+            <div class="tl-i"><div class="tl-dot"></div><div class="tl-ph">Wave 3 · Week 5–6</div><div class="tl-t">Database &amp; BI</div><div class="tl-d">CONDB01, CONBIZ01 — Replatform to Azure SQL MI</div></div>
+            <div class="tl-i" style="padding-bottom:0"><div class="tl-dot"></div><div class="tl-ph">Wave 4 · Week 7–8</div><div class="tl-t">Web &amp; Mail (Replace)</div><div class="tl-d">CONWEB01 → App Service · CONMAIL01 → M365</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card"><div class="ch"><div class="ct">Live Migration Progress</div><span class="bdg ba" id="mig-badge">Idle</span></div>
+      <div class="cb-p">
+        <div style="font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Source Servers</div>
+        <div class="wv-grid">
+          <div class="wv-node"><i class="fas fa-server"></i>CONDC01</div>
+          <div class="wv-node"><i class="fas fa-server"></i>CONFILE01</div>
+          <div class="wv-node"><i class="fas fa-server"></i>CONAPP01</div>
+          <div class="wv-node"><i class="fas fa-server"></i>CONAPP02</div>
+          <div class="wv-node"><i class="fas fa-database"></i>CONDB01</div>
+          <div class="wv-node"><i class="fas fa-chart-bar"></i>CONBIZ01</div>
+          <div class="wv-node"><i class="fas fa-globe"></i>CONWEB01</div>
+          <div class="wv-node"><i class="fas fa-envelope"></i>CONMAIL01</div>
+        </div>
+        <div style="text-align:center;font-size:22px;color:var(--blue);padding:10px;animation:pp 2s infinite">⬇</div>
+        <div style="font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Azure Targets</div>
+        <div class="cloud-row">
+          <div class="cloud-n"><span class="cni">☁️</span>Azure<br/><small>East US</small></div>
+          <div class="cloud-n"><span class="cni">☁️</span>Azure<br/><small>West EU</small></div>
+          <div class="cloud-n"><span class="cni">☁️</span>Azure<br/><small>DR Backup</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Migration Steps info -->
+  <div class="card"><div class="ch"><div class="ct">How to Execute Migration with CloudAtlas Tool</div></div>
+    <div class="cb-p"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+      <div style="text-align:center;padding:14px"><div style="width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;margin:0 auto 10px">1</div><div style="font-weight:700;font-size:12px;margin-bottom:5px">Download Tool</div><div style="font-size:11px;color:var(--t3)">Download and install CloudAtlas Migration Tool on your jump server</div></div>
+      <div style="text-align:center;padding:14px"><div style="width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;margin:0 auto 10px">2</div><div style="font-weight:700;font-size:12px;margin-bottom:5px">Import Wave Plan</div><div style="font-size:11px;color:var(--t3)">Connect to CloudAtlas and import your saved wave plan and group assignments</div></div>
+      <div style="text-align:center;padding:14px"><div style="width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;margin:0 auto 10px">3</div><div style="font-weight:700;font-size:12px;margin-bottom:5px">Execute Waves</div><div style="font-size:11px;color:var(--t3)">Run wave-by-wave with automated pre-flight checks, replication, and cutover</div></div>
+      <div style="text-align:center;padding:14px"><div style="width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--teal));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;margin:0 auto 10px">4</div><div style="font-weight:700;font-size:12px;margin-bottom:5px">Monitor &amp; Validate</div><div style="font-size:11px;color:var(--t3)">Track live status, validate workloads, and rollback if needed — all from dashboard</div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══ SECURITY ══ -->
+<div class="panel" id="p-security">
+  <div class="ph"><div><div class="ph-title">Post-Migration Security &amp; Compliance</div><div class="ph-sub">Enterprise-grade protection across your entire digital landscape · Click "Try it" to explore each solution</div></div></div>
+  <div style="margin-bottom:16px"><span class="bdg bb" style="padding:4px 12px;font-size:11px">Security solutions</span></div>
+  <div style="margin-bottom:8px"><div style="font-size:18px;font-weight:800;color:var(--t1);margin-bottom:6px">Other security solutions</div><div style="width:40px;height:3px;background:var(--blue);border-radius:3px;margin-bottom:10px"></div><div style="font-size:13px;color:var(--t3)">Enterprise-grade protection across your entire digital landscape.</div></div>
+  <!-- Gauges row -->
+  <div class="gg mb2">
+    <div class="gc"><div class="gw"><canvas id="g-sec"></canvas><div class="gn">86%</div></div><div class="gl">Security Score</div><div class="gs">Post-migration</div></div>
+    <div class="gc"><div class="gw"><canvas id="g-comp"></canvas><div class="gn">92%</div></div><div class="gl">SOC2 Compliance</div><div class="gs">Type II Aligned</div></div>
+    <div class="gc"><div class="gw"><canvas id="g-gdpr"></canvas><div class="gn">65%</div></div><div class="gl">GDPR</div><div class="gs">In progress</div></div>
+    <div class="gc"><div class="gw"><canvas id="g-zt"></canvas><div class="gn">81%</div></div><div class="gl">Zero Trust</div><div class="gs">CIS Benchmark</div></div>
+  </div>
+  <!-- Security solution cards -->
+  <div class="sec-grid">
+    <div class="sec-card sec-cyber">
+      <div class="sec-ico" style="background:rgba(45,126,255,.1)"><i class="fas fa-shield-alt" style="color:var(--blue)"></i></div>
+      <div class="sec-name">Cybersecurity</div>
+      <div class="sec-desc">End-to-end threat protection with AI-driven defense, 24/7 monitoring, and zero-trust architecture.</div>
+      <div class="sec-feats">
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Multi-environment vulnerability tracking with severity-based risk scoring</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Zero Trust maturity across identities, endpoints, apps, and networks</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>M365 hardening with ATP, SSO, Conditional Access, and MFA</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>One-click executive reports with real-time snapshots</span></div>
+      </div>
+      <a target="_blank" href="https://crcybersecurity.azurewebsites.net/login.aspx?digest=3BKcmUcGjIA/ueJVzrMbLGdGfh/niqEW83+XX9059eGIKRiL6ZvYV6YLBIS3V6SoERpx42DJyWQ=" class="sec-btn">Try it <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="sec-card sec-prod">
+      <div class="sec-ico" style="background:rgba(5,150,105,.1)"><i class="fas fa-laptop" style="color:#059669"></i></div>
+      <div class="sec-name">Secure Productivity</div>
+      <div class="sec-desc">Empower hybrid teams with integrated security — zero-trust access, endpoint protection, and identity management.</div>
+      <div class="sec-feats">
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Hybrid asset visibility across on-premise and M365 workloads</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Endpoint, application, and disk encryption monitoring</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>M365 posture insights including Defender and security score</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Identity and license governance with SSO and Conditional Access</span></div>
+      </div>
+      <a target="_blank" href="https://workplacemordernizationapp-new.azurewebsites.net/Home/Login?f=usecases&u=716eeZnfbfgfFisvJXuWWLx3J8ac5kRFE8Od1oZYbds%253D&e=716eeZnfbfgfFisvJXuWWLx3J8ac5kRFE8Od1oZYbds%253D&p=workplace" class="sec-btn" >Try it <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="sec-card sec-e5">
+      <div class="sec-ico" style="background:rgba(45,126,255,.1)"><i class="fas fa-cloud-upload-alt" style="color:var(--blue)"></i></div>
+      <div class="sec-name">E5 Migration</div>
+      <div class="sec-desc">Seamless transition to Microsoft 365 E5 — unlock Defender, Sentinel, compliance, and advanced analytics.</div>
+      <div class="sec-feats">
+        <div class="sec-feat"><i class="fas fa-check"></i><span>E5 readiness and licensing gap assessment across users</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Discovery of missing E5 security and compliance capabilities</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>User compliance analysis across identity, email, and data</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Phased, cost-optimized migration roadmap</span></div>
+      </div>
+      <a target="_blank" href="https://workplacemordernizationapp-new.azurewebsites.net/Home/Login?f=usecases&u=716eeZnfbfgfFisvJXuWWLx3J8ac5kRFE8Od1oZYbds%253D&e=716eeZnfbfgfFisvJXuWWLx3J8ac5kRFE8Od1oZYbds%253D&p=e5" class="sec-btn" >Try it <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="sec-card sec-e7">
+      <div class="sec-ico" style="background:rgba(139,92,246,.1)"><i class="fas fa-magic" style="color:var(--purple)"></i></div>
+      <div class="sec-name">E7 Migration</div>
+      <div class="sec-desc">Future-proof your org with the E7 suite — AI-driven security, extended compliance, and adaptive governance.</div>
+      <div class="sec-feats">
+        <div class="sec-feat"><i class="fas fa-check"></i><span>E7 readiness covering users, posture score, and license utilization</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Gap analysis of E7 security and AI-driven add-ons</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Risk insights across identity, endpoint, email, and data</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Phased, cost-aware enterprise adoption roadmap</span></div>
+      </div>
+      <a target="_blank" href="https://workplacemordernizationapp-new.azurewebsites.net/Home/Login?f=usecases&u=716eeZnfbfgfFisvJXuWWLx3J8ac5kRFE8Od1oZYbds%253D&e=716eeZnfbfgfFisvJXuWWLx3J8ac5kRFE8Od1oZYbds%253D&p=e7" class="sec-btn" >Try it <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="sec-card sec-sov">
+      <div class="sec-ico" style="background:rgba(249,115,22,.1)"><i class="fas fa-globe" style="color:var(--orange)"></i></div>
+      <div class="sec-name">Sovereign Assessment</div>
+      <div class="sec-desc">In-depth evaluation of data residency, regulatory alignment, and sovereign cloud requirements including GDPR and Schrems II.</div>
+      <div class="sec-feats">
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Sovereign compliance scoring and policy coverage insights</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Data residency and network sovereignty validation</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Encryption ownership and confidential computing readiness</span></div>
+        <div class="sec-feat"><i class="fas fa-check"></i><span>Identity and access alignment with sovereign cloud principles</span></div>
+      </div>
+      <a target="_blank" href="https://aiguardian-sov.azurewebsites.net/" class="sec-btn">Try it <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OPTIMIZATION (Redirect) ══ -->
+<div class="panel" id="p-optimization">
+  <div class="ph"><div><div class="ph-title">Cloud Optimization</div><div class="ph-sub">Post-migration FinOps, rightsizing and continuous cost governance</div></div></div>
+  <div style="text-align:center;padding:60px 40px;background:linear-gradient(135deg,var(--bg1),var(--bg2));border:1px solid var(--bdr);border-radius:var(--r4)">
+    <div style="font-size:56px;margin-bottom:16px">💰</div>
+    <div style="font-size:24px;font-weight:800;margin-bottom:10px;color:var(--t1)">Optimization Dashboard</div>
+    <div style="font-size:14px;color:var(--t3);max-width:500px;margin:0 auto 24px;line-height:1.7">Post-migration cost optimization, rightsizing recommendations, FinOps analysis and compliance scoring are available through your cloud provider portal or via the CloudAtlas Optimization module.</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a target="_blank" href="https://cloudoptimizationuc.azurewebsites.net/Account/Index?Digest=LplkdT0XQnYfoQpSWdgljAYp9rd0TRkojT18UKyUuCQ%3D" class="btn btn-p" style="font-size:13px;padding:10px 24px" ><i class="fas fa-external-link-alt"></i> Azure Cost Management</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px;max-width:600px;margin-left:auto;margin-right:auto">
+      <div style="padding:16px;background:var(--bg3);border-radius:var(--r2);text-align:center"><div style="font-size:22px;font-weight:800;color:var(--green)">$47K</div><div style="font-size:11px;color:var(--t3);margin-top:4px">Estimated annual savings</div></div>
+      <div style="padding:16px;background:var(--bg3);border-radius:var(--r2);text-align:center"><div style="font-size:22px;font-weight:800;color:var(--blue)">78%</div><div style="font-size:11px;color:var(--t3);margin-top:4px">Resource utilization</div></div>
+      <div style="padding:16px;background:var(--bg3);border-radius:var(--r2);text-align:center"><div style="font-size:22px;font-weight:800;color:var(--teal)">92%</div><div style="font-size:11px;color:var(--t3);margin-top:4px">Compliance score</div></div>
+    </div>
+  </div>
+</div>
+
+
+  </div><!-- /cnt -->
+</div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ══ AI AGENT ══ -->
+<div id="ao">
+  <div id="agent-panel">
+    <div class="ap-hd">
+      <div class="ap-av">🤖</div>
+      <div><div class="ap-title">Atlas — CloudAtlas AI</div><div class="ap-stat"><span class="ap-pip" id="agent-pip"></span><span id="agent-pip-lbl">Ready</span></div></div>
+      <button class="ap-close" id="agent-close">✕</button>
+    </div>
+    <div class="ap-wf">
+      <div class="ap-wf-t">Current Workflow</div>
+      <div class="ap-wf-steps" id="agent-wf"><div class="wf-s" style="color:var(--t3)"><div class="wf-bull">·</div><span>Ask me anything to begin...</span></div></div>
+      <div class="ap-prog"><div class="ap-pf" id="agent-pf"></div></div>
+    </div>
+    <div class="ap-msgs" id="agent-msgs">
+      <div class="msg bot">
+        <div class="msg-av">🤖</div>
+        <div class="msg-b">
+          👋 Hi! I'm <strong>Atlas</strong>, your CloudAtlas AI agent.<br><br>
+          I can guide you through:<ul>
+          <li><strong>Data Discovery</strong> — upload tool output, view inventory</li>
+          <li><strong>Lift &amp; Shift</strong> — workload compatibility scoring</li>
+          <li><strong>Wave Plan</strong> — AI-assisted wave grouping</li>
+          <li><strong>Dependency Map</strong> — topology &amp; conflict detection</li>
+          <li><strong>TCO Analysis</strong> — 3-year cost comparison</li>
+          <li><strong>6R Analysis</strong> — app &amp; DB modernization</li>
+          <li><strong>Migration Execution</strong> — wave-based deployment</li>
+          <li><strong>Security &amp; Compliance</strong> — post-migration govern</li></ul>
+          What would you like to explore?
+        </div>
+      </div>
+    </div>
+    <div class="ap-qr" id="agent-qr">
+      <button class="qr-b" data-q="Start data discovery with Azure Migrate">🔍 Data Discovery</button>
+      <button class="qr-b" data-q="Run lift and shift compatibility assessment">🚀 Lift &amp; Shift</button>
+      <button class="qr-b" data-q="Generate AI assisted wave plan">🌊 Wave Plan</button>
+      <button class="qr-b" data-q="Analyze application dependency topology">🕸 Dep Map</button>
+      <button class="qr-b" data-q="Run TCO analysis and cost comparison">💰 TCO</button>
+      <button class="qr-b" data-q="Run 6R analysis for applications and databases">🔄 6R Analysis</button>
+      <button class="qr-b" data-q="Execute migration waves and deploy workloads">☁️ Migration</button>
+      <button class="qr-b" data-q="Review post migration security solutions">🔒 Security</button>
+    </div>
+    <div class="ap-inp-bar">
+      <textarea class="ap-ta" id="agent-input" rows="1" placeholder="Ask about discovery, assessment, migration, security..."></textarea>
+      <button class="ap-send" id="agent-send"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+// Security gauges init
+document.addEventListener('DOMContentLoaded',()=>{
+  const gauges=[{id:'g-sec',v:86,c:'#2D7EFF'},{id:'g-comp',v:92,c:'#22D86B'},{id:'g-gdpr',v:65,c:'#F5A623'},{id:'g-zt',v:81,c:'#00C8D4'}];
+  gauges.forEach(g=>{
+    const ctx=document.getElementById(g.id);if(!ctx)return;
+    new Chart(ctx,{type:'doughnut',data:{datasets:[{data:[g.v,100-g.v],backgroundColor:[g.c,'rgba(255,255,255,0.04)'],borderWidth:0}]},options:{cutout:'78%',responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{enabled:false}},animation:{duration:1400,easing:'easeOutQuart'}}});
+  });
+  // LiftShift chart
+  setTimeout(()=>{
+    const ctx=document.getElementById('ch-ls-compat');if(!ctx)return;
+    new Chart(ctx,{type:'doughnut',data:{labels:['Windows','Linux','SQLServer','Biztalk'],datasets:[{data:[200,17,4,0],backgroundColor:['#8B5CF6','#2D7EFF','#22D86B','#F5A623'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'70%',plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8A9FC0',boxWidth:8,padding:6}}}}});
+  },200);
+  // Wave plan chart init (ch-wp-sixr)
+  setTimeout(()=>{
+    const ctx=document.getElementById('ch-wp-sixr');if(!ctx)return;
+    if(!Chart.getChart(ctx))new Chart(ctx,{type:'bar',data:{labels:['Rehost','Refactor','Re-Arch','Replace','Retain','Retire'],datasets:[{label:'VMs',data:[201,9,9,2,0,0],backgroundColor:['#22D86B','#F5A623','#F5A623','#F97316','#4E6080','#4E6080'],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#8A9FC0',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#4E6080',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}}}}});
+  },300);
+  // MigBadge update
+  const origStart=WaveMigration.start.bind(WaveMigration);
+  WaveMigration.start=function(){
+    const badge=document.getElementById('mig-badge');if(badge){badge.textContent='Active';badge.className='bdg bb';}
+    origStart();
+  };
+});
+</script>
+</body>
+</html>

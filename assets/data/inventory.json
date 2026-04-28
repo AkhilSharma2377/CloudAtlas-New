@@ -1,0 +1,24 @@
+{
+  "meta":{"date":"2025-04-09","env":"Contoso Corp","total_vms":221},
+  "servers":[
+    {"id":"SRV001","name":"CONAPP01","type":"Application","os":"Windows Server 2012 R2","cores":8,"ram":32,"disk":500,"apps":"CRM, ERP Module","strategy":"Rehost","complexity":"Low","criticality":"Medium","op":1200,"az":480,"wave":"Wave 1","group":"Group 1","platform":"IaaS","ready":"Ready"},
+    {"id":"SRV002","name":"CONDB01","type":"Database","os":"Windows Server 2016","cores":16,"ram":128,"disk":2000,"apps":"SQL Server 2014","strategy":"Replatform","complexity":"Medium","criticality":"High","op":3400,"az":1100,"wave":"Wave 3","group":"Group 2","platform":"PaaS","ready":"Ready"},
+    {"id":"SRV003","name":"CONWEB01","type":"Web","os":"Windows Server 2019","cores":4,"ram":16,"disk":200,"apps":"IIS, ASP.NET 4.8","strategy":"Refactor","complexity":"High","criticality":"High","op":900,"az":320,"wave":"Wave 4","group":"Group 1","platform":"PaaS","ready":"Review"},
+    {"id":"SRV004","name":"CONDC01","type":"Infra","os":"Windows Server 2016","cores":4,"ram":8,"disk":100,"apps":"Active Directory","strategy":"Rehost","complexity":"Low","criticality":"Low","op":600,"az":220,"wave":"Wave 1","group":"Group 1","platform":"IaaS","ready":"Ready"},
+    {"id":"SRV005","name":"CONFILE01","type":"Storage","os":"Windows Server 2012","cores":4,"ram":16,"disk":10000,"apps":"File Services, DFS","strategy":"Replace","complexity":"Low","criticality":"Low","op":800,"az":180,"wave":"Wave 1","group":"Group 2","platform":"IaaS","ready":"Ready"},
+    {"id":"SRV006","name":"CONAPP02","type":"Application","os":"Linux RHEL 7","cores":8,"ram":32,"disk":400,"apps":"Java EE, Tomcat 8","strategy":"Refactor","complexity":"High","criticality":"High","op":1100,"az":430,"wave":"Wave 2","group":"Group 3","platform":"PaaS","ready":"Review"},
+    {"id":"SRV007","name":"CONBIZ01","type":"BI Server","os":"Windows Server 2016","cores":8,"ram":64,"disk":1000,"apps":"SSRS, SSAS, Power BI","strategy":"Replatform","complexity":"Medium","criticality":"Medium","op":1800,"az":650,"wave":"Wave 3","group":"Group 1","platform":"PaaS","ready":"Ready"},
+    {"id":"SRV008","name":"CONMAIL01","type":"Mail","os":"Windows Server 2019","cores":4,"ram":32,"disk":500,"apps":"Exchange 2016","strategy":"Replace","complexity":"Medium","criticality":"Medium","op":1200,"az":300,"wave":"Wave 4","group":"Group 2","platform":"IaaS","ready":"Ready"},
+    {"id":"SRV009","name":"APEX_HR","type":"Application","os":"RHEL 8.4","cores":4,"ram":16,"disk":240,"apps":"Oracle APEX, HR Portal","strategy":"Rehost","complexity":"Low","criticality":"Medium","op":900,"az":380,"wave":"Wave 1","group":"Group 1","platform":"IaaS","ready":"Ready"},
+    {"id":"SRV010","name":"ERP_BATCH","type":"Compute","os":"Oracle Linux 7.9","cores":8,"ram":32,"disk":500,"apps":"ERP Batch Processing","strategy":"Rehost","complexity":"Low","criticality":"High","op":1400,"az":560,"wave":"Wave 2","group":"Group 1","platform":"IaaS","ready":"Ready"}
+  ],
+  "tco":{"onprem_annual":136800,"azure_annual":52560,"aws_annual":55200,"gcp_annual":50880,"savings_3yr":253440,"roi":61.6},
+  "sixr_app":{"Refactor":{"count":96,"efforts":7735,"readiness":82.89,"dotnet":76,"java":16,"php":2,"python":2,"nodejs":0},"Rehost":{"count":5,"efforts":189,"readiness":78.6,"dotnet":4,"java":1,"php":0,"python":0,"nodejs":0},"Rearchitect":{"count":1,"efforts":18,"readiness":91,"dotnet":1,"java":0,"php":0,"python":0,"nodejs":0},"Rebuild":{"count":0,"efforts":0,"readiness":0,"dotnet":0,"java":0,"php":0,"python":0,"nodejs":0},"Replace":{"count":0,"efforts":0,"readiness":0,"dotnet":0,"java":0,"php":0,"python":0,"nodejs":0},"Retain":{"count":0,"efforts":0,"readiness":0,"dotnet":0,"java":0,"php":0,"python":0,"nodejs":0}},
+  "sixr_db":{"Rehost":{"count":10,"dbs":["AbdulKader_New","HRINT","FinanceDB","CoreDB"]},"Refactor":{"count":8,"dbs":["MongoDB","MongoDB","ApiTokenBack","ApiTokenExam"]},"Rearchitect":{"count":3,"dbs":["TestNew","AbdulKader_New","LegacyDB"]},"Rebuild":{"count":14,"dbs":["AB_BOUNDARIES","demoreport","UCTEST1","DEMODB"]},"Replace":{"count":0,"dbs":[]},"Retain":{"count":0,"dbs":[]}},
+  "waves":[
+    {"wave":"Wave 1","groups":3,"servers":51,"production":0,"devtest":51,"complexity_high":0,"critical_high":13},
+    {"wave":"Wave 2","groups":3,"servers":51,"production":0,"devtest":51,"complexity_high":0,"critical_high":50},
+    {"wave":"Wave 3","groups":3,"servers":51,"production":46,"devtest":5,"complexity_high":0,"critical_high":10},
+    {"wave":"Wave 4","groups":3,"servers":48,"production":48,"devtest":0,"complexity_high":0,"critical_high":48}
+  ]
+}

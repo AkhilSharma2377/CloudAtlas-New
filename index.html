@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CloudAtlas Reimagined</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+        background: #05060a;
+        overflow: hidden;
+        color: white;
+    }
+
+    .hero {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* ── VIDEO BACKGROUND ── */
+    .hero-video {
+        position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.85;
+    filter: saturate(1.3);
+    }
+
+    /* dark gradient overlay so text stays legible */
+    .video-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(5,6,10,0.35) 0%,
+            rgba(5,6,10,0.15) 50%,
+            rgba(5,6,10,0.55) 100%
+        );
+        z-index: 1;
+    }
+
+    /* RAYS BACKGROUND */
+    .rays {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 180%;
+        height: 180%;
+        background: radial-gradient(circle at left, rgb(0 185 255 / 14%), #6f00ac36 60%);
+        animation: rotateRays 40s ease-out infinite;
+        z-index: 2;
+    }
+
+    @keyframes rotateRays {
+        from { transform: translate(-50%, -50%) rotate(0deg); }
+        to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* CANVAS */
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+    }
+
+    /* CONTENT */
+    .content {
+        position: relative;
+        z-index: 4;
+        text-align: center;
+        top: 30%;
+    }
+
+    .content h1 {
+        font-size: 3rem;
+        font-weight: 600;
+        background: linear-gradient(90deg, #fff, #9ecbff);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    /* CHAT BOX */
+    .chat-box {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 400px;
+        height: 150px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* ── VIDEO SOURCE SELECTOR (dev helper) ── */
+    .video-src-note {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        z-index: 10;
+        font-size: 12px;
+        color: rgba(255,255,255,0.4);
+        pointer-events: none;
+    }
+    #typingTitle::after {
+    content: '|';
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+#typingTitle {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Gradient for "Cloud" */
+.cloud-text {
+    background: linear-gradient(90deg, #ffffff, #9ecbff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Blue highlight for "Atlas" */
+.atlas-text {
+    color: #0859cb;
+}
+
+/* Light weight for "Reimagined" */
+.light-text {
+    font-weight: 300;
+    margin-left: 6px; font-style: italic;
+}
+
+/* Cursor */
+#typingTitle::after {
+    content: '|';
+    margin-left: 6px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+    <video
+        class="hero-video"
+        id="heroBgVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster=""
+    >
+        <source src="aurora.mp4" type="video/mp4" />
+    </video>
+
+    <div class="video-overlay"></div>
+    <div class="rays"></div>
+    <canvas id="canvas"></canvas>
+
+    <div class="content">
+        <h1 id="typingTitle"></h1>
+    </div>
+
+    <!-- <div class="chat-box" id="chatBox">
+        Ask me anything
+    </div> -->
+
+   
+</section>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let width, height;
+let particles = [];
+let mouse = { x: null, y: null };
+let repelMode = false;
+
+function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.size = Math.random() * 2 + 0.5;
+    }
+
+    update() {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        let force = 120 / dist;
+
+        if (dist < 120) {
+            if (repelMode) {
+                this.x -= dx * 0.02 * force;
+                this.y -= dy * 0.02 * force;
+            } else {
+                this.x += dx * 0.02 * force;
+                this.y += dy * 0.02 * force;
+            }
+        }
+
+        this.x += (this.baseX - this.x) * 0.01;
+        this.y += (this.baseY - this.y) * 0.01;
+        this.x += this.vx;
+        this.y += this.vy;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 1.5);
+        ctx.fillStyle = "rgba(180, 220, 255, 0.35)";
+        ctx.fill();
+    }
+}
+
+function init() {
+    particles = [];
+    for (let i = 0; i < 500; i++) particles.push(new Particle());
+}
+init();
+
+function animate() {
+    ctx.clearRect(0, 0, width, height);
+    for (let p of particles) { p.update(); p.draw(); }
+    requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+const chatBox = document.getElementById("chatBox");
+chatBox.addEventListener("mouseenter", () => { repelMode = true; });
+chatBox.addEventListener("mouseleave", () => { repelMode = false; });
+</script>
+<script>
+setTimeout(() => {
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 1s ease";
+
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 1000);
+
+}, 6000);
+
+</script>
+<script>
+const parts = [
+    '<span class="cloud-text">Cloud</span>',
+    '<span class="atlas-text">Atlas</span>',
+    '<span class="light-text">Reimagined</span>'
+];
+
+const target = document.getElementById("typingTitle");
+
+let partIndex = 0;
+let charIndex = 0;
+
+function typeEffect() {
+    if (partIndex < parts.length) {
+        let currentPart = parts[partIndex];
+        let tempDiv = document.createElement("div");
+        tempDiv.innerHTML = currentPart;
+        let text = tempDiv.textContent;
+
+        if (charIndex < text.length) {
+            let spanClass = tempDiv.firstChild.className;
+
+            // Create span if not exists
+            if (!target.lastChild || target.lastChild.className !== spanClass) {
+                let span = document.createElement("span");
+                span.className = spanClass;
+                target.appendChild(span);
+            }
+
+            target.lastChild.textContent += text.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeEffect, 80);
+
+        } else {
+            partIndex++;
+            charIndex = 0;
+            setTimeout(typeEffect, 80);
+        }
+    }
+}
+
+window.addEventListener("load", typeEffect);
+</script>
+</body>
+</html>
