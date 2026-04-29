@@ -22,6 +22,10 @@ const Router={cur:'overview',init(){document.querySelectorAll('[data-nav]').forE
     if(id==='waveplan')WavePlan.init();
     if(id==='depmap')DepMap.init();
     if(id==='tco')TCO.init();
+    if(id==='app-assessment')AppAssessment.init();
+    if(id==='db-assessment')DBAssessment.init();
+    if(id==='acr-assessment'){}
+    if(id==='mod-waveplan')ModWavePlan.init();
     if(id==='portfolio')Portfolio.init();
     if(id==='sixr')SixR.init();
     if(id==='wavemigration')WaveMigration.init();
@@ -69,7 +73,7 @@ const Discovery={sel:null,_ready:false,
     if(!data.length){tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:20px;color:var(--t3)">Serve via: python3 -m http.server 8080</td></tr>';return;}
     tbody.innerHTML=data.map(s=>`<tr><td><b>${s.name}</b></td><td>${s.type}</td><td style="font-size:10.5px">${s.os}</td><td style="font-family:var(--mono)">${s.cores}C/${s.ram}GB</td><td style="font-family:var(--mono)">${s.disk}GB</td><td style="font-size:10.5px">${s.apps}</td><td><span class="bdg bb">${s.wave}</span></td><td><span class="bdg ${s.platform==='PaaS'?'bt':'bb'}">${s.platform}</span></td><td><span class="bdg ${s.complexity==='Low'?'bg':s.complexity==='Medium'?'ba':'br'}">${s.complexity}</span></td><td><span class="bdg ${s.ready==='Ready'?'bg':s.ready==='Review'?'ba':'br'}">${s.ready}</span></td></tr>`).join('');
   },
-  reset(){this.sel=null;document.querySelectorAll('.dt-card').forEach(c=>c.classList.remove('sel'));const btn=document.getElementById('disc-upload-btn');if(btn){btn.disabled=true;btn.textContent='Select a tool';}document.getElementById('disc-tools').classList.remove('hidden');document.getElementById('disc-scanning').classList.add('hidden');document.getElementById('disc-results').classList.add('hidden');}
+  reset(){this.sel=null;document.querySelectorAll('.dt-card').forEach(c=>c.classList.remove('sel'));const btn=document.getElementById('disc-upload-btn');if(btn){btn.disabled=true;btn.textContent='Select a tool above';}document.getElementById('disc-tools').classList.remove('hidden');document.getElementById('disc-scanning').classList.add('hidden');document.getElementById('disc-results').classList.add('hidden');}
 };
 
 /* ─ LiftShift ─ */
@@ -228,6 +232,10 @@ const Agent={
     depmap:{trig:['depend','topology','connect','conflict','circular','graph'],intro:"Analyzing <strong>Infrastructure Dependencies</strong> with conflict detection.",steps:[{l:'Tracing connections...',ico:'🕸️',d:2000},{l:'Mapping DB links...',ico:'🗄️',d:2000},{l:'Detecting conflicts...',ico:'⚠️',d:1800},{l:'Building topology...',ico:'🗺️',d:1500},{l:'Complete!',ico:'✅',d:400}],result:`<strong>Dependency Map Complete!</strong><br><br>156 connections · 4 conflicts · 7 orphaned<br>⚠️ Circular: HR_DB ↔ PAYROLL_ENGINE<br><br>Opening <strong>Dependency Map</strong>...`,nav:'depmap'},
     tco:{trig:['tco','total cost','pricing','saving','cost'],intro:"Running <strong>TCO Analysis</strong> across cloud providers.",steps:[{l:'Calculating compute costs...',ico:'💻',d:1800},{l:'Storage & network...',ico:'💾',d:1800},{l:'3-year projections...',ico:'📈',d:1800},{l:'Generating TCO report...',ico:'📊',d:1500},{l:'Complete!',ico:'✅',d:400}],result:`<strong>TCO Report Ready!</strong><br><br>On-Prem: $136,800/yr → Azure: $52,560/yr<br>3-Year Savings: <strong>$253,440 (61.6% ROI)</strong><br><br>Opening <strong>TCO Analysis</strong>...`,nav:'tco'},
     portfolio:{trig:['portfolio','app assess','db assess','assessment portfolio'],intro:"Running <strong>App &amp; DB Assessment Portfolio</strong> analysis.",steps:[{l:'Assessing app targets...',ico:'💻',d:2000},{l:'Analyzing DB migration...',ico:'🗄️',d:2000},{l:'Costing deployment targets...',ico:'💰',d:1800},{l:'Building portfolio...',ico:'📊',d:1500},{l:'Complete!',ico:'✅',d:400}],result:`<strong>Portfolio Assessment Done!</strong><br><br>95 assessments · 35 Databases · 98 Applications<br>45 apps need config changes<br><br>Opening <strong>App &amp; DB Portfolio</strong>...`,nav:'portfolio'},
+    appAssessment:{trig:['application assessment','app overview','app portfolio','application portfolio'],intro:"Running <strong>Application Portfolio Assessment</strong>.",steps:[{l:'Scanning application estate...',ico:'📦',d:1800},{l:'Scoring migration readiness...',ico:'📊',d:1800},{l:'Mapping target platforms...',ico:'🎯',d:1500},{l:'Complete!',ico:'✅',d:400}],result:`<strong>Application Assessment Ready!</strong><br><br>98 apps assessed · App Service 95 · VM 121 · Container 121<br>Total Cost: $201,916.91 · 7942 hours effort<br><br>Opening <strong>Application Assessment</strong>...`,nav:'app-assessment'},
+    dbAssessment:{trig:['database assessment','db overview','db portfolio','database portfolio'],intro:"Running <strong>Database Portfolio Assessment</strong>.",steps:[{l:'Extracting DB schemas...',ico:'🗄️',d:2000},{l:'Analyzing migration blockers...',ico:'⚠️',d:1800},{l:'Costing Azure SQL targets...',ico:'💰',d:1500},{l:'Complete!',ico:'✅',d:400}],result:`<strong>Database Assessment Ready!</strong><br><br>7 databases · SQL MI: €1,625 · vCore: €3,976 · VM: €2,043<br>3 target to SQL MI · 4 to SQL VM<br><br>Opening <strong>Database Assessment</strong>...`,nav:'db-assessment'},
+    acrAssessment:{trig:['acr','azure cost recommendation','cost report','pricing report'],intro:"Generating <strong>ACR Assessment Report</strong>.",steps:[{l:'Fetching Azure pricing...',ico:'💰',d:1800},{l:'Comparing RI vs PayG...',ico:'📊',d:1800},{l:'Calculating AHB savings...',ico:'💡',d:1500},{l:'Complete!',ico:'✅',d:400}],result:`<strong>ACR Assessment Ready!</strong><br><br>App Service: Best 3Yr RI+AHB = €5,863.82/mo<br>VM: Best 3Yr RI+AHB = €7,215.89/mo<br>Container: Best 3Yr RI+AHB = €5,975.94/mo<br><br>Opening <strong>ACR Assessment</strong>...`,nav:'acr-assessment'},
+    modWavePlan:{trig:['modernization wave','mod wave','modernize wave','app wave plan'],intro:"Building <strong>Modernization Wave Plan</strong> for apps and databases.",steps:[{l:'Classifying app complexity...',ico:'⚖️',d:1800},{l:'Grouping by dependency...',ico:'🕸️',d:1800},{l:'Assigning waves...',ico:'🌊',d:1500},{l:'Complete!',ico:'✅',d:400}],result:`<strong>Modernization Wave Plan Ready!</strong><br><br>1 Migration Wave · 1 Group · 1 Application<br>Open <strong>Modernization Wave Plan</strong> to view details.`,nav:'mod-waveplan'},
     sixr:{trig:['6r','six r','refactor','moderniz','modernization'],intro:"Running <strong>6R Analysis</strong> for Apps and Databases.",steps:[{l:'Detecting tech stacks...',ico:'💻',d:2000},{l:'Static code analysis...',ico:'🔎',d:2200},{l:'6R classification...',ico:'🔄',d:1800},{l:'Building analysis...',ico:'📊',d:1500},{l:'Complete!',ico:'✅',d:400}],result:`<strong>6R Analysis Done!</strong><br><br>Apps: Refactor 96 · Rehost 5 · Re-Arch 1<br>DBs: Rehost 10 · Rebuild 14 · Refactor 8<br><br>Opening <strong>6R Analysis</strong>...`,nav:'sixr'},
     migration:{trig:['migrat','execute','run migration','deploy'],intro:"Launching <strong>Migration Execution</strong> wave-based deployment.",steps:[{l:'Validating wave plan...',ico:'✅',d:1800},{l:'Pre-flight checks...',ico:'🔧',d:2000},{l:'Configuring landing zones...',ico:'🏗️',d:1800},{l:'Ready to execute...',ico:'🚀',d:1000},{l:'Complete!',ico:'✅',d:400}],result:`<strong>Ready for Migration!</strong><br><br>4 waves staged · 12 groups configured<br>Download the Migration tool to execute<br><br>Opening <strong>Wave Migration</strong>...`,nav:'wavemigration'},
     security:{trig:['secur','compli','gdpr','soc2','cyber','e5','e7','sovereign'],intro:"Reviewing <strong>Post-Migration Security Solutions</strong>.",steps:[{l:'Assessing security posture...',ico:'🔒',d:1800},{l:'Compliance gap analysis...',ico:'📋',d:1800},{l:'Solution matching...',ico:'🎯',d:1500},{l:'Complete!',ico:'✅',d:400}],result:`<strong>Security Assessment Complete!</strong><br><br>Score: 86/100 · SOC2: 92% · GDPR: 65%<br><br>Opening <strong>Security &amp; Compliance</strong>...`,nav:'security'},
@@ -278,7 +286,44 @@ function switchLSTab(id){switchTab('ls',id);}
 function switchWPTab(id){switchTab('wp',id);if(id==='wg')setTimeout(()=>WavePlan.wavesGroupsChart(),100);}
 function switchDepTab(id){switchTab('dep',id);}
 
-window.Discovery=Discovery;window.LiftShift=LiftShift;window.WavePlan=WavePlan;window.DepMap=DepMap;window.TCO=TCO;window.Portfolio=Portfolio;window.SixR=SixR;window.WaveMigration=WaveMigration;window.Agent=Agent;window.Router=Router;window.downloadCSV=downloadCSV;window.downloadTool=downloadTool;window.switchLSTab=switchLSTab;window.switchWPTab=switchWPTab;window.switchDepTab=switchDepTab;
+/* ─ App Assessment ─ */
+const AppAssessment={ch:{},_done:false,
+  init(){if(this._done)return;this._done=true;setTimeout(()=>{this.dnt();this.roadmap();this.costCmp();this.dep();},150);},
+  dnt(){const ctx=document.getElementById('ch-app-assess-dnt');if(!ctx||this.ch.d)return;this.ch.d=new Chart(ctx,{type:'doughnut',data:{labels:['.Net','Java','PHP','Python'],datasets:[{data:[77,17,2,2],backgroundColor:['#2D7EFF','#F5A623','#22D86B','#EC4899'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'right',labels:{font:{size:9},color:'#8A9FC0',boxWidth:7,padding:5}}}}});},
+  roadmap(){const ctx=document.getElementById('ch-app-roadmap');if(!ctx||this.ch.r)return;
+    const data=[];for(let i=0;i<20;i++){data.push({x:55+Math.random()*43,y:Math.random()*750,r:4+Math.random()*14});}
+    this.ch.r=new Chart(ctx,{type:'bubble',data:{datasets:[{label:'Applications',data:data,backgroundColor:'rgba(249,115,22,0.65)',borderColor:'rgba(249,115,22,0.2)',borderWidth:1},{label:'Quick Wins (100%)',data:[{x:98,y:25,r:5},{x:96,y:18,r:4},{x:94,y:12,r:4}],backgroundColor:'rgba(34,216,107,0.75)',borderColor:'rgba(34,216,107,0.2)',borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:10},color:'#8A9FC0',boxWidth:8}}},scales:{x:{min:0,max:100,ticks:{color:'#4E6080',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'#4E6080',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}}}}});},
+  costCmp(){const ctx=document.getElementById('ch-app-cost-cmp');if(!ctx||this.ch.c)return;this.ch.c=new Chart(ctx,{type:'bar',data:{labels:['App Service','Azure Function','Virtual Machine','Container (AKS)'],datasets:[{label:'Monthly Cost ($)',data:[148618,1713,163561,239144],backgroundColor:['#F97316','#EF4444','#22D86B','#8B5CF6'],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#8A9FC0',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#4E6080',font:{size:10},callback:v=>'$'+(v/1000).toFixed(0)+'K'},grid:{color:'rgba(255,255,255,0.04)'}}}}});},
+  dep(){const ctx=document.getElementById('ch-app-dep');if(!ctx||this.ch.dep)return;this.ch.dep=new Chart(ctx,{type:'bubble',data:{datasets:[{data:[{x:30,y:60,r:12},{x:60,y:80,r:8},{x:80,y:40,r:10},{x:50,y:30,r:6},{x:20,y:30,r:7},{x:70,y:65,r:9}],backgroundColor:['rgba(45,126,255,.55)','rgba(139,92,246,.55)','rgba(34,216,107,.55)','rgba(245,166,35,.55)','rgba(0,200,212,.55)','rgba(236,72,153,.55)'],borderColor:'transparent'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`App ${ctx.dataIndex+1}`}}},scales:{x:{display:false},y:{display:false}}}});}
+};
+/* ─ DB Assessment ─ */
+const DBAssessment={ch:{},_done:false,
+  init(){if(this._done)return;this._done=true;setTimeout(()=>{this.costBar();this.roadmap();},150);},
+  costBar(){const ctx=document.getElementById('ch-db-cost-cmp');if(!ctx||this.ch.c)return;this.ch.c=new Chart(ctx,{type:'bar',data:{labels:['MI','vCore','VM'],datasets:[{data:[1625,3976,2043],backgroundColor:['#F97316','#22D86B','#2D7EFF'],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#8A9FC0',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#4E6080',font:{size:9},callback:v=>v>999?'€'+(v/1000).toFixed(1)+'K':'€'+v},grid:{color:'rgba(255,255,255,0.04)'}}}}});},
+  roadmap(){const ctx=document.getElementById('ch-db-roadmap');if(!ctx||this.ch.r)return;this.ch.r=new Chart(ctx,{type:'bubble',data:{datasets:[{label:'SQL Server',data:[{x:80,y:35,r:8},{x:92,y:28,r:6}],backgroundColor:'rgba(249,115,22,0.7)',borderWidth:0},{label:'Oracle',data:[{x:75,y:5,r:4}],backgroundColor:'rgba(240,68,68,0.7)',borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:10},color:'#8A9FC0',boxWidth:8}}},scales:{x:{min:0,max:100,ticks:{color:'#4E6080',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},y:{ticks:{color:'#4E6080',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}}}}});}
+};
+/* ─ Mod Wave Plan ─ */
+const ModWavePlan={ch:{},_done:false,
+  init(){if(this._done)return;this._done=true;setTimeout(()=>this.wgChart(),150);},
+  wgChart(){const ctx=document.getElementById('ch-mwp-wg');if(!ctx||this.ch.wg)return;this.ch.wg=new Chart(ctx,{type:'pie',data:{labels:['Wave 1 Groups: 1','Wave 2 Groups: 0','Wave 3 Groups: 0','Wave 4 Groups: 0'],datasets:[{data:[97,1,1,1],backgroundColor:['#2D7EFF','rgba(0,200,212,.3)','rgba(34,216,107,.3)','rgba(245,166,35,.3)'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10},color:'#8A9FC0',boxWidth:8}}}}});}
+};
+/* ─ Discovery tab switcher ─ */
+function switchDiscTab(id){
+  document.querySelectorAll('.disc-tb').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.disc-tc').forEach(c=>c.classList.remove('on'));
+  document.querySelector(`.disc-tb[data-disc="${id}"]`)?.classList.add('on');
+  document.querySelector(`.disc-tc[data-disc="${id}"]`)?.classList.add('on');
+}
+function switchACRTab(id){
+  document.querySelectorAll('.acr-tab-b').forEach(b=>b.classList.toggle('on',b.getAttribute('data-acr')===id));
+  document.querySelectorAll('.acr-tab-c').forEach(c=>c.classList.toggle('on',c.getAttribute('data-acr')===id));
+}
+function switchMWPTab(id){
+  document.querySelectorAll('.mwp-tab-b').forEach(b=>b.classList.toggle('on',b.getAttribute('data-mwp')===id));
+  document.querySelectorAll('.mwp-tab-c').forEach(c=>c.classList.toggle('on',c.getAttribute('data-mwp')===id));
+}
+window.AppAssessment=AppAssessment;window.DBAssessment=DBAssessment;window.ModWavePlan=ModWavePlan;
+window.Discovery=Discovery;window.LiftShift=LiftShift;window.WavePlan=WavePlan;window.DepMap=DepMap;window.TCO=TCO;window.Portfolio=Portfolio;window.SixR=SixR;window.WaveMigration=WaveMigration;window.Agent=Agent;window.Router=Router;window.downloadCSV=downloadCSV;window.downloadTool=downloadTool;window.switchLSTab=switchLSTab;window.switchWPTab=switchWPTab;window.switchDepTab=switchDepTab;window.switchDiscTab=switchDiscTab;window.switchACRTab=switchACRTab;window.switchMWPTab=switchMWPTab;
 
 async function boot(){
   try{const r=await fetch('assets/data/inventory.json');window._inv=await r.json();}catch{window._inv={servers:[]};}

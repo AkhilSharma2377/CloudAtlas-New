@@ -26,7 +26,7 @@
     <div class="sb-sec"><div class="sb-sec-lbl">Discovery</div></div>
     <button class="ni" data-nav="discovery"><span class="ni-icon"><i class="fas fa-satellite-dish"></i></span><span class="ni-lbl">Data Discovery</span></button>
 
-    <div class="sb-sec"><div class="sb-sec-lbl">Infra Assessment</div></div>
+    <div class="sb-sec"><div class="sb-sec-lbl">Assessment</div></div>
     <button class="ni" data-nav="liftshift"><span class="ni-icon"><i class="fas fa-arrow-up"></i></span><span class="ni-lbl">Lift &amp; Shift</span></button>
     <button class="ni" data-nav="waveplan"><span class="ni-icon"><i class="fas fa-water"></i></span><span class="ni-lbl">Wave Plan</span></button>
     <button class="ni" data-nav="depmap"><span class="ni-icon"><i class="fas fa-project-diagram"></i></span><span class="ni-lbl">Dependency Map</span></button>
@@ -35,6 +35,10 @@
     <div class="sb-sec"><div class="sb-sec-lbl">Modernization</div></div>
     <button class="ni" data-nav="cloudpilot"><span class="ni-icon"><i class="fas fa-rocket"></i></span><span class="ni-lbl">CloudPilot Tool</span></button>
     <button class="ni" data-nav="portfolio"><span class="ni-icon"><i class="fas fa-briefcase"></i></span><span class="ni-lbl">App &amp; DB Portfolio</span></button>
+    <button class="ni" data-nav="app-assessment"><span class="ni-icon"><i class="fas fa-desktop"></i></span><span class="ni-lbl">Application Assessment</span></button>
+    <button class="ni" data-nav="db-assessment"><span class="ni-icon"><i class="fas fa-database"></i></span><span class="ni-lbl">Database Assessment</span></button>
+    <button class="ni" data-nav="acr-assessment"><span class="ni-icon"><i class="fas fa-file-invoice-dollar"></i></span><span class="ni-lbl">ACR Assessment</span></button>
+    <button class="ni" data-nav="mod-waveplan"><span class="ni-icon"><i class="fas fa-stream"></i></span><span class="ni-lbl">Modernization Wave Plan</span></button>
     <button class="ni" data-nav="sixr"><span class="ni-icon"><i class="fas fa-chart-pie"></i></span><span class="ni-lbl">6R Analysis</span></button>
 
     <div class="sb-sec"><div class="sb-sec-lbl">Migration</div></div>
@@ -129,7 +133,7 @@
           <div style="display:flex;gap:10px"><div style="width:32px;height:32px;background:rgba(236,72,153,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px">🔒</div><div><div style="font-weight:700;font-size:12px;margin-bottom:2px">Post-Migration Govern</div><div style="font-size:11px;color:var(--t3)">Security, FinOps, compliance, E5/E7 migration, Sovereign assessment.</div></div></div>
         </div>
       </div>
-      <div class="card"><div class="ch"><div class="ct">Cloud Targets</div></div><div class="cb-p" style="display:flex;flex-wrap:wrap;gap:6px"><span class="bdg bb">Azure VM / AKS</span><span class="bdg bt">Azure SQL MI</span><span class="bdg bp">Serverless</span><span class="bdg bgr">Spring Cloud</span></div></div>
+      <div class="card"><div class="ch"><div class="ct">Cloud Targets</div></div><div class="cb-p" style="display:flex;flex-wrap:wrap;gap:6px"><span class="bdg bb">Azure VM / AKS</span><span class="bdg ba">AWS EC2</span><span class="bdg bg">GCP Compute</span><span class="bdg bt">Azure SQL MI</span><span class="bdg bp">Serverless</span><span class="bdg bgr">Spring Cloud</span></div></div>
     </div>
     <div class="card"><div class="ch"><div class="ct">Architecture: Discover → Assess → Modernize → Migrate → Govern</div></div>
       <div class="cb-p">
@@ -153,49 +157,258 @@
     <div><div class="ph-title">Data Discovery</div><div class="ph-sub">INTEGRATED ISV AND 3RD PARTY DISCOVERY TOOLS · Upload your scanned Datacenter workload details</div></div>
     <div class="ph-acts">
       <button class="btn btn-g" onclick="Discovery.reset()"><i class="fas fa-redo"></i> Reset</button>
-      <button class="btn btn-p" id="disc-upload-btn" disabled onclick="Discovery.openUpload()"><i class="fas fa-upload"></i> Select a tool</button>
+      <button class="btn btn-p" id="disc-upload-btn" disabled onclick="Discovery.openUpload()"><i class="fas fa-upload"></i> Select a tool above</button>
     </div>
   </div>
-  <!-- Tool Grid -->
-  <div id="disc-tools">
-    <div class="dt-grid mb2">
-      <div class="dt-card" onclick="Discovery.select('Custom Template',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo" style="background:rgba(45,126,255,.1)"><i class="fas fa-file-excel" style="color:var(--blue);font-size:22px"></i></div><div class="dt-name">Custom Template</div><div class="dt-desc">Download template, fill it and upload your inventory (.xlsx)</div></div>
-      <div class="dt-card" onclick="Discovery.select('Azure Migrate',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo" style="background:rgba(0,120,212,.1)"><i class="fab fa-microsoft" style="color:#0078D4;font-size:22px"></i></div><div class="dt-name">Azure Migrate</div><div class="dt-desc">Upload Azure Migrate File (.xlsx format)</div></div>
-      <div class="dt-card" onclick="Discovery.select('RV Tool',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-file-csv" style="color:var(--green);font-size:22px"></i></div><div class="dt-name">RV Tool</div><div class="dt-desc">Upload your inventory using a .csv file</div></div>
-      <div class="dt-card" onclick="Discovery.select('Azure Migrate Sync',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo" style="background:rgba(0,120,212,.1)"><i class="fas fa-sync" style="color:#0078D4;font-size:22px"></i></div><div class="dt-name">Azure Migrate Sync</div><div class="dt-desc">Configure Azure Migrate Sync integration</div></div>
-      <div class="dt-card" onclick="Discovery.select('Lansweeper',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-network-wired" style="color:var(--orange);font-size:22px"></i></div><div class="dt-name">Lansweeper</div><div class="dt-desc">Upload your on-premises .bak file</div></div>
-      <div class="dt-card" onclick="Discovery.select('Flexera',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><div style="font-weight:900;font-size:14px;color:var(--teal);font-family:var(--font)">flex<span style="color:var(--blue)">era</span></div></div><div class="dt-name">Flexera</div><div class="dt-desc">Upload your on-premises .bak file</div></div>
-      <div class="dt-card" onclick="Discovery.select('SolarWinds',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-sun" style="color:var(--orange);font-size:22px"></i></div><div class="dt-name">SolarWinds</div><div class="dt-desc">Upload your Generated Excel in Zip format</div></div>
-      <div class="dt-card" onclick="Discovery.select('Block64',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-cube" style="color:var(--purple);font-size:22px"></i></div><div class="dt-name">Block64</div><div class="dt-desc">Upload Block64 Template (.Excel file)</div></div>
-      <div class="dt-card" onclick="Discovery.select('AWR Report',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-database" style="color:var(--red);font-size:22px"></i></div><div class="dt-name">AWR Report</div><div class="dt-desc">Download and fill template with machine information</div></div>
-      <div class="dt-card" onclick="Discovery.select('MAP',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-map-marked-alt" style="color:var(--blue);font-size:22px"></i></div><div class="dt-name">MAP</div><div class="dt-desc">Upload Your on-premises MAP .bak file</div></div>
-      <div class="dt-card" onclick="Discovery.select('ServiceNow',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><div style="font-weight:900;font-size:12px;color:var(--green);font-family:var(--font)">service<span style="color:#81B5A1">now</span></div></div><div class="dt-name">ServiceNow</div><div class="dt-desc">Upload Your on-premises ServiceNow file</div></div>
-      <div class="dt-card" onclick="Discovery.select('CloudPhysics',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-cloud" style="color:var(--teal);font-size:22px"></i></div><div class="dt-name">CloudPhysics</div><div class="dt-desc">Upload Your on-premises CloudPhysics file</div></div>
-      <div class="dt-card" onclick="Discovery.select('Device42',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><div style="font-weight:900;font-size:11px;color:var(--purple);font-family:var(--font)">DEVICE42</div></div><div class="dt-name">Device42</div><div class="dt-desc">Upload Your on-premises Device42 file</div></div>
-      <div class="dt-card" onclick="Discovery.select('Movere',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-arrows-alt" style="color:var(--amber);font-size:22px"></i></div><div class="dt-name">Movere</div><div class="dt-desc">Upload Movere CSV File (File in .zip format)</div></div>
-      <div class="dt-card" onclick="Discovery.select('StratoZone',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-cloud-upload-alt" style="color:var(--blue);font-size:22px"></i></div><div class="dt-name">StratoZone</div><div class="dt-desc">Upload Your on-premises StratoZone file</div></div>
-    </div>
+
+  <!-- Discovery Tabs -->
+  <div class="tabs" style="margin-bottom:0;border-bottom:1px solid var(--bdr)">
+    <button class="tab-b on disc-tb" data-disc="infra" onclick="switchDiscTab('infra')">Infrastructure Discovery</button>
+    <button class="tab-b disc-tb" data-disc="app" onclick="switchDiscTab('app')">Application Discovery</button>
+    <button class="tab-b disc-tb" data-disc="db" onclick="switchDiscTab('db')">Database Discovery</button>
   </div>
-  <!-- Scanning -->
-  <div id="disc-scanning" class="hidden">
-    <div class="sim-p"><span class="sim-spin">⚙️</span><div id="disc-lbl" class="sim-lbl">Connecting...</div><div class="sim-bar"><div class="sim-bf" id="disc-bar" style="width:0%"></div></div></div>
-  </div>
-  <!-- Results -->
-  <div id="disc-results" class="hidden">
-    <div class="sg mb1">
-      <div class="sc cb"><span class="sc-ico"><i class="fas fa-server"></i></span><div class="sc-lbl">Total Assets</div><div class="sc-val">221</div><div class="sc-sub">VMs discovered</div></div>
-      <div class="sc cg"><span class="sc-ico"><i class="fas fa-check"></i></span><div class="sc-lbl">Cloud Ready</div><div class="sc-val">187</div><div class="sc-sub">84.6% of assets</div></div>
-      <div class="sc cp"><span class="sc-ico"><i class="fas fa-database"></i></span><div class="sc-lbl">Databases</div><div class="sc-val">35</div><div class="sc-sub">Oracle 14 · SQL 7 · Mongo 9</div></div>
-      <div class="sc ct"><span class="sc-ico"><i class="fas fa-code"></i></span><div class="sc-lbl">Applications</div><div class="sc-val">102</div><div class="sc-sub">.NET 81 · Java 17</div></div>
-      <div class="sc ca"><span class="sc-ico"><i class="fab fa-windows"></i></span><div class="sc-lbl">Windows VMs</div><div class="sc-val">186</div><div class="sc-sub">$2,57,74,669.5</div></div>
-      <div class="sc co"><span class="sc-ico"><i class="fab fa-linux"></i></span><div class="sc-lbl">Linux VMs</div><div class="sc-val">15</div><div class="sc-sub">$13,29,008.35</div></div>
-    </div>
-    <div class="card">
-      <div class="ch"><div><div class="ct">Asset Inventory — Contoso Corp</div><div class="csub">All discovered servers with classification</div></div><div style="display:flex;gap:8px"><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export</button><button class="btn btn-p btn-sm" onclick="Router.go('liftshift')"><i class="fas fa-arrow-right"></i> Proceed to Assessment</button></div></div>
-      <div class="cb-np" style="overflow-x:auto">
-        <table class="dt"><thead><tr><th>Server</th><th>Type</th><th>OS</th><th>Resources</th><th>Storage</th><th>Applications</th><th>Wave</th><th>Platform</th><th>Complexity</th><th>Cloud Ready</th></tr></thead><tbody id="disc-tbody"></tbody></table>
+
+  <!-- ── INFRA DISCOVERY ── -->
+  <div class="disc-tc on" data-disc="infra" style="margin-top:16px">
+
+    <!-- Compact horizontal flow banner -->
+    <div class="disc-flow-wrap">
+      <!-- Label section -->
+      <div style="flex-shrink:0;margin-right:20px;padding-right:20px;border-right:1px solid var(--bdr)">
+        <div class="disc-flow-title">Infrastructure Discovery Flow</div>
+        <div class="disc-flow-subtitle">Select tool → Upload output → Get instant reports</div>
       </div>
-      <div class="dt-foot"><span>Showing results from scan</span><div class="pgs"><button class="pgb on">1</button><button class="pgb">2</button><button class="pgb">3</button><button class="pgb"><i class="fas fa-chevron-right"></i></button></div></div>
+      <!-- Horizontal flow diagram -->
+      <div class="disc-flow-diagram">
+        <!-- Step 1 -->
+        <div class="disc-flow-node disc-flow-top">
+          <div class="disc-fn-icon"><i class="fas fa-tools"></i></div>
+          <div class="disc-fn-label">Output file from<br/><strong>selected tool</strong></div>
+        </div>
+        <div class="disc-flow-arrow-v"><i class="fas fa-chevron-right"></i></div>
+        <!-- Step 2 -->
+        <div class="disc-flow-circle">
+          <div class="disc-fc-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+          <div class="disc-fc-label">Upload Files</div>
+        </div>
+        <div class="disc-flow-arrow-v"><i class="fas fa-chevron-right"></i></div>
+        <!-- Outputs -->
+        <div class="disc-flow-outputs">
+          <div class="disc-flow-out-nodes">
+            <div class="disc-flow-out-node" onclick="toast('📋','Data Quality Report','Download your full data quality assessment')">
+              <div class="disc-fon-ico" style="color:var(--blue)"><i class="fas fa-file-alt"></i></div>
+              <div class="disc-fon-lbl">Data Quality<br/>Report</div>
+            </div>
+            <div class="disc-flow-out-node" onclick="Router.go('overview')">
+              <div class="disc-fon-ico" style="color:var(--purple)"><i class="fas fa-chart-bar"></i></div>
+              <div class="disc-fon-lbl">Report<br/>Dashboard</div>
+            </div>
+            <div class="disc-flow-out-node" onclick="toast('📊','AIS Report','Assessment Insights Service report ready')">
+              <div class="disc-fon-ico" style="color:var(--teal)"><i class="fas fa-file-chart-line"></i></div>
+              <div class="disc-fon-lbl">AIS Assessment<br/>Insights Report</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tool Grid -->
+    <div id="disc-tools">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--t3);margin-bottom:12px">Select your discovery tool to upload output</div>
+      <div class="dt-grid mb2">
+        <div class="dt-card" onclick="Discovery.select('Custom Template',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo" style="background:rgba(45,126,255,.1)"><i class="fas fa-file-excel" style="color:var(--blue);font-size:22px"></i></div><div class="dt-name">Custom Template</div><div class="dt-desc">Download template, fill it and upload your inventory (.xlsx)</div></div>
+        <div class="dt-card" onclick="Discovery.select('Azure Migrate',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo" style="background:rgba(0,120,212,.1)"><i class="fab fa-microsoft" style="color:#0078D4;font-size:22px"></i></div><div class="dt-name">Azure Migrate</div><div class="dt-desc">Upload Azure Migrate File (.xlsx format)</div></div>
+        <div class="dt-card" onclick="Discovery.select('RV Tool',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-file-csv" style="color:var(--green);font-size:22px"></i></div><div class="dt-name">RV Tool</div><div class="dt-desc">Upload your inventory using a .csv file</div></div>
+        <div class="dt-card" onclick="Discovery.select('Azure Migrate Sync',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo" style="background:rgba(0,120,212,.1)"><i class="fas fa-sync" style="color:#0078D4;font-size:22px"></i></div><div class="dt-name">Azure Migrate Sync</div><div class="dt-desc">Configure Azure Migrate Sync integration</div></div>
+        <div class="dt-card" onclick="Discovery.select('Lansweeper',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-network-wired" style="color:var(--orange);font-size:22px"></i></div><div class="dt-name">Lansweeper</div><div class="dt-desc">Upload your on-premises .bak file</div></div>
+        <div class="dt-card" onclick="Discovery.select('Flexera',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><div style="font-weight:900;font-size:14px;color:var(--teal);font-family:var(--font)">flex<span style="color:var(--blue)">era</span></div></div><div class="dt-name">Flexera</div><div class="dt-desc">Upload your on-premises .bak file</div></div>
+        <div class="dt-card" onclick="Discovery.select('SolarWinds',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-sun" style="color:var(--orange);font-size:22px"></i></div><div class="dt-name">SolarWinds</div><div class="dt-desc">Upload your Generated Excel in Zip format</div></div>
+        <div class="dt-card" onclick="Discovery.select('Block64',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-cube" style="color:var(--purple);font-size:22px"></i></div><div class="dt-name">Block64</div><div class="dt-desc">Upload Block64 Template (.Excel file)</div></div>
+        <div class="dt-card" onclick="Discovery.select('AWR Report',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-database" style="color:var(--red);font-size:22px"></i></div><div class="dt-name">AWR Report</div><div class="dt-desc">Download and fill template with machine information</div></div>
+        <div class="dt-card" onclick="Discovery.select('MAP',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-map-marked-alt" style="color:var(--blue);font-size:22px"></i></div><div class="dt-name">MAP</div><div class="dt-desc">Upload Your on-premises MAP .bak file</div></div>
+        <div class="dt-card" onclick="Discovery.select('ServiceNow',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><div style="font-weight:900;font-size:12px;color:var(--green);font-family:var(--font)">service<span style="color:#81B5A1">now</span></div></div><div class="dt-name">ServiceNow</div><div class="dt-desc">Upload Your on-premises ServiceNow file</div></div>
+        <div class="dt-card" onclick="Discovery.select('CloudPhysics',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-cloud" style="color:var(--teal);font-size:22px"></i></div><div class="dt-name">CloudPhysics</div><div class="dt-desc">Upload Your on-premises CloudPhysics file</div></div>
+        <div class="dt-card" onclick="Discovery.select('Device42',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><div style="font-weight:900;font-size:11px;color:var(--purple);font-family:var(--font)">DEVICE42</div></div><div class="dt-name">Device42</div><div class="dt-desc">Upload Your on-premises Device42 file</div></div>
+        <div class="dt-card" onclick="Discovery.select('Movere',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-arrows-alt" style="color:var(--amber);font-size:22px"></i></div><div class="dt-name">Movere</div><div class="dt-desc">Upload Movere CSV File (File in .zip format)</div></div>
+        <div class="dt-card" onclick="Discovery.select('StratoZone',this)"><div class="dt-chk"><i class="fas fa-check"></i></div><div class="dt-logo"><i class="fas fa-cloud-upload-alt" style="color:var(--blue);font-size:22px"></i></div><div class="dt-name">StratoZone</div><div class="dt-desc">Upload Your on-premises StratoZone file</div></div>
+      </div>
+    </div>
+    <!-- Scanning -->
+    <div id="disc-scanning" class="hidden">
+      <div class="sim-p"><span class="sim-spin">⚙️</span><div id="disc-lbl" class="sim-lbl">Connecting...</div><div class="sim-bar"><div class="sim-bf" id="disc-bar" style="width:0%"></div></div></div>
+    </div>
+    <!-- Results -->
+    <div id="disc-results" class="hidden">
+      <div class="sg mb1">
+        <div class="sc cb"><span class="sc-ico"><i class="fas fa-server"></i></span><div class="sc-lbl">Total Assets</div><div class="sc-val">221</div><div class="sc-sub">VMs discovered</div></div>
+        <div class="sc cg"><span class="sc-ico"><i class="fas fa-check"></i></span><div class="sc-lbl">Cloud Ready</div><div class="sc-val">187</div><div class="sc-sub">84.6% of assets</div></div>
+        <div class="sc cp"><span class="sc-ico"><i class="fas fa-database"></i></span><div class="sc-lbl">Databases</div><div class="sc-val">35</div><div class="sc-sub">Oracle 14 · SQL 7 · Mongo 9</div></div>
+        <div class="sc ct"><span class="sc-ico"><i class="fas fa-code"></i></span><div class="sc-lbl">Applications</div><div class="sc-val">102</div><div class="sc-sub">.NET 81 · Java 17</div></div>
+        <div class="sc ca"><span class="sc-ico"><i class="fab fa-windows"></i></span><div class="sc-lbl">Windows VMs</div><div class="sc-val">186</div><div class="sc-sub">$2,57,74,669.5</div></div>
+        <div class="sc co"><span class="sc-ico"><i class="fab fa-linux"></i></span><div class="sc-lbl">Linux VMs</div><div class="sc-val">15</div><div class="sc-sub">$13,29,008.35</div></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div><div class="ct">Asset Inventory — Contoso Corp</div><div class="csub">All discovered servers with classification</div></div><div style="display:flex;gap:8px"><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export</button><button class="btn btn-p btn-sm" onclick="Router.go('liftshift')"><i class="fas fa-arrow-right"></i> Proceed to Assessment</button></div></div>
+        <div class="cb-np" style="overflow-x:auto">
+          <table class="dt"><thead><tr><th>Server</th><th>Type</th><th>OS</th><th>Resources</th><th>Storage</th><th>Applications</th><th>Wave</th><th>Platform</th><th>Complexity</th><th>Cloud Ready</th></tr></thead><tbody id="disc-tbody"></tbody></table>
+        </div>
+        <div class="dt-foot"><span>Showing results from scan</span><div class="pgs"><button class="pgb on">1</button><button class="pgb">2</button><button class="pgb">3</button><button class="pgb"><i class="fas fa-chevron-right"></i></button></div></div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ── APPLICATION DISCOVERY TAB ── -->
+  <div class="disc-tc" data-disc="app" style="margin-top:16px">
+
+    <!-- Compact horizontal flow banner -->
+    <div class="disc-flow-wrap" style="background:linear-gradient(135deg,rgba(139,92,246,.08),var(--bg1));border-color:rgba(139,92,246,.2)">
+      <div style="flex-shrink:0;margin-right:20px;padding-right:20px;border-right:1px solid rgba(139,92,246,.2)">
+        <div class="disc-flow-title" style="color:var(--purple)">Application Discovery Flow</div>
+        <div class="disc-flow-subtitle">Scan apps with the Agent → Upload output → Get instant portfolio reports</div>
+      </div>
+      <div class="disc-flow-diagram">
+        <div class="disc-flow-node disc-flow-top" style="background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.5)">
+          <div class="disc-fn-icon" style="background:rgba(139,92,246,.15);color:var(--purple)"><i class="fas fa-desktop"></i></div>
+          <div class="disc-fn-label"><strong>Application Scanner</strong><br/>scans your app servers</div>
+        </div>
+        <div class="disc-flow-arrow-v"><i class="fas fa-chevron-right"></i></div>
+        <div class="disc-flow-circle" style="border-color:rgba(139,92,246,.4);background:rgba(139,92,246,.07)">
+          <div class="disc-fc-icon" style="color:var(--purple)"><i class="fas fa-upload"></i></div>
+          <div class="disc-fc-label">Upload Agent Output</div>
+        </div>
+        <div class="disc-flow-arrow-v"><i class="fas fa-chevron-right"></i></div>
+        <div class="disc-flow-outputs">
+          <div class="disc-flow-out-nodes">
+            <div class="disc-flow-out-node" onclick="Router.go('app-assessment')" style="border-color:rgba(139,92,246,.25)">
+              <div class="disc-fon-ico" style="color:var(--purple)"><i class="fas fa-briefcase"></i></div>
+              <div class="disc-fon-lbl">Application<br/>Portfolio</div>
+            </div>
+            <div class="disc-flow-out-node" onclick="Router.go('sixr')" style="border-color:rgba(249,115,22,.25)">
+              <div class="disc-fon-ico" style="color:var(--orange)"><i class="fas fa-chart-pie"></i></div>
+              <div class="disc-fon-lbl">6R Analysis<br/>Report</div>
+            </div>
+            <div class="disc-flow-out-node" onclick="Router.go('acr-assessment')" style="border-color:rgba(0,200,212,.25)">
+              <div class="disc-fon-ico" style="color:var(--teal)"><i class="fas fa-file-invoice-dollar"></i></div>
+              <div class="disc-fon-lbl">ACR Assessment<br/>Report</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Download card + Supported types side by side -->
+    <div class="g4060 mb1">
+      <div class="agent-dl-card" style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div class="adl-icon" style="background:rgba(139,92,246,.12);font-size:24px;flex-shrink:0">🔭</div>
+          <div style="flex:1">
+            <div class="adl-name">Application Scanner</div>
+            <div class="adl-desc" style="margin-top:4px">Inventories Oracle Forms, Reports, APEX apps, and custom code. Performs static analysis and identifies modernization candidates across your application estate.</div>
+            <div class="adl-meta" style="margin-top:8px">
+              <span><i class="fas fa-tag"></i> v1.5.4</span>
+              <span><i class="fas fa-code"></i> Oracle Forms / Reports</span>
+              <span><i class="fas fa-hdd"></i> 22 MB</span>
+            </div>
+            <div class="adl-tags" style="margin-top:8px">
+              <span class="bdg ba" style="font-size:10px">Forms / APEX</span>
+              <span class="bdg bgr" style="font-size:10px">Static Analysis</span>
+            </div>
+          </div>
+        </div>
+        <button class="adl-btn" onclick="downloadTool('Application Scanner v1.5.4')"><i class="fas fa-download"></i> Download Application Scanner Agent</button>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Supported Application Types</div></div>
+        <div class="cb-p" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="padding:12px;background:var(--bg2);border-radius:var(--r1);display:flex;align-items:center;gap:10px"><div style="font-size:20px">☕</div><div><div style="font-weight:700;font-size:12px">Java</div><div style="font-size:10px;color:var(--t3)">Spring, Tomcat, JBoss</div></div></div>
+          <div style="padding:12px;background:var(--bg2);border-radius:var(--r1);display:flex;align-items:center;gap:10px"><div style="font-size:20px">🔷</div><div><div style="font-weight:700;font-size:12px">.NET</div><div style="font-size:10px;color:var(--t3)">ASP.NET, MVC, Web API</div></div></div>
+          <div style="padding:12px;background:var(--bg2);border-radius:var(--r1);display:flex;align-items:center;gap:10px"><div style="font-size:20px">🏭</div><div><div style="font-weight:700;font-size:12px">Oracle Forms / APEX</div><div style="font-size:10px;color:var(--t3)">Forms 6i–12c, APEX</div></div></div>
+          <div style="padding:12px;background:var(--bg2);border-radius:var(--r1);display:flex;align-items:center;gap:10px"><div style="font-size:20px">🐘</div><div><div style="font-weight:700;font-size:12px">PHP</div><div style="font-size:10px;color:var(--t3)">Laravel, Symfony, WP</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="ph-acts">
+      <button class="btn btn-p" onclick="Router.go('app-assessment')"><i class="fas fa-briefcase"></i> View Application Portfolio</button>
+      <button class="btn btn-g" onclick="Router.go('sixr')"><i class="fas fa-chart-pie"></i> View 6R Analysis</button>
+      <button class="btn btn-g" onclick="Router.go('acr-assessment')"><i class="fas fa-file-invoice-dollar"></i> View ACR Report</button>
+    </div>
+  </div>
+
+    <!-- ── DATABASE DISCOVERY TAB ── -->
+  <div class="disc-tc" data-disc="db" style="margin-top:16px">
+
+    <!-- Compact horizontal flow banner -->
+    <div class="disc-flow-wrap" style="background:linear-gradient(135deg,rgba(0,200,212,.06),var(--bg1));border-color:rgba(0,200,212,.2)">
+      <div style="flex-shrink:0;margin-right:20px;padding-right:20px;border-right:1px solid rgba(0,200,212,.2)">
+        <div class="disc-flow-title" style="color:var(--teal)">Database Discovery Flow</div>
+        <div class="disc-flow-subtitle">Connect DB Studio to your databases → Upload output → Get instant DB assessment</div>
+      </div>
+      <div class="disc-flow-diagram">
+        <div class="disc-flow-node disc-flow-top" style="background:rgba(0,200,212,.07);border-color:rgba(0,200,212,.5)">
+          <div class="disc-fn-icon" style="background:rgba(0,200,212,.15);color:var(--teal)"><i class="fas fa-database"></i></div>
+          <div class="disc-fn-label"><strong>DB Studio Tool</strong><br/>connects to database servers</div>
+        </div>
+        <div class="disc-flow-arrow-v"><i class="fas fa-chevron-right"></i></div>
+        <div class="disc-flow-circle" style="border-color:rgba(0,200,212,.4);background:rgba(0,200,212,.06)">
+          <div class="disc-fc-icon" style="color:var(--teal)"><i class="fas fa-upload"></i></div>
+          <div class="disc-fc-label">Upload Agent Output</div>
+        </div>
+        <div class="disc-flow-arrow-v"><i class="fas fa-chevron-right"></i></div>
+        <div class="disc-flow-outputs">
+          <div class="disc-flow-out-nodes">
+            <div class="disc-flow-out-node" onclick="Router.go('db-assessment')" style="border-color:rgba(0,200,212,.25)">
+              <div class="disc-fon-ico" style="color:var(--teal)"><i class="fas fa-briefcase"></i></div>
+              <div class="disc-fon-lbl">Database<br/>Portfolio</div>
+            </div>
+            <div class="disc-flow-out-node" onclick="Router.go('sixr');setTimeout(()=>document.getElementById('sixr-db-tab').click(),300)" style="border-color:rgba(139,92,246,.25)">
+              <div class="disc-fon-ico" style="color:var(--purple)"><i class="fas fa-chart-pie"></i></div>
+              <div class="disc-fon-lbl">DB 6R<br/>Analysis</div>
+            </div>
+            <div class="disc-flow-out-node" onclick="toast('📊','Schema Report','Database schema and dependency report ready')" style="border-color:rgba(245,166,35,.25)">
+              <div class="disc-fon-ico" style="color:var(--amber)"><i class="fas fa-file-alt"></i></div>
+              <div class="disc-fon-lbl">Schema &amp;<br/>Dependency Report</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Download card + Supported DBs side by side -->
+    <div class="g4060 mb1">
+      <div class="agent-dl-card" style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:flex-start;gap:14px">
+          <div class="adl-icon" style="background:rgba(0,200,212,.1);font-size:24px;flex-shrink:0">🗄</div>
+          <div style="flex:1">
+            <div class="adl-name">DB Studio Tool</div>
+            <div class="adl-desc" style="margin-top:4px">Extracts schemas, stored procedures, dependencies, and performance data from Oracle, SQL Server, MySQL, PostgreSQL, and more. No DBA privileges required for read-only mode.</div>
+            <div class="adl-meta" style="margin-top:8px">
+              <span><i class="fas fa-tag"></i> v2.8.0</span>
+              <span><i class="fas fa-database"></i> Oracle 11g–19c</span>
+              <span><i class="fas fa-hdd"></i> 32 MB</span>
+            </div>
+            <div class="adl-tags" style="margin-top:8px">
+              <span class="bdg bp" style="font-size:10px">Oracle</span>
+              <span class="bdg bb" style="font-size:10px">SQL Server</span>
+              <span class="bdg bg" style="font-size:10px">MySQL</span>
+              <span class="bdg bt" style="font-size:10px">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+        <button class="adl-btn" onclick="downloadTool('DB Studio Tool v2.8.0')"><i class="fas fa-download"></i> Download DB Studio Agent</button>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Supported Database Platforms</div></div>
+        <div class="cb-p" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="padding:12px;background:var(--bg2);border-radius:var(--r1);display:flex;align-items:center;gap:10px"><div style="font-size:20px">🔴</div><div><div style="font-weight:700;font-size:12px">Oracle</div><div style="font-size:10px;color:var(--t3)">11g, 12c, 18c, 19c</div></div></div>
+          <div style="padding:12px;background:var(--bg2);border-radius:var(--r1);display:flex;align-items:center;gap:10px"><div style="font-size:20px">🟦</div><div><div style="font-weight:700;font-size:12px">SQL Server</div><div style="font-size:10px;color:var(--t3)">2012 – 2022</div></div></div>
+          <div style="padding:12px;background:var(--bg2);border-radius:var(--r1);display:flex;align-items:center;gap:10px"><div style="font-size:20px">🐬</div><div><div style="font-weight:700;font-size:12px">MySQL / MariaDB</div><div style="font-size:10px;color:var(--t3)">5.7, 8.0 / 10.x</div></div></div>
+          <div style="padding:12px;background:var(--bg2);border-radius:var(--r1);display:flex;align-items:center;gap:10px"><div style="font-size:20px">🐘</div><div><div style="font-weight:700;font-size:12px">PostgreSQL</div><div style="font-size:10px;color:var(--t3)">10.x – 15.x</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="ph-acts">
+      <button class="btn btn-p" onclick="Router.go('db-assessment')"><i class="fas fa-briefcase"></i> View Database Portfolio</button>
+      <button class="btn btn-g" onclick="Router.go('sixr');setTimeout(()=>document.getElementById('sixr-db-tab').click(),300)"><i class="fas fa-chart-pie"></i> View DB 6R Analysis</button>
     </div>
   </div>
 </div>
@@ -212,7 +425,7 @@
         <input type="file" style="display:none" accept=".xlsx,.csv,.json,.xml,.bak,.zip"/>
       </div>
       <div style="display:flex;gap:8px">
-        <button class="btn btn-p" style="flex:1" onclick="Discovery.startScan()"><i class="fas fa-play"></i> Start Data Discovery</button>
+        <button class="btn btn-p" style="flex:1" onclick="Discovery.startScan()"><i class="fas fa-play"></i> Start Demo Scan</button>
         <button class="btn btn-g" onclick="Discovery.closeUpload()">Cancel</button>
       </div>
     </div>
@@ -233,7 +446,7 @@
   <div class="tabs">
     <button class="tab-b on ls-tab-b" data-ls="insights" onclick="switchLSTab('insights')">Insights</button>
     <button class="tab-b ls-tab-b" data-ls="servers" onclick="switchLSTab('servers')">Servers Assessment</button>
-    <!-- <button class="tab-b ls-tab-b" data-ls="storage" onclick="switchLSTab('storage')">Storage Assessment</button> -->
+    <button class="tab-b ls-tab-b" data-ls="storage" onclick="switchLSTab('storage')">Storage Assessment</button>
   </div>
   <!-- Insights -->
   <div class="tab-c on ls-tab-c" data-ls="insights">
@@ -288,6 +501,73 @@
             <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="color:var(--t2);font-weight:600">529 Core On-Prem</span><span style="color:var(--green);font-weight:700">1466 Core Azure</span></div><div class="pbw"><div class="pb" style="height:8px"><div class="pbf b" style="width:36%"></div></div></div><div style="text-align:right;font-size:10px;color:var(--green);font-weight:700;margin-top:3px">0.36% Core Saving ✓</div></div>
             <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="color:var(--t2);font-weight:600">3919 GB RAM On-Prem</span><span style="color:var(--green);font-weight:700">30242 GB RAM Azure</span></div><div class="pbw"><div class="pb" style="height:8px"><div class="pbf t" style="width:13%"></div></div></div><div style="text-align:right;font-size:10px;color:var(--green);font-weight:700;margin-top:3px">0.13% RAM Saving ✓</div></div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VM Migration Capability Infographic -->
+    <div class="vm-cap-section">
+      <div class="vm-cap-title">VM Migration Capability — Azure IaaS Journey</div>
+      <div class="vm-cap-sub">End-to-end lift and shift migration process for your on-premises virtual machines</div>
+      <div class="vm-cap-flow">
+        <div class="vm-cap-node" style="border-top:3px solid var(--t3)">
+          <div class="vm-cap-ico">🏢</div>
+          <div class="vm-cap-name">On-Premises</div>
+          <div class="vm-cap-desc">221 VMs across Windows, Linux & SQL</div>
+        </div>
+        <div class="vm-cap-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="vm-cap-node" style="border-top:3px solid var(--blue)">
+          <div class="vm-cap-ico">🔍</div>
+          <div class="vm-cap-name">Assess</div>
+          <div class="vm-cap-desc">Compatibility scoring, dependency mapping, TCO analysis</div>
+        </div>
+        <div class="vm-cap-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="vm-cap-node" style="border-top:3px solid var(--purple)">
+          <div class="vm-cap-ico">📋</div>
+          <div class="vm-cap-name">Plan</div>
+          <div class="vm-cap-desc">AI-assisted wave planning, group assignment, timeline</div>
+        </div>
+        <div class="vm-cap-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="vm-cap-node" style="border-top:3px solid var(--amber)">
+          <div class="vm-cap-ico">🔄</div>
+          <div class="vm-cap-name">Replicate</div>
+          <div class="vm-cap-desc">Continuous replication, delta sync, pre-cutover testing</div>
+        </div>
+        <div class="vm-cap-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="vm-cap-node" style="border-top:3px solid var(--orange)">
+          <div class="vm-cap-ico">✂️</div>
+          <div class="vm-cap-name">Cutover</div>
+          <div class="vm-cap-desc">Zero-downtime cutover, validation, rollback option</div>
+        </div>
+        <div class="vm-cap-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="vm-cap-node" style="border-top:3px solid var(--teal)">
+          <div class="vm-cap-ico">⚙️</div>
+          <div class="vm-cap-name">Optimize</div>
+          <div class="vm-cap-desc">Rightsizing, reserved instances, FinOps governance</div>
+        </div>
+        <div class="vm-cap-arrow"><i class="fas fa-chevron-right"></i></div>
+        <div class="vm-cap-node" style="border-top:3px solid var(--green)">
+          <div class="vm-cap-ico">☁️</div>
+          <div class="vm-cap-name">Azure</div>
+          <div class="vm-cap-desc">Running on Azure IaaS with full cloud benefits</div>
+        </div>
+      </div>
+      <div class="vm-cap-stats">
+        <div class="vm-cap-stat">
+          <div class="vm-cap-stat-val" style="color:var(--blue)">221</div>
+          <div class="vm-cap-stat-lbl">Total VMs</div>
+        </div>
+        <div class="vm-cap-stat">
+          <div class="vm-cap-stat-val" style="color:var(--green)">84.6%</div>
+          <div class="vm-cap-stat-lbl">Cloud Ready</div>
+        </div>
+        <div class="vm-cap-stat">
+          <div class="vm-cap-stat-val" style="color:var(--amber)">4 Waves</div>
+          <div class="vm-cap-stat-lbl">Migration Plan</div>
+        </div>
+        <div class="vm-cap-stat">
+          <div class="vm-cap-stat-val" style="color:var(--teal)">8 Weeks</div>
+          <div class="vm-cap-stat-lbl">Est. Duration</div>
         </div>
       </div>
     </div>
@@ -492,6 +772,8 @@
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <button class="btn btn-t" style="font-size:13px;padding:10px 24px" onclick="downloadTool('CloudPilot v4.1.2')"><i class="fas fa-download"></i> Download CloudPilot</button>
+        <button class="btn btn-g" style="font-size:13px;padding:10px 24px;border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)" onclick="toast('🔑','API Key','Navigate to Settings → API Keys to get your key')"><i class="fas fa-key"></i> Get API Key</button>
+        <button class="btn btn-g" style="font-size:13px;padding:10px 24px;border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7)" onclick="toast('📖','Release Notes','CloudPilot v4.1.2 — Bug fixes, Oracle 21c support')"><i class="fas fa-file-alt"></i> Release Notes</button>
       </div>
     </div>
   </div>
@@ -540,6 +822,636 @@
 </div>
 
 
+
+<!-- ══ APPLICATION ASSESSMENT ══ -->
+<div class="panel" id="p-app-assessment">
+  <div class="ph">
+    <div><div class="ph-title">Application Portfolio — Assessment Overview</div><div class="ph-sub">Total Applications: 98 · Migration roadmap, cost comparison and dependency analysis</div></div>
+    <div class="ph-acts"><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export PPT</button></div>
+  </div>
+  <!-- Top row: Summary + Roadmap + Quick Wins -->
+  <div style="display:grid;grid-template-columns:160px 1fr 405px;gap:12px;margin-bottom:14px">
+    <!-- Left: Total Apps summary -->
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="card" style="background:linear-gradient(180deg,var(--blue2),#0A2060)">
+        <div class="cb-p" style="text-align:center;padding:18px 14px">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:6px">Total Applications</div>
+          <div style="font-size:20px;margin-bottom:6px">📦</div>
+          <div style="font-size:40px;font-weight:800;color:#fff;line-height:1">98</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cb-p" style="padding:12px">
+          <div style="font-size:10px;font-weight:700;color:var(--t3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">By Technology</div>
+          <div style="height:120px;">
+            <canvas id="ch-app-assess-dnt"></canvas>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <!-- Center: Application Roadmap bubble chart -->
+    <div class="card">
+      <div class="ch">
+        <div class="ct">Application Roadmap</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select class="isel" style="font-size:11px"><option>Filter by: All</option><option>.Net</option><option>Java</option><option>PHP</option></select>
+          <button class="btn btn-g btn-xs">view more ›</button>
+        </div>
+      </div>
+      <div class="cb-p" style="height:220px;position:relative">
+        <canvas id="ch-app-roadmap"></canvas>
+        <div style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10px;color:var(--t3)">Migration Readiness (0–100)</div>
+        <div style="position:absolute;top:50%;left:8px;transform:translateY(-50%) rotate(-90deg);font-size:10px;color:var(--t3);white-space:nowrap">Efforts in Hours</div>
+      </div>
+    </div>
+    <!-- Right: Quick Wins -->
+    <div class="card">
+      <div class="ch" style="background:linear-gradient(135deg,var(--blue2),#0A2060)"><div class="ct" style="color:#fff">Quick Wins</div></div>
+      <div class="cb-np">
+        <table class="dt">
+          <thead>
+            <tr>
+              <th>Application</th>
+              <th>Readiness(%)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>SinglePlatform_Advicefront</b></td>
+              <td style="font-family:var(--mono)">100</td>  
+              <td><button class="btn btn-p btn-xs">view</button></td>
+            </tr>
+            <tr>
+              <td><b>SinglePlatform_Fnz.Cash</b></td>
+              <td style="font-family:var(--mono)">100</td>  
+              <td><button class="btn btn-p btn-xs">view</button></td>
+            </tr>
+            <tr>
+              <td><b>SinglePlatform_Fnz.OneX</b></td>
+              <td style="font-family:var(--mono)">100</td>  
+              <td><button class="btn btn-p btn-xs">view</button></td>
+            </tr>
+            <tr>
+              <td><b>SinglePlatform_Fnz.ProdWrapper</b></td>
+              <td style="font-family:var(--mono)">100</td>  
+              <td><button class="btn btn-p btn-xs">view</button></td>
+            </tr>
+            <tr>
+              <td><b>HR_Portal_API</b></td>
+              <td style="font-family:var(--mono)">97</td>  
+              <td><button class="btn btn-p btn-xs">view</button></td>
+            </tr>
+            <tr>
+              <td><b>ERP_WebModule</b></td>
+              <td style="font-family:var(--mono)">94</td>  
+              <td><button class="btn btn-p btn-xs">view</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--bdr)">
+        <span style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase">Application</span>
+        <span style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase">Readiness(%)</span>
+      </div>
+      <div class="qw-item"><span class="qw-name">SinglePlatform_Advicefront</span><span class="qw-pct">100</span><button class="btn btn-p btn-xs">view</button></div>
+      <div class="qw-item"><span class="qw-name">SinglePlatform_Fnz.Cash</span><span class="qw-pct">100</span><button class="btn btn-p btn-xs">view</button></div>
+      <div class="qw-item"><span class="qw-name">SinglePlatform_Fnz.OneX</span><span class="qw-pct">100</span><button class="btn btn-p btn-xs">view</button></div>
+      <div class="qw-item"><span class="qw-name">SinglePlatform_Fnz.ProdWrapper</span><span class="qw-pct">100</span><button class="btn btn-p btn-xs">view</button></div>
+      <div class="qw-item"><span class="qw-name">HR_Portal_API</span><span class="qw-pct">97</span><button class="btn btn-p btn-xs">view</button></div>
+      <div class="qw-item"><span class="qw-name">ERP_WebModule</span><span class="qw-pct">94</span><button class="btn btn-p btn-xs">view</button></div>-->
+    </div> 
+  </div>
+
+  <!-- Cost Comparison Row -->
+  <div class="card mb1">
+    <div class="ch"><div class="ct">Cost Comparison by Target Platform</div><div style="height:5px;width:160px;background:linear-gradient(90deg,var(--orange),var(--blue),var(--green),var(--purple));border-radius:3px"></div></div>
+    <div class="cb-p" style="height:180px"><canvas id="ch-app-cost-cmp"></canvas></div>
+  </div>
+
+  <!-- Target Platform Cards -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+    <!-- App Service -->
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <div class="cb-p">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:700;color:var(--t1)">App Service</div>
+          <span class="bdg bo">95 <small style="font-size:9px;opacity:.7">/Only VM 1</small></span>
+        </div>
+        <div style="font-size:11px;color:var(--t3);margin-bottom:4px">Total Cost</div>
+        <div style="font-size:20px;font-weight:800;color:var(--blue);margin-bottom:4px">$148,617.97</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span style="color:var(--t3)">Recomm.</span><span style="font-weight:700;color:var(--orange)">1357</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span style="color:var(--t3)">Mig. Efforts</span><span style="font-weight:700">7050 hrs</span></div>
+        <div style="height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-top:8px"><div style="height:100%;width:83.51%;background:var(--green);border-radius:3px"></div></div>
+        <div style="text-align:right;font-size:10px;color:var(--green);margin-top:3px;font-weight:700">83.51% Ready</div>
+      </div>
+    </div>
+    <!-- Azure Function -->
+    <div class="card" style="border-top:3px solid var(--red)">
+      <div class="cb-p">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:700;color:var(--t1)">Azure Function</div>
+          <span class="bdg br">2</span>
+        </div>
+        <div style="font-size:11px;color:var(--t3);margin-bottom:4px">Total Cost</div>
+        <div style="font-size:20px;font-weight:800;color:var(--blue);margin-bottom:4px">$1,713.43</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span style="color:var(--t3)">Recomm.</span><span style="font-weight:700;color:var(--red)">115</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span style="color:var(--t3)">Mig. Efforts</span><span style="font-weight:700">707 hrs</span></div>
+        <div style="height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-top:8px"><div style="height:100%;width:56.5%;background:var(--amber);border-radius:3px"></div></div>
+        <div style="text-align:right;font-size:10px;color:var(--amber);margin-top:3px;font-weight:700">56.5% Ready</div>
+      </div>
+    </div>
+    <!-- Virtual Machine -->
+    <div class="card" style="border-top:3px solid var(--green)">
+      <div class="cb-p">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:700;color:var(--t1)">Virtual Machine</div>
+          <span class="bdg bg">121</span>
+        </div>
+        <div style="font-size:11px;color:var(--t3);margin-bottom:4px">Total Cost</div>
+        <div style="font-size:20px;font-weight:800;color:var(--blue);margin-bottom:4px">$163,560.81</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span style="color:var(--t3)">Recomm.</span><span style="font-weight:700;color:var(--green)">1258</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span style="color:var(--t3)">Mig. Efforts</span><span style="font-weight:700">4537 hrs</span></div>
+        <div style="height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-top:8px"><div style="height:100%;width:85.36%;background:var(--green);border-radius:3px"></div></div>
+        <div style="text-align:right;font-size:10px;color:var(--green);margin-top:3px;font-weight:700">85.36% Ready</div>
+      </div>
+    </div>
+    <!-- Container -->
+    <div class="card" style="border-top:3px solid var(--purple)">
+      <div class="cb-p">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:700;color:var(--t1)">Container (AKS)</div>
+          <span class="bdg bp">121</span>
+        </div>
+        <div style="font-size:11px;color:var(--t3);margin-bottom:4px">Total Cost</div>
+        <div style="font-size:20px;font-weight:800;color:var(--blue);margin-bottom:4px">$239,144.28</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span style="color:var(--t3)">Recomm.</span><span style="font-weight:700;color:var(--purple)">1377</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span style="color:var(--t3)">Mig. Efforts</span><span style="font-weight:700">6763 hrs</span></div>
+        <div style="height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-top:8px"><div style="height:100%;width:82.31%;background:var(--blue);border-radius:3px"></div></div>
+        <div style="text-align:right;font-size:10px;color:var(--blue);margin-top:3px;font-weight:700">82.31% Ready</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom: Migration Strategy + App Dependency -->
+  <div class="g6040">
+    <div class="card">
+      <div class="ch" style="background:linear-gradient(135deg,var(--blue2),#0A2060)"><div class="ct" style="color:#fff">Migration Strategy</div><button class="btn btn-xs" style="background:rgba(255,255,255,.15);color:#fff;border:none">view more ›</button></div>
+      <div class="cb-p">
+        <div style="font-size:12px;color:var(--t3);margin-bottom:16px">Based on application assessment data, here is our strategy for migration:</div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;flex-shrink:0">
+            <div style="font-size:26px;font-weight:800;line-height:1">115</div>
+            <div style="font-size:10px;opacity:.8">Applications</div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+            <div style="background:var(--orange);border-radius:var(--r1);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;color:#fff">
+              <span style="font-size:12px;font-weight:700">📱 App Service</span><span style="font-size:16px;font-weight:800">98</span>
+            </div>
+            <div style="background:var(--red);border-radius:var(--r1);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;color:#fff">
+              <span style="font-size:12px;font-weight:700">⚡ Azure Function</span><span style="font-size:16px;font-weight:800">2</span>
+            </div>
+            <div style="background:var(--green);border-radius:var(--r1);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;color:#fff">
+              <span style="font-size:12px;font-weight:700">🖥 Virtual Machine</span><span style="font-size:16px;font-weight:800">13</span>
+            </div>
+            <div style="background:var(--purple);border-radius:var(--r1);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;color:#fff">
+              <span style="font-size:12px;font-weight:700">🐳 Container</span><span style="font-size:16px;font-weight:800">2</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
+            <div style="text-align:center;padding:14px;background:var(--bg2);border-radius:var(--r1);border:1px solid var(--bdr)">
+              <div style="font-size:22px;font-weight:800;color:var(--blue)">$201,916.91</div>
+              <div style="font-size:10px;color:var(--t3);margin-top:3px">Total Cost</div>
+            </div>
+            <div style="text-align:center;padding:14px;background:var(--bg2);border-radius:var(--r1);border:1px solid var(--bdr)">
+              <div style="font-size:22px;font-weight:800;color:var(--teal)">7942</div>
+              <div style="font-size:10px;color:var(--t3);margin-top:3px">hours Migration Efforts</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch" style="background:linear-gradient(135deg,var(--blue2),#0A2060)"><div class="ct" style="color:#fff">Application Dependency</div></div>
+      <div class="cb-p" style="height:250px;position:relative">
+        <canvas id="ch-app-dep"></canvas>
+        <div style="position:absolute;bottom:8px;right:8px;font-size:10px;color:var(--t3)">≡ Menu</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DATABASE ASSESSMENT ══ -->
+<div class="panel" id="p-db-assessment">
+  <div class="ph">
+    <div><div class="ph-title">Database Portfolio — Assessment Overview</div><div class="ph-sub">Total Databases: 7 · SQL Server migration analysis with cost comparison and roadmap</div></div>
+    <div class="ph-acts"><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export</button></div>
+  </div>
+  <!-- Top row: Summary + Roadmap + Quick Wins -->
+  <div style="display:grid;grid-template-columns:160px 1fr 260px;gap:12px;margin-bottom:14px">
+    <!-- Left: Total DBs summary -->
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="card" style="background:linear-gradient(180deg,#0A6E4F,#084D38)">
+        <div class="cb-p" style="text-align:center;padding:14px">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:6px">Total Databases</div>
+          <div style="font-size:24px;margin-bottom:4px">🗄️</div>
+          <div style="font-size:36px;font-weight:800;color:#fff;line-height:1">7</div>
+          <div style="display:flex;gap:8px;justify-content:center;margin-top:10px">
+            <div style="text-align:center"><div style="font-size:16px;font-weight:800;color:#fff">3</div><div style="font-size:9px;color:rgba(255,255,255,.6)">Total Server</div></div>
+            <div style="width:1px;background:rgba(255,255,255,.2)"></div>
+            <div style="text-align:center"><div style="font-size:16px;font-weight:800;color:#fff">3</div><div style="font-size:9px;color:rgba(255,255,255,.6)">DB Instance</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cb-p" style="padding:10px">
+          <div style="font-size:10px;font-weight:700;color:var(--t3);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">SQL Server Cost</div>
+          <div style="height:130px"><canvas id="ch-db-cost-cmp"></canvas></div>
+        </div>
+      </div>
+    </div>
+    <!-- Center: DB Roadmap -->
+    <div class="card">
+      <div class="ch">
+        <div class="ct">Database Roadmap</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select class="isel" style="font-size:11px"><option>Filter by: Azure SQL</option><option>Oracle</option><option>MySQL</option></select>
+          <button class="btn btn-g btn-xs">view more ›</button>
+        </div>
+      </div>
+      <div class="cb-p" style="height:220px;position:relative">
+        <canvas id="ch-db-roadmap"></canvas>
+        <div style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10px;color:var(--t3)">Migration Readiness (0–100)</div>
+        <div style="position:absolute;top:50%;left:8px;transform:translateY(-50%) rotate(-90deg);font-size:10px;color:var(--t3);white-space:nowrap">Efforts in Hours</div>
+      </div>
+    </div>
+    <!-- Right: Quick Wins -->
+    <div class="card">
+      <div class="ch" style="background:linear-gradient(135deg,#0A6E4F,#084D38)"><div class="ct" style="color:#fff">Quick Wins</div></div>
+      <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--bdr)">
+        <span style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase">Database</span>
+        <span style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase">Ready(%)</span>
+      </div>
+      <div class="qw-item"><span class="qw-name">AbdulKader_New</span><span class="qw-pct">100</span><button class="btn btn-p btn-xs">view</button></div>
+      <div class="qw-item"><span class="qw-name">TestNew</span><span class="qw-pct">100</span><button class="btn btn-p btn-xs">view</button></div>
+      <div class="qw-item"><span class="qw-name">AbdulKader_New</span><span class="qw-pct">97</span><button class="btn btn-p btn-xs">view</button></div>
+      <div class="qw-item"><span class="qw-name">AbdulKader_New</span><span class="qw-pct">95</span><button class="btn btn-p btn-xs">view</button></div>
+    </div>
+  </div>
+
+  <!-- Azure SQL Target Cards -->
+  <div class="db-target-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+    <!-- Azure SQL MI -->
+    <div class="card" style="border-top:3px solid var(--orange)">
+      <div class="cb-p">
+        <div class="ch" style="padding:0 0 10px;border:none"><div class="ct" style="color:var(--blue)">Azure SQL MI</div><span class="bdg ba">Recomm. 25</span></div>
+        <div style="font-size:20px;font-weight:800;color:var(--t1);margin-bottom:6px">€1,625</div>
+        <div style="font-size:11px;color:var(--t3);margin-bottom:6px">105 hrs Migration Efforts</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:11px;margin-bottom:8px">
+          <div style="color:var(--t3)">Migration Blocker</div><div style="font-weight:700;color:var(--red)">4</div>
+          <div style="color:var(--t3)">Feature Parity</div><div style="font-weight:700">0</div>
+          <div style="color:var(--t3)">Behaviour Change</div><div style="font-weight:700;color:var(--amber)">2</div>
+          <div style="color:var(--t3)">Breaking Changes</div><div style="font-weight:700">0</div>
+          <div style="color:var(--t3)">Other</div><div style="font-weight:700">19</div>
+        </div>
+        <div style="height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-bottom:4px"><div style="height:100%;width:97.57%;background:var(--green);border-radius:3px"></div></div>
+        <div style="text-align:right;font-size:10px;color:var(--green);font-weight:700">97.57% Ready</div>
+      </div>
+    </div>
+    <!-- Azure SQL vCore -->
+    <div class="card" style="border-top:3px solid var(--green)">
+      <div class="cb-p">
+        <div class="ch" style="padding:0 0 10px;border:none"><div class="ct" style="color:var(--blue)">Azure SQL vCore</div><span class="bdg bg">Recomm. 38</span></div>
+        <div style="font-size:20px;font-weight:800;color:var(--t1);margin-bottom:6px">€3,976</div>
+        <div style="font-size:11px;color:var(--t3);margin-bottom:6px">164 hrs Migration Efforts</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:11px;margin-bottom:8px">
+          <div style="color:var(--t3)">Migration Blocker</div><div style="font-weight:700;color:var(--red)">14</div>
+          <div style="color:var(--t3)">Feature Parity</div><div style="font-weight:700;color:var(--amber)">5</div>
+          <div style="color:var(--t3)">Behaviour Change</div><div style="font-weight:700;color:var(--amber)">3</div>
+          <div style="color:var(--t3)">Breaking Changes</div><div style="font-weight:700">0</div>
+          <div style="color:var(--t3)">Other</div><div style="font-weight:700">16</div>
+        </div>
+        <div style="height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-bottom:4px"><div style="height:100%;width:93.57%;background:var(--green);border-radius:3px"></div></div>
+        <div style="text-align:right;font-size:10px;color:var(--green);font-weight:700">93.57% Ready</div>
+      </div>
+    </div>
+    <!-- Azure SQL VM -->
+    <div class="card" style="border-top:3px solid var(--blue)">
+      <div class="cb-p">
+        <div class="ch" style="padding:0 0 10px;border:none"><div class="ct" style="color:var(--blue)">SQL Server on Azure VM</div><span class="bdg bb">Recomm. 21</span></div>
+        <div style="font-size:20px;font-weight:800;color:var(--t1);margin-bottom:6px">€2,043</div>
+        <div style="font-size:11px;color:var(--t3);margin-bottom:6px">81 hrs Migration Efforts</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:11px;margin-bottom:8px">
+          <div style="color:var(--t3)">Migration Blocker</div><div style="font-weight:700">0</div>
+          <div style="color:var(--t3)">Feature Parity</div><div style="font-weight:700">0</div>
+          <div style="color:var(--t3)">Behaviour Change</div><div style="font-weight:700;color:var(--amber)">2</div>
+          <div style="color:var(--t3)">Breaking Changes</div><div style="font-weight:700">0</div>
+          <div style="color:var(--t3)">Other</div><div style="font-weight:700">19</div>
+        </div>
+        <div style="height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-bottom:4px"><div style="height:100%;width:99.29%;background:var(--green);border-radius:3px"></div></div>
+        <div style="text-align:right;font-size:10px;color:var(--green);font-weight:700">99.29% Ready</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assessment List + Migration Strategy -->
+  <div class="g6040">
+    <div class="card">
+      <div class="ch" style="background:linear-gradient(135deg,var(--blue2),#0A2060)">
+        <div class="ct" style="color:#fff">Assessment List</div>
+        <input type="text" placeholder="search" style="padding:5px 10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;color:#fff;font-size:11px;outline:none;width:140px"/>
+      </div>
+      <div class="db-assess-list">
+        <table><thead><tr><th>Project Name</th><th>Uploaded Date</th><th>IsProcessed</th><th>Project Type</th><th>Instance Count</th><th>Take Action</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#">blackboard</a></td><td>06/08/21</td><td><span class="bdg bg">true</span></td><td>database</td><td style="text-align:center"><span class="bdg bb">1</span></td><td><button class="sdc-view">View</button></td></tr>
+          <tr><td><a href="#">DBAssesment</a></td><td>11/11/25</td><td><span class="bdg bg">true</span></td><td>database</td><td style="text-align:center"><span class="bdg bb">1</span></td><td><button class="sdc-view">View</button></td></tr>
+          <tr><td><a href="#">demodb_0703</a></td><td>07/03/25</td><td><span class="bdg bg">true</span></td><td>database</td><td style="text-align:center"><span class="bdg bb">1</span></td><td><button class="sdc-view">View</button></td></tr>
+          <tr><td><a href="#">postgres</a></td><td>04/27/21</td><td><span class="bdg bg">true</span></td><td>database</td><td style="text-align:center"><span class="bdg bb">1</span></td><td><button class="sdc-view">View</button></td></tr>
+          <tr><td><a href="#">sample_27nov</a></td><td>11/27/25</td><td><span class="bdg bg">true</span></td><td>database</td><td style="text-align:center"><span class="bdg bb">1</span></td><td><button class="sdc-view">View</button></td></tr>
+        </tbody></table>
+      </div>
+      <div class="dt-foot"><div class="pgs"><button class="pgb">«</button><button class="pgb on">1</button><button class="pgb">2</button><button class="pgb">»</button></div></div>
+    </div>
+    <div class="card">
+      <div class="ch" style="background:linear-gradient(135deg,var(--blue2),#0A2060)"><div class="ct" style="color:#fff">Migration Strategy</div><button class="btn btn-xs" style="background:rgba(255,255,255,.15);color:#fff;border:none">view more ›</button></div>
+      <div class="cb-p" style="display:flex;flex-direction:column;align-items:center;gap:12px">
+        <div class="db-mig-center">
+          <div class="num">7</div>
+          <div class="lbl">Database</div>
+        </div>
+        <div style="font-size:11px;color:var(--t3);text-align:center;margin-bottom:4px">Recommended migration targets based on assessment</div>
+        <div class="db-mig-targets">
+          <div class="db-mig-t" style="background:var(--orange)">
+            <span class="tv">3</span>SQL MI
+          </div>
+          <div class="db-mig-t" style="background:var(--green)">
+            <span class="tv">0</span>SQL vCore
+          </div>
+          <div class="db-mig-t" style="background:var(--blue)">
+            <span class="tv">4</span>SQL VM
+          </div>
+        </div>
+        <div style="width:100%;padding-top:12px;border-top:1px solid var(--bdr)">
+          <div style="font-size:11px;font-weight:700;color:var(--t2);margin-bottom:8px">Migration Complexity Distribution</div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;padding:10px;background:rgba(34,216,107,.08);border:1px solid rgba(34,216,107,.2);border-radius:8px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--green)">4</div><div style="font-size:10px;color:var(--t3)">Low</div></div>
+            <div style="flex:1;padding:10px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:8px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--amber)">2</div><div style="font-size:10px;color:var(--t3)">Medium</div></div>
+            <div style="flex:1;padding:10px;background:rgba(240,68,68,.08);border:1px solid rgba(240,68,68,.2);border-radius:8px;text-align:center"><div style="font-size:18px;font-weight:800;color:var(--red)">1</div><div style="font-size:10px;color:var(--t3)">High</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ACR ASSESSMENT ══ -->
+<div class="panel" id="p-acr-assessment">
+  <div class="ph">
+    <div><div class="ph-title">ACR Assessment Report</div><div class="ph-sub">Azure Cost Recommendation — Monthly cost breakdown by service, pricing tier and commitment model</div></div>
+    <div class="ph-acts">
+      <div class="acr-controls">
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--t2)">
+          Region: <select class="acr-region-sel"><option>Australia Central</option><option>East US</option><option>West Europe</option><option>Southeast Asia</option></select>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--t2)">
+          Currency: <select class="acr-currency-sel"><option>EUR (€)</option><option>USD ($)</option><option>GBP (£)</option><option>INR (₹)</option></select>
+        </div>
+      </div>
+      <button class="btn btn-s btn-sm" onclick="downloadCSV()"><i class="fas fa-file-excel"></i> Export</button>
+    </div>
+  </div>
+  <!-- ACR Tabs -->
+  <div class="tabs">
+    <button class="tab-b on acr-tab-b" data-acr="appsvc" onclick="switchACRTab('appsvc')">App Service</button>
+    <button class="tab-b acr-tab-b" data-acr="vm" onclick="switchACRTab('vm')">Virtual Machine</button>
+    <button class="tab-b acr-tab-b" data-acr="container" onclick="switchACRTab('container')">Container (AKS)</button>
+  </div>
+
+  <!-- App Service Tab -->
+  <div class="tab-c on acr-tab-c" data-acr="appsvc">
+    <div style="margin-bottom:10px"><div style="font-size:14px;font-weight:700;color:var(--blue)">App Service (Australia Central)</div><div style="font-size:12px;color:var(--t3)">App Service and Azure Function ACR details (Monthly Cost)</div></div>
+    <div class="acr-table-wrap">
+      <table class="acr-tbl">
+        <thead class="acr-tbl-hd"><tr><th style="text-align:left">Azure Service</th><th>Type</th><th>#Instances</th><th>SKU</th><th>PayasYouGo</th><th>1 Yr RI</th><th>3 Yr RI</th><th>PayG + AHB</th><th>1 Yr RI + AHB</th><th style="background:rgba(245,166,35,.4)">3 Yr RI + AHB</th></tr></thead>
+        <tbody>
+          <tr><td>App Service</td><td>AppService(Linux)</td><td>14</td><td>S2, 2 Core(s), 3.5 GB RAM</td><td>2121.42</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>App Service</td><td>AppService(Linux)</td><td>6</td><td>S3, 4 Core(s), 7 GB RAM</td><td>1818.36</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>App Service</td><td>AppService(Windows)</td><td>58</td><td>S2, 2 Core(s), 3.5 GB RAM</td><td>9228.38</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>App Service</td><td>AppService(Windows)</td><td>12</td><td>S3, 4 Core(s), 7 GB RAM</td><td>3818.52</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Azure Function</td><td>AzureFunction</td><td class="link">1</td><td>EP3: 4Core(s), 14GB RAM, 250 GB Storage</td><td>1139.01</td><td>945.38</td><td>945.38</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Azure Function</td><td>AzureFunction</td><td class="link">1</td><td>EP2: 2Core(s), 7GB RAM, 250 GB Storage</td><td>569.5</td><td>472.69</td><td>472.69</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Azure PostgreSQL (Oracle)</td><td>Database</td><td class="link">1</td><td>D4ads v5, 4Core(s), €0.4426/hour</td><td>323.07</td><td>133.74</td><td>89.16</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Azure Database for PostgreSql</td><td>Database</td><td class="link">1</td><td>D4ads v5, 4Core(s), €0.4426/hour</td><td>323.07</td><td>133.74</td><td>89.16</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Azure Database for MariaDB</td><td>Database</td><td>2</td><td>Flexible Server Memory Optimized Gen 5, 4 vCore</td><td>259.88</td><td>155.99</td><td>104.01</td><td>259.88</td><td>155.99</td><td>104.01</td></tr>
+          <tr><td>Azure Cosmos DB</td><td>Database</td><td>10</td><td>2 vCore</td><td>1642.5</td><td>1642.5</td><td>1642.5</td><td>1642.5</td><td>1642.5</td><td>1642.5</td></tr>
+          <tr><td>Azure SQL MI</td><td>Database</td><td class="link">1</td><td>4 vCore, gen 5, General Purpose</td><td>709.9</td><td>624.63</td><td>510.18</td><td>457.45</td><td>372.18</td><td>257.73</td></tr>
+          <tr><td>SQL On VM</td><td>Database</td><td>2</td><td>D4lds v5: 4 vCPU(s) 8 GB RAM 150 GB Temp</td><td>1055.6</td><td>925.08</td><td>851.96</td><td>823.28</td><td>692.74</td><td>619.62</td></tr>
+          <tr><td>Key Vault</td><td>Security</td><td class="link">1</td><td>1 HMS Key</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Bandwidth</td><td>Networking</td><td class="link">1</td><td>1024 GB, Inter Region</td><td>73.12</td><td>73.12</td><td>73.12</td><td>73.12</td><td>73.12</td><td>73.12</td></tr>
+          <tr><td>Application Gateway</td><td>Networking</td><td>5</td><td>Web Application Firewall V2</td><td>2258.8</td><td>2258.8</td><td>2258.8</td><td>2258.8</td><td>2258.8</td><td>2258.8</td></tr>
+          <tr><td>Azure Firewall</td><td>Networking</td><td class="link">1</td><td>Standard, 1unit with 1TB</td><td>833.15</td><td>833.15</td><td>833.15</td><td>833.15</td><td>833.15</td><td>833.15</td></tr>
+          <tr><td>Virtual Network</td><td>Networking</td><td class="link">1</td><td>1 Instance</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Application Insight</td><td>Management &amp; Governance</td><td class="link">1</td><td>1 GB/DAY</td><td>74.89</td><td>74.89</td><td>74.89</td><td>74.89</td><td>74.89</td><td>74.89</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="4" style="text-align:right;font-weight:800;color:var(--t1)">Total Monthly Cost</td><td class="acr-total">24540.66</td><td class="acr-total">6855.64</td><td class="acr-total">6526.93</td><td class="acr-total">6423.07</td><td class="acr-total">6103.37</td><td class="acr-total" style="background:rgba(245,166,35,.25)!important;font-size:14px">5863.82</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- Virtual Machine Tab -->
+  <div class="tab-c acr-tab-c" data-acr="vm">
+    <div style="margin-bottom:10px"><div style="font-size:14px;font-weight:700;color:var(--blue)">Virtual Machine (Australia Central)</div><div style="font-size:12px;color:var(--t3)">Azure VM ACR details (Monthly Cost)</div></div>
+    <div class="acr-table-wrap">
+      <table class="acr-tbl">
+        <thead class="acr-tbl-hd"><tr><th style="text-align:left">Azure Service</th><th>Type</th><th>#Instances</th><th>SKU</th><th>PayasYouGo</th><th>1 Yr RI</th><th>3 Yr RI</th><th>PayG + AHB</th><th>1 Yr RI + AHB</th><th style="background:rgba(245,166,35,.4)">3 Yr RI + AHB</th></tr></thead>
+        <tbody>
+          <tr><td>Virtual Machine</td><td>VM</td><td>1</td><td>F64as v6</td><td>5325.44</td><td>4008.17</td><td>3210.77</td><td>3466.75</td><td>2149.47</td><td>1352.07</td></tr>
+          <tr><td>Azure PostgreSQL (Oracle)</td><td>Database</td><td class="link">1</td><td>D4ads v5, 4Core(s), €0.4426/hour</td><td>323.07</td><td>133.74</td><td>89.16</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Azure Database for PostgreSql</td><td>Database</td><td class="link">1</td><td>D4ads v5, 4Core(s), €0.4426/hour</td><td>323.07</td><td>133.74</td><td>89.16</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Azure Database for MariaDB</td><td>Database</td><td>2</td><td>Flexible Server Memory Optimized Gen 5, 4 vCore</td><td>259.88</td><td>155.99</td><td>104.01</td><td>259.88</td><td>155.99</td><td>104.01</td></tr>
+          <tr><td>Azure Cosmos DB</td><td>Database</td><td>10</td><td>2 vCore</td><td>1642.5</td><td>1642.5</td><td>1642.5</td><td>1642.5</td><td>1642.5</td><td>1642.5</td></tr>
+          <tr><td>Azure SQL MI</td><td>Database</td><td class="link">1</td><td>4 vCore, gen 5, General Purpose</td><td>709.9</td><td>624.63</td><td>510.18</td><td>457.45</td><td>372.18</td><td>257.73</td></tr>
+          <tr><td>SQL On VM</td><td>Database</td><td>2</td><td>D4lds v5: 4 vCPU(s) 8 GB RAM 150 GB Temp</td><td>1055.6</td><td>925.08</td><td>851.96</td><td>823.28</td><td>692.74</td><td>619.62</td></tr>
+          <tr><td>Key Vault</td><td>Security</td><td class="link">1</td><td>1 HMS Key</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Bandwidth</td><td>Networking</td><td class="link">1</td><td>1024 GB, Inter Region</td><td>73.12</td><td>73.12</td><td>73.12</td><td>73.12</td><td>73.12</td><td>73.12</td></tr>
+          <tr><td>Application Gateway</td><td>Networking</td><td>5</td><td>Web Application Firewall V2</td><td>2258.8</td><td>2258.8</td><td>2258.8</td><td>2258.8</td><td>2258.8</td><td>2258.8</td></tr>
+          <tr><td>Azure Firewall</td><td>Networking</td><td class="link">1</td><td>Standard, 1unit with 1TB</td><td>833.15</td><td>833.15</td><td>833.15</td><td>833.15</td><td>833.15</td><td>833.15</td></tr>
+          <tr><td>Virtual Network</td><td>Networking</td><td class="link">1</td><td>1 Instance</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Application Insight</td><td>Management &amp; Governance</td><td class="link">1</td><td>1 GB/DAY</td><td>74.89</td><td>74.89</td><td>74.89</td><td>74.89</td><td>74.89</td><td>74.89</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="4" style="text-align:right;font-weight:800;color:var(--t1)">Total Monthly Cost</td><td class="acr-total">12879.42</td><td class="acr-total">10863.81</td><td class="acr-total">9737.7</td><td class="acr-total">9889.82</td><td class="acr-total">8252.84</td><td class="acr-total" style="background:rgba(245,166,35,.25)!important;font-size:14px">7215.89</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- Container Tab -->
+  <div class="tab-c acr-tab-c" data-acr="container">
+    <div style="margin-bottom:10px"><div style="font-size:14px;font-weight:700;color:var(--blue)">Azure Kubernetes Service (Australia Central)</div><div style="font-size:12px;color:var(--t3)">AKS ACR details (Monthly Cost)</div></div>
+    <div class="acr-table-wrap">
+      <table class="acr-tbl">
+        <thead class="acr-tbl-hd"><tr><th style="text-align:left">Azure Service</th><th>Type</th><th>#Instances</th><th>SKU</th><th>PayasYouGo</th><th>1 Yr RI</th><th>3 Yr RI</th><th>PayG + AHB</th><th>1 Yr RI + AHB</th><th style="background:rgba(245,166,35,.4)">3 Yr RI + AHB</th></tr></thead>
+        <tbody>
+          <tr><td>Azure Container</td><td>AKS</td><td>1</td><td>D8sv5</td><td>535.41</td><td>411.16</td><td>344.47</td><td>303.06</td><td>178.82</td><td>112.12</td></tr>
+          <tr><td>Azure PostgreSQL (Oracle)</td><td>Database</td><td class="link">1</td><td>D4ads v5, 4Core(s), €0.4426/hour</td><td>323.07</td><td>133.74</td><td>89.16</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Azure Database for PostgreSql</td><td>Database</td><td class="link">1</td><td>D4ads v5, 4Core(s), €0.4426/hour</td><td>323.07</td><td>133.74</td><td>89.16</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Azure Database for MariaDB</td><td>Database</td><td>2</td><td>Flexible Server Memory Optimized Gen 5, 4 vCore</td><td>259.88</td><td>155.99</td><td>104.01</td><td>259.88</td><td>155.99</td><td>104.01</td></tr>
+          <tr><td>Azure Cosmos DB</td><td>Database</td><td>10</td><td>2 vCore</td><td>1642.5</td><td>1642.5</td><td>1642.5</td><td>1642.5</td><td>1642.5</td><td>1642.5</td></tr>
+          <tr><td>Azure SQL MI</td><td>Database</td><td class="link">1</td><td>4 vCore, gen 5, General Purpose</td><td>709.9</td><td>624.63</td><td>510.18</td><td>457.45</td><td>372.18</td><td>257.73</td></tr>
+          <tr><td>SQL On VM</td><td>Database</td><td>2</td><td>D4lds v5: 4 vCPU(s) 8 GB RAM 150 GB Temp</td><td>1055.6</td><td>925.08</td><td>851.96</td><td>823.28</td><td>692.74</td><td>619.62</td></tr>
+          <tr><td>Key Vault</td><td>Security</td><td class="link">1</td><td>1 HMS Key</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Bandwidth</td><td>Networking</td><td class="link">1</td><td>1024 GB, Inter Region</td><td>73.12</td><td>73.12</td><td>73.12</td><td>73.12</td><td>73.12</td><td>73.12</td></tr>
+          <tr><td>Application Gateway</td><td>Networking</td><td>5</td><td>Web Application Firewall V2</td><td>2258.8</td><td>2258.8</td><td>2258.8</td><td>2258.8</td><td>2258.8</td><td>2258.8</td></tr>
+          <tr><td>Azure Firewall</td><td>Networking</td><td class="link">1</td><td>Standard, 1unit with 1TB</td><td>833.15</td><td>833.15</td><td>833.15</td><td>833.15</td><td>833.15</td><td>833.15</td></tr>
+          <tr><td>Virtual Network</td><td>Networking</td><td class="link">1</td><td>1 Instance</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td><td class="acr-na">N/A</td></tr>
+          <tr><td>Application Insight</td><td>Management &amp; Governance</td><td class="link">1</td><td>1 GB/DAY</td><td>74.89</td><td>74.89</td><td>74.89</td><td>74.89</td><td>74.89</td><td>74.89</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="4" style="text-align:right;font-weight:800;color:var(--t1)">Total Monthly Cost</td><td class="acr-total">8089.39</td><td class="acr-total">7266.8</td><td class="acr-total">6871.4</td><td class="acr-total">6726.13</td><td class="acr-total">6282.19</td><td class="acr-total" style="background:rgba(245,166,35,.25)!important;font-size:14px">5975.94</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODERNIZATION WAVE PLAN ══ -->
+<div class="panel" id="p-mod-waveplan">
+  <div class="ph">
+    <div><div class="ph-title">Modernization Wave Plan</div><div class="ph-sub">Application and Database wave-based modernization scheduling with complexity and criticality scoring</div></div>
+    <div class="ph-acts"><button class="btn btn-s btn-sm"><i class="fas fa-edit"></i> Edit Plan</button><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export</button></div>
+  </div>
+  <!-- Wave Plan Tabs -->
+  <div class="tabs">
+    <button class="tab-b on mwp-tab-b" data-mwp="summary" onclick="switchMWPTab('summary')">Wave Summary</button>
+    <button class="tab-b mwp-tab-b" data-mwp="details" onclick="switchMWPTab('details')">Wave Details</button>
+  </div>
+
+  <!-- Wave Summary Tab -->
+  <div class="tab-c on mwp-tab-c" data-mwp="summary">
+    <div class="g6040 mb1">
+      <!-- Left: Main summary box -->
+      <div class="card">
+        <div class="ch"><div class="ct">Applications and Databases</div></div>
+        <div class="cb-p">
+          <!-- App + DB counts with language breakdown -->
+          <div style="display:flex;gap:12px;margin-bottom:16px">
+            <div style="background:linear-gradient(135deg,var(--blue),var(--blue2));border-radius:var(--r1);padding:10px 14px;color:#fff;min-width:100px">
+              <div style="font-size:10px;opacity:.7;margin-bottom:4px">Applications</div>
+              <div style="font-size:28px;font-weight:800;line-height:1">1</div>
+            </div>
+            <div class="mod-wp-langs" style="flex:1;align-content:center">
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--blue)"></div><span>.Net <strong>0</strong></span></div>
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--red)"></div><span>Java <strong>0</strong></span></div>
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--green)"></div><span>Php <strong>0</strong></span></div>
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--teal)"></div><span>Python <strong style="color:var(--teal)">1</strong></span></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;margin-bottom:20px">
+            <div style="background:linear-gradient(135deg,#1a3a8a,#0d2b6b);border-radius:var(--r1);padding:10px 14px;color:#fff;min-width:100px">
+              <div style="font-size:10px;opacity:.7;margin-bottom:4px">Databases</div>
+              <div style="font-size:28px;font-weight:800;line-height:1">0</div>
+            </div>
+            <div class="mod-wp-langs" style="flex:1;align-content:center">
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--blue)"></div><span>MySql <strong>0</strong></span></div>
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--red)"></div><span>Postgres SQL <strong>0</strong></span></div>
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--green)"></div><span>MariaDB <strong>0</strong></span></div>
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--teal)"></div><span>Mongo Db <strong>0</strong></span></div>
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--amber)"></div><span>Mssql <strong>0</strong></span></div>
+              <div class="mod-wp-lang"><div class="dot" style="background:var(--purple)"></div><span>OratoPg <strong>0</strong></span></div>
+            </div>
+          </div>
+          <!-- Arrow to Wave Plan -->
+          <div style="display:flex;align-items:center;gap:14px;padding:14px;background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1)">
+            <div style="font-size:22px;color:var(--green)">→</div>
+            <div style="flex:1">
+              <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px">Wave Plan</div>
+              <div style="display:flex;gap:20px">
+                <div><div style="font-size:9px;color:var(--t3)">Migration Waves</div><div style="font-size:26px;font-weight:800;color:var(--blue)">1</div></div>
+                <div style="width:1px;background:var(--bdr)"></div>
+                <div><div style="font-size:9px;color:var(--t3)">Total Groups</div><div style="font-size:26px;font-weight:800;color:var(--blue)">1</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Right: Waves & Groups chart + Assumptions -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card">
+          <div class="ch" style="background:linear-gradient(135deg,var(--blue2),#0A2060)"><div class="ct" style="color:#fff">Waves &amp; Groups</div></div>
+          <div class="cb-p" style="height:180px"><canvas id="ch-mwp-wg"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="ch" style="background:linear-gradient(135deg,var(--blue2),#0A2060)"><div class="ct" style="color:#fff">Assumptions</div></div>
+          <div class="cb-p" style="font-size:12px;color:var(--t3);display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;gap:8px"><span style="color:var(--blue);flex-shrink:0">•</span><span>Complexity divided into two key dimensions — business impact and CPU utilization.</span></div>
+            <div style="display:flex;gap:8px"><span style="color:var(--blue);flex-shrink:0">•</span><span>Criticality divided into different levels based on recommendations.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complexity + Criticality tables -->
+    <div class="g2 mb1">
+      <div class="card">
+        <div class="ch"><div class="ct">Total <strong>Complexity</strong></div><span style="font-size:16px;font-weight:800;color:var(--t1)">1</span></div>
+        <div class="cb-p">
+          <table style="width:100%;font-size:12px;border-collapse:collapse;text-align:center">
+            <thead><tr style="color:var(--t3)"><th style="padding-bottom:8px;text-align:left">Type</th><th>Low</th><th>Medium</th><th style="color:var(--red)">High</th></tr></thead>
+            <tbody>
+              <tr style="border-top:1px solid var(--bdr)"><td style="text-align:left;padding:8px 0;font-weight:600">Application</td><td style="font-weight:700;color:var(--green)">1</td><td>0</td><td>0</td></tr>
+              <tr style="border-top:1px solid var(--bdr)"><td style="text-align:left;padding:8px 0;font-weight:600">Database</td><td>0</td><td>0</td><td>0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Total <strong>Criticality</strong></div><span style="font-size:16px;font-weight:800;color:var(--t1)">1</span></div>
+        <div class="cb-p">
+          <table style="width:100%;font-size:12px;border-collapse:collapse;text-align:center">
+            <thead><tr style="color:var(--t3)"><th style="padding-bottom:8px;text-align:left">Type</th><th>Low</th><th>Medium</th><th style="color:var(--red)">High</th></tr></thead>
+            <tbody>
+              <tr style="border-top:1px solid var(--bdr)"><td style="text-align:left;padding:8px 0;font-weight:600">Application</td><td style="font-weight:700;color:var(--green)">1</td><td>0</td><td>0</td></tr>
+              <tr style="border-top:1px solid var(--bdr)"><td style="text-align:left;padding:8px 0;font-weight:600">Database</td><td>0</td><td>0</td><td>0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wave Details Table -->
+    <div class="card">
+      <div class="ch"><div class="ct">Wave Summary Details</div></div>
+      <div class="cb-np" style="overflow-x:auto">
+        <table class="dt"><thead><tr><th>Waves</th><th>Groups</th><th>Server</th><th>Application</th><th>Database</th><th>Complexity Score (Low)</th><th>Complexity Score (Medium)</th><th>Complexity Score (High)</th></tr></thead>
+        <tbody>
+          <tr><td><b>Wave 1</b></td><td>1</td><td>1</td><td>1</td><td>0</td><td style="color:var(--green);font-weight:700;background:rgba(34,216,107,.05)">3</td><td>0</td><td style="background:rgba(240,68,68,.04)">0</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave Details Tab -->
+  <div class="tab-c mwp-tab-c" data-mwp="details">
+    <div class="card mb1">
+      <div class="ch"><div class="ct">Wave Details</div><div style="display:flex;gap:8px"><select class="isel" style="font-size:11px"><option>Version: Recommended</option></select><button class="btn btn-s btn-sm"><i class="fas fa-save"></i> Save Version</button></div></div>
+      <div class="cb-np" style="overflow-x:auto">
+        <table class="dt">
+          <thead><tr><th>#Wave</th><th>#Groups</th><th>#Apps</th><th>#Databases</th><th>Languages</th><th>Complexity Low</th><th>Complexity Med</th><th>Complexity High</th><th>Criticality Low</th><th>Criticality Med</th><th>Criticality High</th></tr></thead>
+          <tbody>
+            <tr><td><b>Wave 1</b></td><td><span class="bdg bb">1</span></td><td><span class="bdg bg">1</span></td><td><span class="bdg bgr">0</span></td><td><span class="bdg bt">Python</span></td><td style="color:var(--green);font-weight:700">3</td><td>0</td><td style="color:var(--red)">0</td><td style="color:var(--green);font-weight:700">1</td><td>0</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div style="text-align:center;padding:30px;color:var(--t3)">
+      <div style="font-size:36px;margin-bottom:12px">🌊</div>
+      <div style="font-size:14px;font-weight:700;color:var(--t2);margin-bottom:6px">Add more applications to Wave Plan</div>
+      <div style="font-size:12px;max-width:380px;margin:0 auto 16px">Run CloudPilot analysis to add more applications and databases to your modernization wave plan.</div>
+      <button class="btn btn-p" onclick="Router.go('cloudpilot')"><i class="fas fa-rocket"></i> Run CloudPilot Analysis</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ APP & DB PORTFOLIO ══ -->
 <div class="panel" id="p-portfolio">
   <div class="ph"><div><div class="ph-title">Assessment Portfolio</div><div class="ph-sub">Application and Database assessment results — readiness, costs, and recommendations</div></div><div class="ph-acts"><button class="btn btn-g btn-sm" onclick="downloadCSV()"><i class="fas fa-download"></i> Export PPT</button><button class="btn btn-p btn-sm" onclick="Router.go('sixr')"><i class="fas fa-chart-pie"></i> View 6R Analysis</button></div></div>
@@ -548,7 +1460,7 @@
     <div class="port-left">
       <div class="port-l-t">Assessments</div>
       <div class="port-l-v">95</div>
-      <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px;margin-top:4px">
+      <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px;">
         <div style="display:flex; justify-content: space-between;align-items: flex-start;">
           <div>
             <div style="font-size:20px;font-weight:800;color:#fff">35</div><div style="font-size:11px;color:rgba(255,255,255,.65)">Total Databases</div>
@@ -558,9 +1470,8 @@
           </div>
           
         </div>
-        
-        <div style="margin-top:10px;height:100px;"><canvas id="ch-port-db" ></canvas></div>
-        <div style="margin-top:10px;height:100px;"><canvas id="ch-port-app" ></canvas></div>
+        <div style="margin-top:10px;height:100px"><canvas id="ch-port-db"></canvas></div>
+        <div style="margin-top:10px;height:100px"><canvas id="ch-port-app"></canvas></div>
         <div style="margin-top:12px;padding:8px;background:rgba(245,166,35,.15);border-radius:8px;border:1px solid rgba(245,166,35,.3)">
           <div style="font-size:10px;color:var(--amber);font-weight:700;margin-bottom:2px">⚠️ Databases with warnings</div>
           <div style="font-size:20px;font-weight:800;color:var(--amber)">1</div>
@@ -640,31 +1551,29 @@
     <button class="tab-b on" id="sixr-app-tab"  onclick="switchSixRTab('app', this)">6R Analysis — Applications</button>
     <button class="tab-b" id="sixr-db-tab" onclick="switchSixRTab('db', this)">6R Analysis — Databases</button>
   </div>
-
   <script>
-function switchSixRTab(type, el) {
-  const wrapper = document.getElementById('p-sixr');
+      function switchSixRTab(type, el) {
+        const wrapper = document.getElementById('p-sixr');
 
-  const appTab = wrapper.querySelector('#sixr-app-panel');
-  const dbTab = wrapper.querySelector('#sixr-db-panel');
+        const appTab = wrapper.querySelector('#sixr-app-panel');
+        const dbTab = wrapper.querySelector('#sixr-db-panel');
 
-  // Remove active from all tabs (ONLY inside this component)
-  wrapper.querySelectorAll('.tab-b').forEach(btn => btn.classList.remove('on'));
+        // Remove active from all tabs (ONLY inside this component)
+        wrapper.querySelectorAll('.tab-b').forEach(btn => btn.classList.remove('on'));
 
-  // Add active to clicked tab
-  el.classList.add('on');
+        // Add active to clicked tab
+        el.classList.add('on');
 
-  // Switch panels
-  if (type === 'app') {
-    appTab.style.display = 'block';
-    dbTab.style.display = 'none';
-  } else {
-    appTab.style.display = 'none';
-    dbTab.style.display = 'block';
-  }
-}
-</script>
-
+        // Switch panels
+        if (type === 'app') {
+          appTab.style.display = 'block';
+          dbTab.style.display = 'none';
+        } else {
+          appTab.style.display = 'none';
+          dbTab.style.display = 'block';
+        }
+      }
+  </script>
   <!-- APP 6R -->
   <div id="sixr-app-panel" style="display:block;">
     <!-- Banner -->
@@ -688,7 +1597,7 @@ function switchSixRTab(type, el) {
       <div style="display:flex;flex-direction:column;gap:12px">
         <!-- Refactor -->
         <div style="display:flex;gap:10px;align-items:stretch">
-          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:270px">
             <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">76</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">16</td></tr><tr><td style="padding:2px 0">Php</td><td style="text-align:right;font-weight:700">2</td></tr><tr><td style="padding:2px 0">Python</td><td style="text-align:right;font-weight:700">2</td></tr><tr><td style="padding:2px 0">NodeJS</td><td style="text-align:right;font-weight:700">0</td></tr></table>
             <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">7735</div><div style="font-size:9px;color:var(--t3)">(hours)</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">82.89</div><div style="font-size:9px;color:var(--t3)">(0-100)</div></div></div>
           </div>
@@ -696,7 +1605,7 @@ function switchSixRTab(type, el) {
         </div>
         <!-- Rebuild -->
         <div style="display:flex;gap:10px;align-items:stretch">
-          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:270px">
             <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Php</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Python</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">NodeJS</td><td style="text-align:right;font-weight:700">0</td></tr></table>
             <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div></div>
           </div>
@@ -704,7 +1613,7 @@ function switchSixRTab(type, el) {
         </div>
         <!-- Retain -->
         <div style="display:flex;gap:10px;align-items:stretch">
-          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:270px">
             <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">0</td></tr></table>
             <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div></div>
           </div>
@@ -716,7 +1625,7 @@ function switchSixRTab(type, el) {
         <!-- Rehost -->
         <div style="display:flex;gap:10px;align-items:stretch">
           <div class="sixr-card c-rehost" style="flex:1"><div class="sixr-name">Rehost</div><div class="sixr-count">5</div><div class="sixr-lbl">Applications</div><div class="sixr-ico">🏠</div></div>
-          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:270px">
             <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">4</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">1</td></tr><tr><td style="padding:2px 0">Php</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Python</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">NodeJS</td><td style="text-align:right;font-weight:700">0</td></tr></table>
             <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">189</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">78.6</div></div></div>
           </div>
@@ -724,7 +1633,7 @@ function switchSixRTab(type, el) {
         <!-- Rearchitect -->
         <div style="display:flex;gap:10px;align-items:stretch">
           <div class="sixr-card c-rearch" style="flex:1"><div class="sixr-name">Rearchitect</div><div class="sixr-count">1</div><div class="sixr-lbl">Applications</div><div class="sixr-ico">🏗️</div></div>
-          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:270px">
             <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">1</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">0</td></tr></table>
             <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">18</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">91</div></div></div>
           </div>
@@ -732,7 +1641,7 @@ function switchSixRTab(type, el) {
         <!-- Replace -->
         <div style="display:flex;gap:10px;align-items:stretch">
           <div class="sixr-card c-replace" style="flex:1"><div class="sixr-name">Replace</div><div class="sixr-count">0</div><div class="sixr-lbl">Applications</div><div class="sixr-ico">🔄</div></div>
-          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:250px">
+          <div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r1);padding:12px;min-width:270px">
             <table style="width:100%;font-size:11px;border-collapse:collapse"><tr><th style="text-align:left;color:var(--t3);padding-bottom:4px">Application</th><th style="text-align:right;color:var(--t3);padding-bottom:4px">Count</th></tr><tr><td style="padding:2px 0">.Net</td><td style="text-align:right;font-weight:700">0</td></tr><tr><td style="padding:2px 0">Java</td><td style="text-align:right;font-weight:700">0</td></tr></table>
             <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between"><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Total Efforts</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div><div><div style="font-size:9px;color:var(--t3);text-transform:uppercase">Avg Readiness</div><div style="font-size:18px;font-weight:800;color:var(--t1)">0</div></div></div>
           </div>
@@ -818,6 +1727,7 @@ function switchSixRTab(type, el) {
     <div style="display:flex;flex-direction:column;gap:12px">
       <div class="card"><div class="ch"><div class="ct">Migration Config</div></div>
         <div class="cb-p" style="display:flex;flex-direction:column;gap:10px">
+          <div><label style="font-size:11px;font-weight:700;color:var(--t3);display:block;margin-bottom:5px">Target Cloud</label><select class="isel" style="width:100%"><option>Microsoft Azure</option><option>Amazon AWS</option><option>Google Cloud</option></select></div>
           <div><label style="font-size:11px;font-weight:700;color:var(--t3);display:block;margin-bottom:5px">Region</label><select class="isel" style="width:100%"><option>East US</option><option>West Europe</option><option>Southeast Asia</option></select></div>
           <div><label style="font-size:11px;font-weight:700;color:var(--t3);display:block;margin-bottom:5px">Migration Type</label><select class="isel" style="width:100%"><option>Online (Zero-downtime)</option><option>Offline (Scheduled window)</option></select></div>
           <div style="font-size:11px;font-weight:600;padding:8px;background:var(--bg2);border-radius:8px;color:var(--t2)" id="mig-status">Ready to start migration</div>
@@ -872,8 +1782,7 @@ function switchSixRTab(type, el) {
 <!-- ══ SECURITY ══ -->
 <div class="panel" id="p-security">
   <div class="ph"><div><div class="ph-title">Post-Migration Security &amp; Compliance</div><div class="ph-sub">Enterprise-grade protection across your entire digital landscape · Click "Try it" to explore each solution</div></div></div>
-  <div style="margin-bottom:16px"><span class="bdg bb" style="padding:4px 12px;font-size:11px">Security solutions</span></div>
-  <div style="margin-bottom:8px"><div style="font-size:18px;font-weight:800;color:var(--t1);margin-bottom:6px">Other security solutions</div><div style="width:40px;height:3px;background:var(--blue);border-radius:3px;margin-bottom:10px"></div><div style="font-size:13px;color:var(--t3)">Enterprise-grade protection across your entire digital landscape.</div></div>
+  <div style="margin-bottom:8px"><div style="font-size:18px;font-weight:800;color:var(--t1);margin-bottom:6px">Security Solutions</div></div>
   <!-- Gauges row -->
   <div class="gg mb2">
     <div class="gc"><div class="gw"><canvas id="g-sec"></canvas><div class="gn">86%</div></div><div class="gl">Security Score</div><div class="gs">Post-migration</div></div>
@@ -1006,6 +1915,9 @@ function switchSixRTab(type, el) {
       <button class="qr-b" data-q="Generate AI assisted wave plan">🌊 Wave Plan</button>
       <button class="qr-b" data-q="Analyze application dependency topology">🕸 Dep Map</button>
       <button class="qr-b" data-q="Run TCO analysis and cost comparison">💰 TCO</button>
+      <button class="qr-b" data-q="Show application assessment overview">📱 App Assessment</button>
+      <button class="qr-b" data-q="Show database assessment overview">🗄 DB Assessment</button>
+      <button class="qr-b" data-q="Show ACR assessment cost report">💶 ACR Report</button>
       <button class="qr-b" data-q="Run 6R analysis for applications and databases">🔄 6R Analysis</button>
       <button class="qr-b" data-q="Execute migration waves and deploy workloads">☁️ Migration</button>
       <button class="qr-b" data-q="Review post migration security solutions">🔒 Security</button>
