@@ -8,7 +8,7 @@ const Theme={
 /* ─ Sidebar ─ */
 const Sidebar={col:false,init(){document.getElementById('sbToggle')?.addEventListener('click',()=>this.toggle());},toggle(){this.col=!this.col;document.getElementById('sb').classList.toggle('col',this.col);}};
 /* ─ Router ─ */
-const Router={cur:'overview',init(){document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>this.go(b.getAttribute('data-nav'))));this.go('overview');},
+const Router={cur:'capabilities',init(){document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>this.go(b.getAttribute('data-nav'))));this.go('capabilities');},
   go(id){
     this.cur=id;
     document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
